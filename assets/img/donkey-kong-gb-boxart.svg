@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 280" width="200" height="280">
+  <rect width="200" height="280" fill="#0a0c10"/>
+  <!-- Sky gradient -->
+  <rect width="200" height="160" fill="#1a1000"/>
+  <!-- Scaffolding lines -->
+  <line x1="30" y1="20" x2="30" y2="160" stroke="#2a3040" stroke-width="3"/>
+  <line x1="80" y1="20" x2="80" y2="160" stroke="#2a3040" stroke-width="3"/>
+  <line x1="130" y1="20" x2="130" y2="160" stroke="#2a3040" stroke-width="3"/>
+  <line x1="170" y1="20" x2="170" y2="160" stroke="#2a3040" stroke-width="3"/>
+  <line x1="20" y1="60" x2="180" y2="60" stroke="#2a3040" stroke-width="2"/>
+  <line x1="20" y1="100" x2="180" y2="100" stroke="#2a3040" stroke-width="2"/>
+  <line x1="20" y1="140" x2="180" y2="140" stroke="#2a3040" stroke-width="2"/>
+  <!-- DK silhouette -->
+  <ellipse cx="100" cy="70" rx="30" ry="28" fill="#c8691a"/>
+  <ellipse cx="100" cy="68" rx="22" ry="20" fill="#e07820"/>
+  <!-- DK face -->
+  <ellipse cx="100" cy="72" rx="18" ry="14" fill="#c07020"/>
+  <circle cx="92" cy="66" r="5" fill="#111318"/>
+  <circle cx="108" cy="66" r="5" fill="#111318"/>
+  <circle cx="93" cy="65" r="2" fill="#f4a800"/>
+  <circle cx="109" cy="65" r="2" fill="#f4a800"/>
+  <ellipse cx="100" cy="76" rx="10" ry="6" fill="#b06010"/>
+  <!-- DK arms -->
+  <ellipse cx="68" cy="78" rx="14" ry="8" fill="#c8691a" transform="rotate(-20,68,78)"/>
+  <ellipse cx="132" cy="78" rx="14" ry="8" fill="#c8691a" transform="rotate(20,132,78)"/>
+  <!-- Ground/platform -->
+  <rect x="0" y="160" width="200" height="120" fill="#111318"/>
+  <rect x="0" y="158" width="200" height="6" fill="#f4a800"/>
+  <!-- Mario (small) on ground -->
+  <rect x="30" y="175" width="12" height="16" fill="#ff4444"/>
+  <rect x="32" y="170" width="8" height="8" fill="#f4a800"/>
+  <rect x="30" y="183" width="5" height="8" fill="#4a3000"/>
+  <rect x="37" y="183" width="5" height="8" fill="#4a3000"/>
+  <!-- Title area -->
+  <rect x="0" y="205" width="200" height="75" fill="#0a0c10"/>
+  <rect x="0" y="205" width="200" height="2" fill="#f4a800" opacity="0.3"/>
+  <!-- Title text -->
+  <text x="100" y="228" font-family="monospace" font-size="22" font-weight="bold" fill="#f4a800" text-anchor="middle" letter-spacing="2">DONKEY</text>
+  <text x="100" y="250" font-family="monospace" font-size="22" font-weight="bold" fill="#f4a800" text-anchor="middle" letter-spacing="2">KONG</text>
+  <!-- Platform label -->
+  <text x="100" y="270" font-family="monospace" font-size="9" fill="#4fc3f7" text-anchor="middle" letter-spacing="3">GAME BOY · 1994</text>
+</svg>
