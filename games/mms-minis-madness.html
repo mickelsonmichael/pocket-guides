@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>M&amp;M's Minis Madness (GBC) — Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.8.1/dist/css/foundation.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+  /* Character cards */
+  .char-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
+
+  .char-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 12px 16px;
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 14px;
+    align-items: start;
+  }
+
+  .char-name {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 8px;
+    line-height: 1.8;
+  }
+
+  .char-name.red   { color: #ff5555; }
+  .char-name.yellow { color: #f4d03f; }
+  .char-name.blue  { color: #4fc3f7; }
+  .char-name.green { color: #66bb6a; }
+
+  .char-desc { font-size: 13px; color: var(--text); }
+
+  /* Password table color dots */
+  .dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin: 0 2px;
+    vertical-align: middle;
+  }
+  .dot.red    { background: #ff5555; }
+  .dot.yellow { background: #f4d03f; }
+  .dot.blue   { background: #4fc3f7; }
+  .dot.green  { background: #66bb6a; }
+  .dot.orange { background: #ff9800; }
+  .dot.brown  { background: #8d5524; }
+
+  /* Bullet list */
+  ul.bullet-list { list-style: none; margin-bottom: 12px; }
+  ul.bullet-list li::before { content: '▸ '; color: var(--accent); }
+  ul.bullet-list li { margin-bottom: 4px; }
+
+  @media (max-width: 560px) {
+    h1 { font-size: 11px; }
+    .char-card { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="shell">
+
+  <a href="../index.html" style="display:inline-block;font-family:'Press Start 2P',monospace;font-size:8px;color:var(--text-dim);text-decoration:none;padding:10px 0 0;letter-spacing:1px;">&#8592; Pocket Guides</a>
+
+  <header>
+    <div class="game-label">Game Boy Color · Platformer</div>
+    <h1>M&amp;M's Minis Madness</h1>
+    <p class="subtitle">Conspiracy Entertainment · Game Boy Color · 2000</p>
+  </header>
+
+  <nav>
+    <a href="#overview">Overview</a>
+    <a href="#controls">Controls</a>
+    <a href="#characters">Characters</a>
+    <a href="#collectibles">Collectibles</a>
+    <a href="#passwords">Passwords</a>
+    <a href="#tips">Tips</a>
+  </nav>
+
+  <!-- OVERVIEW -->
+  <section id="overview">
+    <h2>Overview</h2>
+    <p>The M&amp;M's Minis have gone haywire inside the M&amp;M's candy factory and it's up to Red, Yellow, Blue, and Green to reclaim it. The game is a side-scrolling platformer spread across several themed worlds — including factory floors, conveyor systems, a mixing room, and warehouse sections — each with multiple stages.</p>
+    <p>The core hook is character-switching: no single M&amp;M can handle every obstacle. You must cycle through the four characters and use their distinct abilities to open new paths and solve each level's puzzles.</p>
+    <div class="info-box">
+      <p><strong>No battery save:</strong> M&amp;M's Minis Madness uses a password system rather than battery-backed save data. Write down your password at the end of every session to pick up where you left off.</p>
+    </div>
+  </section>
+
+  <!-- CONTROLS -->
+  <section id="controls">
+    <h2>Controls</h2>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Button</th><th>Action</th></tr></thead>
+        <tbody>
+          <tr><td>D-Pad Left / Right</td><td>Move the active character.</td></tr>
+          <tr><td>D-Pad Up</td><td>Climb a ladder or enter a door.</td></tr>
+          <tr><td>D-Pad Down</td><td>Crouch / descend a ladder.</td></tr>
+          <tr><td>A</td><td>Jump.</td></tr>
+          <tr><td>B</td><td>Use the active character's special ability.</td></tr>
+          <tr><td>Select</td><td>Cycle to the next available character.</td></tr>
+          <tr><td>Start</td><td>Pause / unpause.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- CHARACTERS -->
+  <section id="characters">
+    <h2>Characters</h2>
+    <p>Press <strong>Select</strong> at any time during a level to switch to the next character in the rotation. All four characters share the same health pool — damage carries over when you switch. Each character is essential at some point in every world, so learn all four.</p>
+
+    <div class="char-list">
+
+      <div class="char-card">
+        <div class="char-name red">Red<br><span style="font-size:7px;color:var(--text-dim)">Spin Attack</span></div>
+        <div class="char-desc">
+          <strong>Special (B):</strong> Performs a spinning body attack in place. The spin destroys breakable blocks and crates, defeats nearby enemies without needing to jump on them, and can activate certain spinning mechanisms in the environment. Red is the go-to character whenever you need to smash something or clear a tight cluster of enemies.
+        </div>
+      </div>
+
+      <div class="char-card">
+        <div class="char-name yellow">Yellow<br><span style="font-size:7px;color:var(--text-dim)">High Bounce</span></div>
+        <div class="char-desc">
+          <strong>Special (B):</strong> Jumps significantly higher than the other characters, using his natural bounciness to reach elevated platforms, high ledges, and items that are completely out of reach for Red, Blue, or Green. Whenever the path leads upward and a normal jump falls short, switch to Yellow.
+        </div>
+      </div>
+
+      <div class="char-card">
+        <div class="char-name blue">Blue<br><span style="font-size:7px;color:var(--text-dim)">Swim</span></div>
+        <div class="char-desc">
+          <strong>Special (B):</strong> The only character who can enter and navigate water. All other characters take damage or are stopped entirely by water hazards. Switch to Blue any time you encounter a pool, flood, or water-filled passage. Blue can also dive under the surface to reach submerged items and passages.
+        </div>
+      </div>
+
+      <div class="char-card">
+        <div class="char-name green">Green (Ms. Green)<br><span style="font-size:7px;color:var(--text-dim)">Blow Kiss</span></div>
+        <div class="char-desc">
+          <strong>Special (B):</strong> Fires a kiss projectile forward. The kiss travels horizontally across the screen and can defeat enemies at range, hit switches that are too far to reach by other means, and activate certain candy-themed mechanisms that only respond to Green's charm. Green is the only long-range attacker in the group.
+        </div>
+      </div>
+
+    </div>
+
+    <div class="info-box">
+      <p><strong>Switching strategy:</strong> You cannot switch to a character who has no remaining HP. Keep an eye on the health bar and try to spread damage evenly across characters so you always have a healthy one available when you need a specific ability.</p>
+    </div>
+  </section>
+
+  <!-- COLLECTIBLES -->
+  <section id="collectibles">
+    <h2>Collectibles</h2>
+    <p>Each level is filled with loose M&amp;M's Minis candies and other pick-ups. Understanding what each one does saves lives — literally.</p>
+
+    <h3>M&amp;M's Minis (Small Candies)</h3>
+    <p>These scattered candy pieces are the game's primary collectible. A running counter on the HUD tracks how many you have gathered in the current session.</p>
+    <ul class="bullet-list">
+      <li>Every <strong>100 Minis</strong> collected awards one extra life.</li>
+      <li>Minis are found throughout each level — on platforms, inside breakable blocks (use Red), and in underwater passages (use Blue).</li>
+      <li>The counter does <em>not</em> reset when you switch characters, so all four characters contribute to the same total.</li>
+    </ul>
+
+    <h3>Health Restore</h3>
+    <p>Larger M&amp;M's candies and candy bags restore a portion of the shared health bar. Prioritize these when you are running low and a difficult section is ahead.</p>
+
+    <h3>Extra Life (1-Up)</h3>
+    <p>Distinct 1-Up icons appear in hidden or hard-to-reach spots. These grant an immediate extra life when collected, separate from the Minis counter milestone reward.</p>
+
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Item</th><th>Effect</th></tr></thead>
+        <tbody>
+          <tr><td>Small M&amp;M's Mini (candy piece)</td><td>+1 to the Minis counter; every 100 = 1 extra life</td></tr>
+          <tr><td>Large M&amp;M's candy / candy bag</td><td>Restores health</td></tr>
+          <tr><td>1-Up icon</td><td>+1 life immediately</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="info-box">
+      <p><strong>Exploration tip:</strong> Red's spin attack breaks blocks that can conceal clusters of Minis or even a 1-Up. Always check suspicious-looking blocks before moving on, and use Yellow's high bounce to reach platforms above the main path where extra candies often hide.</p>
+    </div>
+  </section>
+
+  <!-- PASSWORDS -->
+  <section id="passwords">
+    <h2>Passwords</h2>
+    <p>From the main menu, select <strong>Password</strong> to open the password entry screen. The screen displays six colored M&amp;M slots. Use the D-pad to cycle through the six available colors — <span class="dot red"></span> Red, <span class="dot yellow"></span> Yellow, <span class="dot blue"></span> Blue, <span class="dot green"></span> Green, <span class="dot orange"></span> Orange, <span class="dot brown"></span> Brown — and press <strong>A</strong> to confirm each one. Enter all six colors in order, then press <strong>Start</strong> to jump to the corresponding level.</p>
+
+    <div class="info-box">
+      <p><strong>Note:</strong> Passwords skip directly to a level but do not restore your lives count from a previous session. You begin with the default starting lives.</p>
+    </div>
+
+    <h3>Level Passwords</h3>
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Level</th>
+            <th>Password</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1-1</td>
+            <td>
+              <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span><span class="dot blue"></span><span class="dot orange"></span><span class="dot brown"></span>
+              Red, Yellow, Green, Blue, Orange, Brown
+            </td>
+          </tr>
+          <tr>
+            <td>1-2</td>
+            <td>
+              <span class="dot yellow"></span><span class="dot red"></span><span class="dot blue"></span><span class="dot blue"></span><span class="dot green"></span><span class="dot blue"></span>
+              Yellow, Red, Blue, Blue, Green, Blue
+            </td>
+          </tr>
+          <tr>
+            <td>1-3</td>
+            <td>
+              <span class="dot green"></span><span class="dot blue"></span><span class="dot yellow"></span><span class="dot red"></span><span class="dot yellow"></span><span class="dot yellow"></span>
+              Green, Blue, Yellow, Red, Yellow, Yellow
+            </td>
+          </tr>
+          <tr>
+            <td>2-1 / Conveyors Pt. 1</td>
+            <td>
+              <span class="dot green"></span><span class="dot blue"></span><span class="dot green"></span><span class="dot red"></span><span class="dot green"></span><span class="dot yellow"></span>
+              Green, Blue, Green, Red, Green, Yellow
+            </td>
+          </tr>
+          <tr>
+            <td>2-2 / Conveyors Pt. 2</td>
+            <td>
+              <span class="dot red"></span><span class="dot yellow"></span><span class="dot orange"></span><span class="dot yellow"></span><span class="dot brown"></span><span class="dot blue"></span>
+              Red, Yellow, Orange, Yellow, Brown, Blue
+            </td>
+          </tr>
+          <tr>
+            <td>2-3 / Conveyors Pt. 3</td>
+            <td>
+              <span class="dot brown"></span><span class="dot green"></span><span class="dot red"></span><span class="dot blue"></span><span class="dot orange"></span><span class="dot blue"></span>
+              Brown, Green, Red, Blue, Orange, Blue
+            </td>
+          </tr>
+          <tr>
+            <td>Mixing Room Pt. 1</td>
+            <td>
+              <span class="dot orange"></span><span class="dot orange"></span><span class="dot green"></span><span class="dot green"></span><span class="dot green"></span><span class="dot blue"></span>
+              Orange, Orange, Green, Green, Green, Blue
+            </td>
+          </tr>
+          <tr>
+            <td>3-2</td>
+            <td>
+              <span class="dot red"></span><span class="dot blue"></span><span class="dot green"></span><span class="dot red"></span><span class="dot brown"></span><span class="dot green"></span>
+              Red, Blue, Green, Red, Brown, Green
+            </td>
+          </tr>
+          <tr>
+            <td>3-3</td>
+            <td>
+              <span class="dot blue"></span><span class="dot yellow"></span><span class="dot green"></span><span class="dot orange"></span><span class="dot red"></span><span class="dot yellow"></span>
+              Blue, Yellow, Green, Orange, Red, Yellow
+            </td>
+          </tr>
+          <tr>
+            <td>4-1 / Warehouse Pt. 1</td>
+            <td>
+              <span class="dot yellow"></span><span class="dot yellow"></span><span class="dot blue"></span><span class="dot green"></span><span class="dot blue"></span><span class="dot brown"></span>
+              Yellow, Yellow, Blue, Green, Blue, Brown
+            </td>
+          </tr>
+          <tr>
+            <td>4-2 / Warehouse Pt. 2</td>
+            <td>
+              <span class="dot red"></span><span class="dot orange"></span><span class="dot yellow"></span><span class="dot brown"></span><span class="dot green"></span><span class="dot red"></span>
+              Red, Orange, Yellow, Brown, Green, Red
+            </td>
+          </tr>
+          <tr>
+            <td>4-3 / Warehouse Pt. 3</td>
+            <td>
+              <span class="dot orange"></span><span class="dot brown"></span><span class="dot blue"></span><span class="dot green"></span><span class="dot orange"></span><span class="dot blue"></span>
+              Orange, Brown, Blue, Green, Orange, Blue
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- TIPS -->
+  <section id="tips">
+    <h2>Tips &amp; Strategy</h2>
+
+    <h3>Character Management</h3>
+    <ul class="bullet-list">
+      <li>All four characters share one health bar. Losing all HP means a life lost regardless of who you are currently controlling.</li>
+      <li>Before entering a known hazard (water, a spin-block room), pre-switch to the right character so you're not scrambling under pressure.</li>
+      <li>Green's kiss projectile can hit switches across a wide gap — look for switches before assuming you need a specific platform route.</li>
+    </ul>
+
+    <h3>Collecting Minis Efficiently</h3>
+    <ul class="bullet-list">
+      <li>Sweep the bottom of each platform before climbing — Minis often cluster at ground level.</li>
+      <li>Use Red's spin to break blocks that may hide additional Minis or a 1-Up before finishing a room.</li>
+      <li>Keep track of your counter: if you are at 90+ Minis, take a detour to find ten more before continuing to cash in the free life.</li>
+    </ul>
+
+    <h3>Using Passwords</h3>
+    <ul class="bullet-list">
+      <li>Write down (or photograph) the password immediately when you reach a new level checkpoint — there is no auto-save.</li>
+      <li>Passwords skip to the level start; any Minis or 1-Ups collected previously are not saved. Stock up on lives in early levels before using a skip.</li>
+    </ul>
+
+    <h3>General</h3>
+    <ul class="bullet-list">
+      <li>Conveyor belts push characters in a fixed direction — switch to Yellow to bounce over them rather than fighting the current.</li>
+      <li>Water sections are only dangerous if you forget to switch to Blue. When in doubt, switch before you step in.</li>
+      <li>Enemy-dense corridors are fastest cleared by Red's spin; blowing a kiss with Green works at range but takes longer when enemies are close.</li>
+    </ul>
+  </section>
+
+  <footer>
+    <p>M&amp;M's Minis Madness &copy; 2000 Conspiracy Entertainment / Mars, Incorporated. Fan-made reference guide.</p>
+  </footer>
+
+</div>
+</body>
+</html>
