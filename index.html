@@ -6,46 +6,12 @@
   <title>Pocket Guides</title>
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Share+Tech+Mono&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.8.1/dist/css/foundation.min.css">
+  <link rel="stylesheet" href="assets/site.css">
   <style>
-    :root {
-      --bg: #0a0c10;
-      --surface: #111318;
-      --surface2: #181c24;
-      --border: #2a3040;
-      --accent: #f4a800;
-      --accent2: #ff4444;
-      --accent3: #4fc3f7;
-      --text: #d8dde8;
-      --text-dim: #7a8599;
-      --glow: 0 0 12px rgba(244,168,0,0.3);
-    }
-
-    *, *::before, *::after { box-sizing: border-box; }
-
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'Share Tech Mono', monospace;
-      font-size: 14px;
-      line-height: 1.7;
-      min-height: 100vh;
-      margin: 0;
-      padding: 0;
-    }
-
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background: repeating-linear-gradient(
-        0deg,
-        transparent,
-        transparent 2px,
-        rgba(0,0,0,0.08) 2px,
-        rgba(0,0,0,0.08) 4px
-      );
-      pointer-events: none;
-      z-index: 1000;
+    /* Index header has more breathing room than game guides */
+    header {
+      padding: 48px 0 28px;
+      margin-bottom: 40px;
     }
 
     /* Override Foundation container */
@@ -53,22 +19,6 @@
       max-width: 1100px;
       padding-left: 16px;
       padding-right: 16px;
-    }
-
-    /* Header */
-    header {
-      padding: 48px 0 28px;
-      border-bottom: 2px solid var(--accent);
-      margin-bottom: 40px;
-    }
-
-    header::after {
-      content: '';
-      display: block;
-      height: 1px;
-      background: var(--accent3);
-      margin-top: 4px;
-      opacity: 0.3;
     }
 
     .site-label {
@@ -98,9 +48,7 @@
     }
 
     /* Search */
-    .search-wrap {
-      margin-bottom: 36px;
-    }
+    .search-wrap { margin-bottom: 36px; }
 
     #game-search {
       width: 100%;
@@ -125,9 +73,7 @@
       box-shadow: var(--glow);
     }
 
-    #game-search::placeholder {
-      color: var(--text-dim);
-    }
+    #game-search::placeholder { color: var(--text-dim); }
 
     /* Section heading */
     .section-heading {
@@ -141,9 +87,7 @@
     }
 
     /* Game cards */
-    .game-card {
-      margin-bottom: 24px;
-    }
+    .game-card { margin-bottom: 24px; }
 
     .game-card a {
       display: block;
@@ -160,9 +104,7 @@
       box-shadow: var(--glow);
     }
 
-    .game-card a:hover .game-card-title {
-      color: var(--text);
-    }
+    .game-card a:hover .game-card-title { color: var(--text); }
 
     .game-card img {
       width: 100%;
@@ -185,10 +127,7 @@
       margin-bottom: 4px;
     }
 
-    .game-card-meta {
-      font-size: 10px;
-      color: var(--text-dim);
-    }
+    .game-card-meta { font-size: 10px; color: var(--text-dim); }
 
     /* No results */
     #no-results {
@@ -198,13 +137,7 @@
       padding: 32px 0;
     }
 
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 24px 0;
-      margin-top: 60px;
-      color: var(--text-dim);
-      font-size: 11px;
-    }
+    footer { padding: 24px 0; margin-top: 60px; }
   </style>
 </head>
 <body>
