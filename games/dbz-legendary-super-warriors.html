@@ -181,8 +181,8 @@
     color: var(--text);
   }
 
-  tr:nth-child(even) td { background: rgba(255,255,255,0.02); }
-  tr:hover td { background: rgba(244,168,0,0.04); }
+  tr:nth-child(even) td { background: var(--surface2); }
+  tr:hover td { background: rgba(244,168,0,0.06); }
 
   /* Boss cards */
   .boss-list { display: flex; flex-direction: column; gap: 12px; }
@@ -452,7 +452,6 @@
     <a href="#controls">Controls</a>
     <a href="#battle">Battle System</a>
     <a href="#walkthrough">Walkthrough</a>
-    <a href="#bosses">Boss Guide</a>
     <a href="#characters">Characters</a>
     <a href="#cards">Cards</a>
     <a href="#secrets">Secrets</a>
@@ -565,319 +564,168 @@
     <p>After each battle, you choose <strong>1 card</strong> from 3 options.</p>
   </section>
 
-  <!-- WALKTHROUGH -->
+  <!-- WALKTHROUGH (combined with boss guide) -->
   <section id="walkthrough">
-    <h2>Walkthrough</h2>
+    <h2>Walkthrough &amp; Boss Guide</h2>
 
     <div class="wt-step">
       <div class="step-num">SAIYAN SAGA</div>
       <p>The game starts after Raditz's defeat. Piccolo is training Gohan. Talk to Piccolo, find the jars (answer the battle system question to get a card), return to Piccolo and repeat until he asks you to pick a deck. <span class="warn">Recommended: Beam Deck.</span></p>
-      <p>Fight Piccolo → Pick a card → Watch scene.</p>
-    </div>
-
-    <div class="wt-step">
-      <p>After the Saiyans arrive and Piccolo dies saving Gohan: fight Nappa as Gohan → Pick a card.</p>
+      <div class="boss-card">
+        <div class="boss-header"><span class="boss-name">Piccolo</span><span class="diff diff-easy">EASY</span></div>
+        <p class="boss-tip">You attack first. Build CC with 3-stage attacks. If he gathers power, match him. Use Foresight before his 4/5-stage attack. Try Masenko or a 4-stage attack when ready. When he uses Special Beam Cannon, use an avoid card or move Gohan to the bottom-left corner.</p>
+      </div>
+      <p>After scene: the Saiyans arrive and Piccolo dies saving Gohan. Fight Nappa as Gohan → pick a card.</p>
+      <div class="boss-card">
+        <div class="boss-header"><span class="boss-name">Nappa</span><span class="diff diff-normal">NORMAL</span></div>
+        <p class="boss-tip">Pummel with 3- and 4-stage attacks. Have Endurance ready if he hasn't powered up by his 4th or 5th turn.</p>
+      </div>
       <p>Goku arrives and leads Vegeta away. <strong>Before the Vegeta fight</strong>, equip Goku's limit with Super Kamehameha and Kaioken.</p>
-      <p>Fight Vegeta (Goku) → Pick card → scene.</p>
-    </div>
-
-    <div class="wt-step">
-      <p>After Vegeta beats Goku: Go to the nearest rock formation and press A to get <strong>Yajirobe's sword</strong>. Talk to Krillin → say yes. Talk to Yajirobe. Fight Vegeta again (Gohan/Krillin) → pick card.</p>
+      <div class="boss-card">
+        <div class="boss-header"><span class="boss-name">Vegeta (Goku)</span><span class="diff diff-hard">HARD (first time)</span></div>
+        <p class="boss-tip">Attack normally with 3- and 4-stage attacks. When Vegeta powers up, match him — use Kaioken on defense, then Super Kamehameha on offense. Watch out for Galick-Ho.</p>
+      </div>
+      <p>After Vegeta beats Goku: go to the nearest rock formation and press A to get <strong>Yajirobe's sword</strong>. Talk to Krillin → say yes. Talk to Yajirobe.</p>
+      <div class="boss-card">
+        <div class="boss-header"><span class="boss-name">Vegeta (Gohan/Krillin)</span><span class="diff diff-normal">NORMAL</span></div>
+        <p class="boss-tip">No Kaioken or Super Kamehameha available. Use your best joint cards; Yajirobe's sword helps.</p>
+      </div>
     </div>
 
     <div class="wt-step">
       <div class="step-num">NAMEK SAGA</div>
       <p>On the map, go left to the Namekian village. Find the house reachable only through the row of trees → press A → get the <strong>Dende card</strong>. Go to the island and press A by the rightmost tree to dig up a Dragon Ball. A Namekian accuses you; dodge left.</p>
-      <p>Fight Guldo → fight Recoome → fight Jeice &amp; Burter.</p>
+      <div class="boss-card">
+        <div class="boss-header"><span class="boss-name">Guldo</span><span class="diff diff-easy">EASY</span></div>
+        <p class="boss-tip">Pick Krillin (to get him toward level 2) or Gohan.</p>
+      </div>
+      <div class="boss-card">
+        <div class="boss-header"><span class="boss-name">Recoome</span><span class="diff diff-hard">ALMOST HARD</span></div>
+        <p class="boss-tip">Wail with 3- and 4-stage attacks. After significant damage he'll use Eraser Gun for heavy damage — be ready for it.</p>
+      </div>
+      <div class="boss-card">
+        <div class="boss-header"><span class="boss-name">Jeice &amp; Burter</span><span class="diff diff-normal">NORMAL</span></div>
+        <p class="boss-tip">First 2v2 battle. Put Gohan front, Goku back. Use Dende when either is near ¼ HP. Once Jeice is down, Burter switches to Mach Attack — have Shockwave ready. When possible, have Goku power up → Kaioken → Spirit Bomb.</p>
+      </div>
       <p>After Burter/Jeice: go to the top-left corner of the map and press A at the space pod for a card. Follow the dirt path north → collect Dragon Balls → talk to Krillin.</p>
-      <p>Fight Ginyu (Goku's body) &amp; Jeice → fight Freeza.</p>
-    </div>
-
-    <div class="wt-step">
-      <p>After first Freeza fight: Freeza nearly kills Piccolo and kills Krillin, pushing Goku to go Super Saiyan. Switch to Gohan, find Bulma in the NW of the map. Talk to her → say no → go to the pile of rocks and press A for a card → go back to Bulma → say yes. Fight Freeza again (as SSJ Goku).</p>
+      <div class="boss-card">
+        <div class="boss-header"><span class="boss-name">Ginyu (Goku's body) &amp; Jeice</span><span class="diff diff-easy">EASY</span></div>
+        <p class="boss-tip">Ginyu will use Super Kamehameha — watch HP. Swap to Krillin if Gohan gets low and use Misty Ki Wave. Jeice may use Crasher Ball. Swap back to Gohan if Krillin gets low.</p>
+      </div>
+      <div class="boss-card">
+        <div class="boss-header"><span class="boss-name">Freeza (1st fight)</span><span class="diff diff-hard">ALMOST HARD</span></div>
+        <p class="boss-tip">Freeza favors Ground Wave and Super Dash Elbow after powering up. Build CC to ~65–70, then use Kaioken + Spirit Bomb for massive damage.</p>
+      </div>
+      <p>After the first Freeza fight: Freeza nearly kills Piccolo and kills Krillin, pushing Goku to go Super Saiyan. Switch to Gohan, find Bulma in the NW of the map. Talk to her → say no → go to the pile of rocks and press A for a card → go back to Bulma → say yes.</p>
+      <div class="boss-card">
+        <div class="boss-header"><span class="boss-name">Freeza (2nd fight — SSJ Goku)</span><span class="diff diff-hard">ALMOST HARD</span></div>
+        <p class="boss-tip">No Kaioken. Build CC normally, then spam Super Kamehameha and Spirit Bombs.</p>
+      </div>
     </div>
 
     <div class="wt-step">
       <div class="step-num">ANDROID SAGA</div>
-      <p>After Namek, talk to Piccolo and search for him 5 times (find his ki). Get Gohan's Dunk Shot from Piccolo, another card from Chichi, and the 5 Stage Attack from Goku. Fight Goku (training battle).</p>
-      <p>After scene: Talk to Krillin, Vegeta, and Piccolo. Find Tien in the northern cliffs (press A). Fight Android 20 → fight Cell (lose once to unlock Piccolo-God, then win).</p>
-      <p>After Cell escapes: In the chamber building, find the note behind the building and follow its instructions to get <strong>Kaio, Trunks' Sword, and Solid Shot</strong>. Talk to Goku for something strange. Fight Android 16 &amp; 18.</p>
+      <p>After Namek, talk to Piccolo and search for him 5 times (find his ki). Get Gohan's Dunk Shot from Piccolo, a card from Chichi, and the 5 Stage Attack from Goku.</p>
+      <div class="boss-card">
+        <div class="boss-header"><span class="boss-name">Goku (training)</span><span class="diff diff-easy">EASY</span></div>
+        <p class="boss-tip">He'll use Spirit Bomb on Ki attacks, draining HP fast. Build CC and use Masenkos or Dunk Shot.</p>
+      </div>
+      <p>After scene: talk to Krillin, Vegeta, and Piccolo. Find Tien in the northern cliffs (press A).</p>
+      <div class="boss-card">
+        <div class="boss-header"><span class="boss-name">Android 19</span><span class="diff diff-normal">NORMAL</span></div>
+        <p class="boss-tip">May absorb Ki attacks occasionally. Has an HP drain attack. Build CC, power up, Spirit Bomb.</p>
+      </div>
+      <div class="boss-card">
+        <div class="boss-header"><span class="boss-name">Android 20</span><span class="diff diff-normal">NORMAL</span></div>
+        <p class="boss-tip">Uses Super E-Ball as his special (19 does not). Otherwise the same approach.</p>
+      </div>
+      <div class="boss-card">
+        <div class="boss-header"><span class="boss-name">Android 17 (Piccolo-God)</span><span class="diff diff-normal">SEMI-NORMAL</span></div>
+        <p class="boss-tip">Piccolo-God makes this easier. Won't absorb energy but uses Crazy Rush and Super E-Ball. Use Special Beam Cannon when available.</p>
+      </div>
+      <div class="boss-card">
+        <div class="boss-header"><span class="boss-name">Cell (first encounter)</span><span class="diff diff-normal">NORMAL</span></div>
+        <p class="boss-tip">Have Piccolo-God if possible. If not, lose once → continue → beat him. Watch for Special Beam Cannon and Super Kamehameha.</p>
+      </div>
+      <p>After Cell escapes: in the chamber building, find the note behind the building and follow its instructions to get <strong>Kaio, Trunks' Sword, and Solid Shot</strong>. Talk to Goku for something strange.</p>
+      <div class="boss-card">
+        <div class="boss-header"><span class="boss-name">Android 16 &amp; 18</span><span class="diff diff-hard">ALMOST HARD</span></div>
+        <p class="boss-tip">16 favors Rocket Punch; 18 uses a variety. Have Goku-SS assist if possible.</p>
+      </div>
     </div>
 
     <div class="wt-step">
       <div class="step-num">CELL GAMES</div>
-      <p>Cell Games begin. Fight Cell as Goku → then as SSJ2 Gohan (Cell Jr. battle) → Gohan vs Cell main fight → <span class="warn">Use Vegeta for the final Cell battle</span> to unlock the extra Trunks story.</p>
+      <div class="boss-card">
+        <div class="boss-header"><span class="boss-name">Cell (vs Goku)</span><span class="diff diff-normal">NORMAL</span></div>
+        <p class="boss-tip">May use Cell Combo now. Mainly uses Special Beam Cannon.</p>
+      </div>
+      <div class="boss-card">
+        <div class="boss-header"><span class="boss-name">Cell Jr. (vs Gohan SSJ2)</span><span class="diff diff-easy">VERY EASY</span></div>
+      </div>
+      <div class="boss-card">
+        <div class="boss-header"><span class="boss-name">Cell (vs Gohan)</span><span class="diff diff-normal">NORMAL</span></div>
+        <p class="boss-tip">Gohan now has Super Kamehameha — build CC and use it.</p>
+      </div>
+      <div class="boss-card">
+        <div class="boss-header"><span class="boss-name">Cell (vs Vegeta — FINAL)</span><span class="diff diff-normal">NORMAL</span></div>
+        <p class="boss-tip"><span class="warn">Use Vegeta here to unlock the extra Trunks story.</span></p>
+      </div>
     </div>
 
     <div class="wt-step">
       <div class="step-num">TRUNKS' STORY (unlockable)</div>
-      <p>Trunks returns to his future. Talk to NPCs on the map for character unlock hints. Fight Androids 17 &amp; 18 as Super Trunks (use the card from Bulma). Fight Cell.</p>
+      <p>Trunks returns to his future. Talk to NPCs on the map for character unlock hints. Use Super Trunks — include the card received from Bulma in your deck.</p>
+      <div class="boss-card">
+        <div class="boss-header"><span class="boss-name">Androids 17 &amp; 18</span><span class="diff diff-normal">NORMAL</span></div>
+      </div>
+      <div class="boss-card">
+        <div class="boss-header"><span class="boss-name">Cell</span><span class="diff diff-normal">NORMAL</span></div>
+      </div>
     </div>
 
     <div class="wt-step">
       <div class="step-num">BUU SAGA</div>
-      <p>6 years later. Gohan is in high school. On the map: Piccolo is in the NW corner, Videl in SE. Talk to Goten and fight him (easy). Then fight Young Trunks at the Martial Arts Tournament (Goten's perspective).</p>
-      <p>After the tournament: Talk to everyone on the Babidi map to advance. Fight Majin Vegeta as SSJ2 Goku.</p>
-      <p>On the next map: Press A on Piccolo and Krillin → find Videl → talk to Trunks. Fight Fat Buu.</p>
-      <p>Goten &amp; Trunks master fusion. Gohan gets powered up by Old Kai. Fight Buu (normal) → Buu (absorb) → Buu (Gotenks absorbed) → Buu as Vegito → Evil Buu (final boss). <span class="warn">Recommended: have SSJ3 Goku unlocked for the final fight.</span></p>
-    </div>
-  </section>
-
-  <!-- BOSS GUIDE -->
-  <section id="bosses">
-    <h2>Boss Guide</h2>
-    <p style="margin-bottom:16px;color:var(--text-dim);font-size:12px;">Walkthrough bosses only — bosses that appear exclusively in the walkthrough are listed with full tips here. Second-round unlock bosses follow the same general strategy: build CC, power up, use your best attack.</p>
-
-    <div class="boss-list">
-
+      <p>6 years later. Gohan is in high school. On the map: Piccolo is in the NW corner, Videl in SE. Talk to Goten and fight him (easy training bout). Then fight Young Trunks at the Martial Arts Tournament (Goten's perspective).</p>
       <div class="boss-card">
-        <div class="boss-header">
-          <span class="boss-name">Piccolo</span>
-          <span class="diff diff-easy">EASY</span>
-        </div>
-        <p class="boss-tip">You attack first. Use a 3-stage attack for CC. If he gathers power, do the same. Use Foresight before his 4/5-stage attack if you have it. Try a 4-stage attack or Masenko. When he uses Special Beam Cannon, use an avoid card or move Gohan to the bottom-left corner. Repeat.</p>
+        <div class="boss-header"><span class="boss-name">Young Trunks (kids tournament)</span><span class="diff diff-normal">NORMAL</span></div>
+        <p class="boss-tip">Stronger than Goten. Uses Burning Attack and Flash Punch. Have Goten's Kamekameha and guard his specials.</p>
       </div>
-
+      <p>After the tournament: talk to everyone on the Babidi map to advance.</p>
       <div class="boss-card">
-        <div class="boss-header">
-          <span class="boss-name">Nappa</span>
-          <span class="diff diff-normal">NORMAL</span>
-        </div>
-        <p class="boss-tip">Same strategy as Piccolo. Pummel with 3- and 4-stage attacks. If he hasn't powered up by his 4th or 5th turn, have Endurance ready. If he does power up, use the Piccolo strategy.</p>
+        <div class="boss-header"><span class="boss-name">Majin Vegeta (vs SSJ2 Goku)</span><span class="diff diff-normal">NORMAL</span></div>
+        <p class="boss-tip">Vegeta now has Final Flash and Big Bang Attack. Build CC and power without dealing too much damage. If he flies up: Spirit Bomb.</p>
       </div>
-
+      <p>On the next map: press A on Piccolo and Krillin → find Videl → talk to Trunks.</p>
       <div class="boss-card">
-        <div class="boss-header">
-          <span class="boss-name">Vegeta (Goku)</span>
-          <span class="diff diff-hard">HARD (first time)</span>
-        </div>
-        <p class="boss-tip">Before the fight, set Goku's limits to Super Kamehameha and Kaioken. Attack normally with 3- and 4-stage attacks. When Vegeta powers up, have Goku power up too, use Kaioken on defense, then Super Kamehameha on offense. Watch out for Galick-Ho at this stage — it hurts.</p>
+        <div class="boss-header"><span class="boss-name">Fat Buu</span><span class="diff diff-normal">NORMAL</span></div>
+        <p class="boss-tip">Watch for Super E-Ball and Potbelly Attack. Final Flash or Big Bang Attack helps.</p>
       </div>
-
+      <p>Goten &amp; Trunks master fusion. Gohan gets powered up by Old Kai.</p>
       <div class="boss-card">
-        <div class="boss-header">
-          <span class="boss-name">Vegeta (Gohan/Krillin)</span>
-          <span class="diff diff-normal">NORMAL</span>
-        </div>
-        <p class="boss-tip">Same as the Goku fight, but without Goku's support. Same strategy applies.</p>
+        <div class="boss-header"><span class="boss-name">Young Trunks (Time Chamber)</span><span class="diff diff-normal">NORMAL</span></div>
+        <p class="boss-tip">Uses Rising Kick and Burning Attack.</p>
       </div>
-
       <div class="boss-card">
-        <div class="boss-header">
-          <span class="boss-name">Guldo</span>
-          <span class="diff diff-easy">EASY</span>
-        </div>
-        <p class="boss-tip">Choose Krillin (to get him to at least level 2) or Gohan. Standard strategy throughout.</p>
+        <div class="boss-header"><span class="boss-name">Buu (vs Gotenks SSJ3)</span><span class="diff diff-normal">NORMAL</span></div>
+        <p class="boss-tip">Watch for Super E-Ball.</p>
       </div>
-
       <div class="boss-card">
-        <div class="boss-header">
-          <span class="boss-name">Recoome</span>
-          <span class="diff diff-hard">ALMOST HARD</span>
-        </div>
-        <p class="boss-tip">Wail with 3- and 4-stage attacks. After significant damage, he'll use Eraser Gun for heavy damage — be ready for it.</p>
+        <div class="boss-header"><span class="boss-name">Buu (vs Mystic Gohan)</span><span class="diff diff-normal">NORMAL</span></div>
+        <p class="boss-tip">Use Super Kamehameha if Gohan has it.</p>
       </div>
-
       <div class="boss-card">
-        <div class="boss-header">
-          <span class="boss-name">Jeice &amp; Burter</span>
-          <span class="diff diff-normal">NORMAL</span>
-        </div>
-        <p class="boss-tip">First 2v2 battle. Put Gohan front, Goku back. Use Dende when either is near 1/4 HP. Once Jeice is down, Burter switches to Mach Attack — have Shockwave ready. When possible, have Goku power up → Kaioken → Spirit Bomb.</p>
+        <div class="boss-header"><span class="boss-name">Buu (Gotenks + Piccolo absorbed)</span><span class="diff diff-normal">NORMAL</span></div>
+        <p class="boss-tip">Counters Super Kamehameha with Breathe — avoid it and use other cards instead.</p>
       </div>
-
       <div class="boss-card">
-        <div class="boss-header">
-          <span class="boss-name">Ginyu (Goku's body) &amp; Jeice</span>
-          <span class="diff diff-easy">EASY</span>
-        </div>
-        <p class="boss-tip">Ginyu will use Super Kamehameha — be careful. Standard tactics. Swap to Krillin if Gohan gets low; use Misty Ki Wave with Krillin. Jeice may or may not use Crasher Ball. Swap back to Gohan if Krillin gets low and finish Jeice.</p>
+        <div class="boss-header"><span class="boss-name">Buu (vs Vegito)</span><span class="diff diff-normal">NORMAL</span></div>
+        <p class="boss-tip">Equip Vegito with Super Kamehameha, Teleportation, and Big Bang Attack.</p>
       </div>
-
       <div class="boss-card">
-        <div class="boss-header">
-          <span class="boss-name">Freeza (1st fight)</span>
-          <span class="diff diff-hard">ALMOST HARD</span>
-        </div>
-        <p class="boss-tip">Freeza loves Ground Wave and Super Dash Elbow after powering up. Build CC to ~65–70, then use Kaioken + Spirit Bomb for massive damage.</p>
+        <div class="boss-header"><span class="boss-name">Evil Buu (Final Boss)</span><span class="diff diff-vhard">NORMAL+</span></div>
+        <p class="boss-tip"><span class="warn">Have SSJ3 Goku unlocked — it makes this significantly easier.</span></p>
       </div>
-
-      <div class="boss-card">
-        <div class="boss-header">
-          <span class="boss-name">Freeza (2nd fight — SSJ Goku)</span>
-          <span class="diff diff-hard">ALMOST HARD</span>
-        </div>
-        <p class="boss-tip">Same as before but no Kaioken. Spirit Bomb still works. Build CC with normal tactics, then spam Super Kamehameha and Spirit Bombs.</p>
-      </div>
-
-      <div class="boss-card">
-        <div class="boss-header">
-          <span class="boss-name">Goku (training)</span>
-          <span class="diff diff-easy">EASY</span>
-        </div>
-        <p class="boss-tip">Pushover. But he will use Spirit Bomb when he fires Ki attacks, which drains HP fast. Build CC and use Masenkos or Dunk Shot.</p>
-      </div>
-
-      <div class="boss-card">
-        <div class="boss-header">
-          <span class="boss-name">Android 19</span>
-          <span class="diff diff-normal">NORMAL</span>
-        </div>
-        <p class="boss-tip">May or may not absorb Ki attacks (doesn't do it often). Has an HP drain attack. Build CC, power up, Spirit Bomb.</p>
-      </div>
-
-      <div class="boss-card">
-        <div class="boss-header">
-          <span class="boss-name">Android 20</span>
-          <span class="diff diff-normal">NORMAL</span>
-        </div>
-        <p class="boss-tip">Same as 19, but uses Super E-Ball as his special. Normal strategy.</p>
-      </div>
-
-      <div class="boss-card">
-        <div class="boss-header">
-          <span class="boss-name">Cell (first encounter)</span>
-          <span class="diff diff-normal">NORMAL</span>
-        </div>
-        <p class="boss-tip">Have Piccolo-God if possible. If not, lose once → continue → beat him. Watch for Special Beam Cannon and Super Kamehameha.</p>
-      </div>
-
-      <div class="boss-card">
-        <div class="boss-header">
-          <span class="boss-name">Android 17</span>
-          <span class="diff diff-normal">SEMI-NORMAL</span>
-        </div>
-        <p class="boss-tip">Piccolo-God makes this much easier. Won't absorb energy but uses Crazy Rush and Super E-Ball. Normal tactics; use Special Beam Cannon when available.</p>
-      </div>
-
-      <div class="boss-card">
-        <div class="boss-header">
-          <span class="boss-name">Android 16 &amp; 18</span>
-          <span class="diff diff-hard">ALMOST HARD</span>
-        </div>
-        <p class="boss-tip">16 favors Rocket Punch; 18 uses a variety. Have Goku-SS assist if possible.</p>
-      </div>
-
-      <div class="boss-card">
-        <div class="boss-header">
-          <span class="boss-name">Cell (Cell Games — vs Goku)</span>
-          <span class="diff diff-normal">NORMAL</span>
-        </div>
-        <p class="boss-tip">Same as first encounter but may use Cell Combo. He mainly uses Special Beam Cannon.</p>
-      </div>
-
-      <div class="boss-card">
-        <div class="boss-header">
-          <span class="boss-name">Cell Jr. (Gohan SSJ2)</span>
-          <span class="diff diff-easy">VERY EASY</span>
-        </div>
-        <p class="boss-tip">Same Cell strategy. Easy.</p>
-      </div>
-
-      <div class="boss-card">
-        <div class="boss-header">
-          <span class="boss-name">Cell (vs Gohan)</span>
-          <span class="diff diff-normal">NORMAL</span>
-        </div>
-        <p class="boss-tip">Gohan can now use Super Kamehameha. Set it up and use the same Cell strategy.</p>
-      </div>
-
-      <div class="boss-card">
-        <div class="boss-header">
-          <span class="boss-name">Cell (vs Vegeta — FINAL)</span>
-          <span class="diff diff-normal">NORMAL</span>
-        </div>
-        <p class="boss-tip">Same strategy. <span class="warn">Use Vegeta here to unlock the extra Trunks story.</span></p>
-      </div>
-
-      <div class="boss-card">
-        <div class="boss-header">
-          <span class="boss-name">Androids 17 &amp; 18 (Trunks' story)</span>
-          <span class="diff diff-normal">NORMAL</span>
-        </div>
-        <p class="boss-tip">Use Super Trunks only. Include the card received from Bulma in your deck.</p>
-      </div>
-
-      <div class="boss-card">
-        <div class="boss-header">
-          <span class="boss-name">Cell (Trunks' story)</span>
-          <span class="diff diff-normal">NORMAL</span>
-        </div>
-        <p class="boss-tip">Same strategies used when fighting him as Piccolo.</p>
-      </div>
-
-      <div class="boss-card">
-        <div class="boss-header">
-          <span class="boss-name">Trunks (kids tournament)</span>
-          <span class="diff diff-normal">NORMAL</span>
-        </div>
-        <p class="boss-tip">Stronger than Goten. Uses Burning Attack and Flash Punch. Have Goten's Kamekameha. Guard specials while using normal strategy.</p>
-      </div>
-
-      <div class="boss-card">
-        <div class="boss-header">
-          <span class="boss-name">Majin Vegeta</span>
-          <span class="diff diff-normal">NORMAL</span>
-        </div>
-        <p class="boss-tip">You have SSJ2 Goku. Vegeta now has Final Flash and Big Bang Attack. Build CC and power without dealing too much damage. If he flies up: Spirit Bomb.</p>
-      </div>
-
-      <div class="boss-card">
-        <div class="boss-header">
-          <span class="boss-name">Fat Buu</span>
-          <span class="diff diff-normal">NORMAL</span>
-        </div>
-        <p class="boss-tip">Watch out for Super E-Ball and Potbelly Attack. Normal strategy. Final Flash or Big Bang Attack helps.</p>
-      </div>
-
-      <div class="boss-card">
-        <div class="boss-header">
-          <span class="boss-name">Young Trunks (Time Chamber)</span>
-          <span class="diff diff-normal">NORMAL</span>
-        </div>
-        <p class="boss-tip">Uses Rising Kick and Burning Attack. Normal tactics.</p>
-      </div>
-
-      <div class="boss-card">
-        <div class="boss-header">
-          <span class="boss-name">Buu (vs Gotenks SSJ3)</span>
-          <span class="diff diff-normal">NORMAL</span>
-        </div>
-        <p class="boss-tip">Watch for Super E-Ball. Normal tactics.</p>
-      </div>
-
-      <div class="boss-card">
-        <div class="boss-header">
-          <span class="boss-name">Buu (vs Mystic Gohan)</span>
-          <span class="diff diff-normal">NORMAL</span>
-        </div>
-        <p class="boss-tip">Same as above. Use Super Kamehameha if Gohan has it.</p>
-      </div>
-
-      <div class="boss-card">
-        <div class="boss-header">
-          <span class="boss-name">Buu (Gotenks + Piccolo absorbed)</span>
-          <span class="diff diff-normal">NORMAL</span>
-        </div>
-        <p class="boss-tip">This Buu counters Super Kamehameha with Breathe. Avoid it; use any other cards while sticking to normal strategy to learn his moves.</p>
-      </div>
-
-      <div class="boss-card">
-        <div class="boss-header">
-          <span class="boss-name">Buu (vs Vegito)</span>
-          <span class="diff diff-normal">NORMAL</span>
-        </div>
-        <p class="boss-tip">Equip Vegito with Super Kamehameha, Teleportation, and Big Bang Attack. Should be straightforward.</p>
-      </div>
-
-      <div class="boss-card">
-        <div class="boss-header">
-          <span class="boss-name">Evil Buu (Final Boss)</span>
-          <span class="diff diff-vhard">NORMAL+</span>
-        </div>
-        <p class="boss-tip"><span class="warn">Have SSJ3 Goku unlocked — it makes this significantly easier.</span> Standard strategy by this point.</p>
-      </div>
-
     </div>
   </section>
 

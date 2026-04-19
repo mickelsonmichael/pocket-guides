@@ -176,8 +176,12 @@
     color: var(--text);
   }
 
-  tr:nth-child(even) td { background: rgba(255,255,255,0.02); }
-  tr:hover td { background: rgba(244,168,0,0.04); }
+  /* Foundation table override */
+  table { background: var(--surface); }
+  thead, tbody, tfoot, tr { background: transparent; }
+
+  tr:nth-child(even) td { background: var(--surface2); }
+  tr:hover td { background: rgba(244,168,0,0.06); }
 
   .info-box {
     background: var(--surface);
