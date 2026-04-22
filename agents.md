@@ -151,9 +151,22 @@ Consistent colour patterns for status indicators (define custom `.pstatus`-style
 
 ---
 
-## SVG Box Art Placeholder
+## Box Art
 
-When no real box art is available, create an SVG placeholder in `assets/img/`. A good placeholder includes:
+### Preferred: Real Box Art (JPG)
+
+Always try to obtain real box art before falling back to an SVG placeholder. Try these sources in order:
+
+1. **Bulbapedia** — find the File page (e.g. `https://bulbapedia.bulbagarden.net/wiki/File:Yellow_EN_boxart.png`). The HTML will contain the direct image URL from `archives.bulbagarden.net`. Download and resize to ≤300px wide at 85% JPEG quality.
+2. **Internet Archive** — scan collections often contain high-res front-of-box JPEGs (search `https://archive.org/` for the game title + "hiresscans" or "box art").
+3. **Serebii** — check `https://www.serebii.net/<game>/` for a box cover image.
+4. **Wikimedia Commons** — search `https://commons.wikimedia.org/wiki/Category:<GameName>`.
+
+Save the final image as `assets/img/<slug>-boxart.jpg`.
+
+### Fallback: SVG Placeholder
+
+Only create an SVG placeholder if all download attempts fail (domain blocked, image not found). A good placeholder includes:
 
 - Game colour scheme as a gradient background
 - A simple silhouette or symbolic shape representing the game

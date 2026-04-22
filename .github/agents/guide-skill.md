@@ -47,8 +47,15 @@ Typical sections (adapt as needed):
    - Copy the skeleton from an existing guide
    - Override `--accent`, `--accent2`, `--accent3`, `--glow` in `<style>` to match the game's palette
    - Add all sections from your plan with proper `id` attributes for the sidebar nav
-2. **Box art**: `assets/img/<slug>-boxart.svg` (if no real art is available)
-   - 200×280px, game colours, title text, platform badge
+2. **Box art**: `assets/img/<slug>-boxart.jpg` (preferred) or `<slug>-boxart.svg` (fallback)
+   - **First, attempt to retrieve real box art** from these sources in order:
+     1. Bulbapedia archives — file pages at `https://bulbapedia.bulbagarden.net/wiki/File:<name>.png` expose the direct image URL (e.g. `https://archives.bulbagarden.net/media/upload/…`)
+     2. Serebii — check `https://www.serebii.net/<game>/` for a cover image
+     3. Internet Archive — scan collections (e.g. `https://archive.org/details/<scan-set>`) often contain high-res front-of-box JPEGs
+     4. Wikimedia Commons — search `https://commons.wikimedia.org/wiki/Category:<GameName>`
+   - Resize the image to ≤300px wide at 85% JPEG quality before committing
+   - **Only create an SVG placeholder if all download attempts fail** (DNS blocked, image not found, etc.)
+   - SVG placeholder: 200×280px viewBox, game colour gradient, title text, platform badge
 3. **Index card**: Add the `.game-card` div to `index.html` `#game-grid`
    - Include thorough `data-name` keywords for search
 
@@ -58,7 +65,7 @@ Typical sections (adapt as needed):
 - Ensure tables have consistent header styles (Press Start 2P, 7–9px, accent3 colour)
 - Confirm `.warn-box` is used for missable content and irreversible choices
 - Confirm glitches are described as glitches, not intended mechanics
-- Check the index card renders correctly (5:7 aspect ratio image)
+- Check the index card renders correctly (1:1 square aspect ratio image)
 
 ---
 
