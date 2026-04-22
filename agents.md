@@ -186,3 +186,17 @@ Only create an SVG placeholder if all download attempts fail (domain blocked, im
 - [ ] Missable/trade-required items clearly marked with `.warn-box` or status tags
 - [ ] Glitches and exploits labelled as such
 - [ ] Sources cited in the footer (`<footer>`)
+- [ ] **Fact-checker agent run** and all reported errors resolved (see `.github/agents/fact-checker.md`)
+
+---
+
+## Fact-Checker Agent
+
+After completing a guide, run the **fact-checker** agent (`.github/agents/fact-checker.md`) to verify accuracy. The agent:
+
+1. Parses every factual claim in the guide HTML
+2. Uses live web searches (Bulbapedia, GameFAQs, wikis, etc.) to verify each claim — **not just LLM knowledge**
+3. Checks for platform conflation (e.g., GBA vs GBC vs GB)
+4. Returns a structured report of incorrect facts, unverifiable claims, and verified facts
+
+**To invoke:** Pass the full HTML content of the finished guide to the fact-checker agent. It will return a markdown report. Fix every item in the "Incorrect Facts" table before considering the guide done.
