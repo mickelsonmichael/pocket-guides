@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pokémon Yellow — Pocket Guide</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.8.1/dist/css/foundation.min.css">
+  <link rel="stylesheet" href="../assets/site.css">
+  <style>
+    /* ─── Pokémon Yellow-specific palette overrides ─── */
+    :root {
+      --accent:    #f9c800;
+      --accent2:   #ffdd55;
+      --accent3:   #e69500;
+      --glow:      0 0 10px #f9c80055, 0 0 20px #f9c80022;
+    }
+
+    /* ─── Layout classes (not in site.css) ─── */
+    .back-link {
+      display: inline-block;
+      font-family: 'Press Start 2P', monospace;
+      font-size: 8px;
+      color: var(--text-dim);
+      text-decoration: none;
+      padding: 10px 0;
+      letter-spacing: 1px;
+    }
+    .back-link:hover { color: var(--accent); }
+
+    .game-platform {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 8px;
+      color: var(--accent3);
+      letter-spacing: 2px;
+      margin-bottom: 10px;
+      opacity: 0.8;
+    }
+    .game-title {
+      font-family: 'Press Start 2P', monospace;
+      font-size: clamp(12px, 3vw, 20px);
+      color: var(--accent);
+      text-shadow: var(--glow);
+      line-height: 1.5;
+      letter-spacing: 1px;
+      margin-bottom: 6px;
+    }
+    .game-subtitle { color: var(--text-dim); font-size: 12px; }
+
+    .section-title {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 12px;
+      color: var(--accent);
+      text-shadow: var(--glow);
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 20px;
+      letter-spacing: 1px;
+    }
+    .subsection-title {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 9px;
+      color: var(--accent3);
+      margin: 20px 0 10px;
+      letter-spacing: 1px;
+    }
+
+    .side-nav {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 14px;
+      display: block;
+      position: relative;
+      flex-wrap: unset;
+      gap: unset;
+      margin-bottom: 0;
+    }
+    .nav-heading {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 8px;
+      color: var(--accent3);
+      letter-spacing: 2px;
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+    .side-nav ul { list-style: none; margin: 0; padding: 0; }
+    .side-nav ul li { margin-bottom: 4px; }
+    .side-nav ul li a {
+      font-size: 11px;
+      color: var(--text-dim);
+      text-decoration: none;
+      display: block;
+      padding: 3px 0;
+      border-left: 2px solid transparent;
+      padding-left: 8px;
+      transition: all 0.15s;
+    }
+    .side-nav ul li a:hover {
+      color: var(--accent);
+      border-left-color: var(--accent);
+    }
+
+    ul.bullet-list { list-style: none; margin-bottom: 12px; padding: 0; }
+    ul.bullet-list li::before { content: '▸ '; color: var(--accent); }
+    ul.bullet-list li { margin-bottom: 4px; }
+
+    /* ─── Status tags for Pokédex ─── */
+    .pstatus {
+      display: inline-block;
+      font-size: 8px;
+      padding: 1px 5px;
+      border-radius: 2px;
+      font-family: 'Share Tech Mono', monospace;
+      letter-spacing: 1px;
+      font-weight: bold;
+      vertical-align: middle;
+      white-space: nowrap;
+    }
+    .pstatus.wild    { background: #1a3d1a; color: #5dde5d; border: 1px solid #2e6e2e; }
+    .pstatus.gift    { background: #3d3000; color: #f9c800; border: 1px solid #7a6000; }
+    .pstatus.evolve  { background: #0a1f40; color: #5599ff; border: 1px solid #1a3a80; }
+    .pstatus.trade   { background: #3d0a0a; color: #ff6666; border: 1px solid #7a1a1a; }
+    .pstatus.fossil  { background: #1e0a3d; color: #bb88ff; border: 1px solid #4a2080; }
+    .pstatus.corner  { background: #002233; color: #44ddff; border: 1px solid #006688; }
+    .pstatus.igt     { background: #2a1500; color: #ff9933; border: 1px solid #663300; }
+    .pstatus.static  { background: #2a2a00; color: #ffee44; border: 1px solid #666600; }
+    .pstatus.trevo   { background: #2a001a; color: #ff66cc; border: 1px solid #660033; }
+
+    /* ─── Pokédex table ─── */
+    .dex-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 11px;
+      margin-bottom: 16px;
+    }
+    .dex-table thead th {
+      background: var(--surface2);
+      color: var(--accent3);
+      font-family: 'Press Start 2P', monospace;
+      font-size: 8px;
+      padding: 8px 10px;
+      text-align: left;
+      border-bottom: 2px solid var(--accent3);
+    }
+    .dex-table tbody tr {
+      border-bottom: 1px solid var(--border);
+    }
+    .dex-table tbody tr:hover { background: var(--surface2); }
+    .dex-table td {
+      padding: 5px 10px;
+      vertical-align: middle;
+      color: var(--text);
+    }
+    .dex-num {
+      color: var(--text-dim);
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 10px;
+      white-space: nowrap;
+    }
+    .dex-name {
+      font-weight: bold;
+      white-space: nowrap;
+    }
+    .dex-note {
+      color: var(--text-dim);
+      font-size: 10px;
+    }
+    .trade-note {
+      color: #ff8888;
+      font-size: 10px;
+      font-style: italic;
+    }
+
+    /* ─── TM table ─── */
+    .tm-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 11px;
+      margin-bottom: 16px;
+    }
+    .tm-table thead th {
+      background: var(--surface2);
+      color: var(--accent3);
+      font-family: 'Press Start 2P', monospace;
+      font-size: 7px;
+      padding: 8px 10px;
+      text-align: left;
+      border-bottom: 2px solid var(--accent3);
+    }
+    .tm-table tbody tr { border-bottom: 1px solid var(--border); }
+    .tm-table tbody tr:hover { background: var(--surface2); }
+    .tm-table td { padding: 5px 10px; vertical-align: middle; }
+    .tm-num  { color: var(--accent3); font-family: 'Share Tech Mono', monospace; }
+    .tm-move { font-weight: bold; color: var(--text); }
+    .tm-loc  { color: var(--text-dim); font-size: 10px; }
+    .multi-tag {
+      display: inline-block;
+      background: #1a3d00;
+      color: #88ff44;
+      border: 1px solid #336600;
+      font-size: 7px;
+      padding: 0 4px;
+      border-radius: 2px;
+      font-family: 'Share Tech Mono', monospace;
+      margin-left: 4px;
+      vertical-align: middle;
+    }
+
+    /* ─── HM table ─── */
+    .hm-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 14px 16px;
+      margin-bottom: 10px;
+    }
+    .hm-card:hover { border-color: var(--accent3); }
+    .hm-title {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 9px;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+    .hm-detail { font-size: 12px; color: var(--text-dim); }
+    .hm-badge {
+      display: inline-block;
+      background: var(--surface2);
+      color: var(--accent2);
+      border: 1px solid var(--border);
+      font-size: 10px;
+      padding: 1px 6px;
+      font-family: 'Share Tech Mono', monospace;
+      margin-top: 4px;
+    }
+
+    /* ─── Stat formula box ─── */
+    .formula-box {
+      background: var(--surface2);
+      border: 1px solid var(--accent3);
+      padding: 16px;
+      margin: 16px 0;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 12px;
+      color: var(--text);
+    }
+    .formula-box .fvar { color: var(--accent2); }
+    .formula-box .fcomment { color: var(--text-dim); }
+
+    /* ─── Callout boxes ─── */
+    .callout-yellow {
+      border: 1px solid var(--accent3);
+      background: #2a2000;
+      padding: 14px 16px;
+      margin: 14px 0;
+    }
+    .callout-yellow strong { color: var(--accent2); }
+
+    /* ─── Starter cards ─── */
+    .starter-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+      margin: 14px 0;
+    }
+    .starter-card {
+      border: 1px solid var(--border);
+      background: var(--surface);
+      padding: 14px;
+    }
+    .starter-card h4 {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 8px;
+      margin: 0 0 8px;
+    }
+    .starter-card.grass { border-color: #2e6e2e; }
+    .starter-card.grass h4 { color: #5dde5d; }
+    .starter-card.fire  { border-color: #7a2000; }
+    .starter-card.fire  h4 { color: #ff8855; }
+    .starter-card.water { border-color: #1a3a80; }
+    .starter-card.water h4 { color: #5599ff; }
+
+    /* ─── Legend strip ─── */
+    .legend-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin: 12px 0 18px;
+      padding: 10px;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+    }
+    .legend-strip .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 10px;
+      color: var(--text-dim);
+    }
+
+    /* ─── Mew section ─── */
+    .mew-steps {
+      counter-reset: mew-step;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .mew-steps li {
+      counter-increment: mew-step;
+      position: relative;
+      padding: 8px 8px 8px 42px;
+      border-bottom: 1px solid var(--border);
+      font-size: 12px;
+      color: var(--text);
+    }
+    .mew-steps li::before {
+      content: counter(mew-step);
+      position: absolute;
+      left: 8px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 24px;
+      height: 24px;
+      background: var(--surface2);
+      border: 1px solid var(--accent3);
+      color: var(--accent3);
+      font-family: 'Press Start 2P', monospace;
+      font-size: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ─── Type chart table ─── */
+    .type-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 11px;
+      margin: 12px 0;
+    }
+    .type-table th { background: var(--surface2); color: var(--accent3); font-family: 'Press Start 2P', monospace; font-size: 7px; padding: 6px 8px; }
+    .type-table td { padding: 5px 8px; border-bottom: 1px solid var(--border); color: var(--text); }
+    .type-table .bug    { color: #99dd44; }
+    .type-table .glitch { color: #ff66cc; }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="grid-container">
+    <a href="../index.html" class="back-link">← All Guides</a>
+    <p class="game-platform">Game Boy Color · RPG · 1998 (JP) / 1999 (NA)</p>
+    <h1 class="game-title">Pokémon Yellow</h1>
+    <p class="game-subtitle">Special Pikachu Edition — Gen I Reference</p>
+  </div>
+</header>
+
+<div class="grid-container">
+  <div class="grid-x grid-margin-x">
+
+    <!-- ═══════════════════════════════════════════════
+         SIDEBAR NAV
+    ═══════════════════════════════════════════════ -->
+    <div class="cell large-3 show-for-large">
+      <nav class="side-nav" style="position:sticky;top:20px;">
+        <p class="nav-heading">// CONTENTS</p>
+        <ul>
+          <li><a href="#overview">Overview</a></li>
+          <li><a href="#starters">Starter Pokémon</a></li>
+          <li><a href="#pokedex">Pokédex (151)</a></li>
+          <li><a href="#hms">Hidden Machines</a></li>
+          <li><a href="#tms">Technical Machines</a></li>
+          <li><a href="#oaks-aides">Oak's Aides</a></li>
+          <li><a href="#stats">Stats System</a></li>
+          <li><a href="#mechanics">Key Mechanics</a></li>
+          <li><a href="#items">Notable Items</a></li>
+          <li><a href="#mew">Mew Guide</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════
+         MAIN CONTENT
+    ═══════════════════════════════════════════════ -->
+    <div class="cell large-9">
+
+      <!-- ─── OVERVIEW ─── -->
+      <section id="overview">
+        <h2 class="section-title">Overview</h2>
+
+        <p>Pokémon Yellow: Special Pikachu Edition is the third Generation I core-series game, based closely on the original anime. You receive Pikachu as your starter — it walks behind you, cannot be evolved or released, and reacts to your actions with expressions based on its happiness. The rival takes Eevee instead of a fire/water/grass starter.</p>
+
+        <div class="info-box">
+          <strong>Key differences from Red/Blue:</strong>
+          <ul class="bullet-list">
+            <li>Starter is Pikachu only (rival gets Eevee — evolves based on your battle record)</li>
+            <li>Bulbasaur, Charmander, and Squirtle are obtainable as gifts mid-game</li>
+            <li>Pikachu follows you on the overworld and displays happiness expressions</li>
+            <li>Pokémon unavailable in one R/B version (Scyther, Pinsir, Oddish, Growlithe, etc.) are mostly all available in Yellow</li>
+            <li>Team Rocket's Pokémon (Ekans, Koffing, Meowth) are removed from the wild</li>
+            <li>Weedle, Kakuna, and Beedrill are removed; Caterpie is the only Bug in Viridian Forest</li>
+            <li>Farfetch'd and Lickitung now appear as wild Pokémon</li>
+            <li>Abra relocated to routes surrounding Saffron City</li>
+            <li>Gym leader teams and trainer rosters updated to match the anime</li>
+            <li>Charizard can now learn Fly via HM02</li>
+          </ul>
+        </div>
+
+        <div class="warn-box">
+          <strong>Pokémon not in Yellow:</strong> 13 Pokémon cannot be obtained in Yellow without trading from Red or Blue. See the Pokédex table for the full list (marked <span class="pstatus trade">TRADE</span>).
+        </div>
+      </section>
+
+      <!-- ─── STARTERS ─── -->
+      <section id="starters">
+        <h2 class="section-title">Starter Pokémon</h2>
+        <p>Unlike Red/Blue, you don't choose a starter — you get Pikachu. However, all three original starters can be obtained as gifts later in the game, referencing the anime episodes where Ash recruits them.</p>
+
+        <div class="starter-grid">
+
+          <div class="starter-card grass">
+            <h4>#001 Bulbasaur</h4>
+            <p style="font-size:11px;color:var(--text-dim);margin:0 0 6px;">Cerulean City</p>
+            <p style="font-size:12px;margin:0;">A woman in the house to the west of the Cerulean City Gym will offer you Bulbasaur — but <strong>only if your Pikachu has high happiness</strong>. To check, open the status screen for your Pikachu; if it raises both arms and shows a big smile, you qualify. Keep Pikachu in your party, avoid letting it faint, and use Potions or vitamins on it to raise happiness quickly.</p>
+          </div>
+
+          <div class="starter-card fire">
+            <h4>#004 Charmander</h4>
+            <p style="font-size:11px;color:var(--text-dim);margin:0 0 6px;">Route 24 (north of Cerulean, after Nugget Bridge)</p>
+            <p style="font-size:12px;margin:0;">A trainer named Damian left Charmander behind on a rock because he considered it weak. Talk to Charmander on the plateau above the bridge. <strong>Do not walk away without accepting it</strong> — once you leave the screen without taking it, Charmander will be gone permanently.</p>
+          </div>
+
+          <div class="starter-card water">
+            <h4>#007 Squirtle</h4>
+            <p style="font-size:11px;color:var(--text-dim);margin:0 0 6px;">Vermilion City</p>
+            <p style="font-size:12px;margin:0;">Officer Jenny will give you Squirtle in Vermilion City, but only <strong>after you defeat Lt. Surge</strong> (3rd Gym). Find Officer Jenny near the Pokémon Center / Gym area. Squirtle is the "problem Pokémon" that was causing trouble and she gives it to a qualified trainer.</p>
+          </div>
+
+        </div>
+
+        <div class="callout-yellow">
+          <strong>Rival's Eevee evolution</strong> depends on your win/loss record in the first two rival battles:<br>
+          Win both → Jolteon · Win at Oak's Lab, skip/lose Route 22 → Flareon · Lose at Oak's Lab → Vaporeon.<br>
+          Your rival's team builds around that Eeveelution for the rest of the game.
+        </div>
+      </section>
+
+      <!-- ─── POKÉDEX ─── -->
+      <section id="pokedex">
+        <h2 class="section-title">Pokédex — All 151</h2>
+
+        <div class="legend-strip">
+          <div class="legend-item"><span class="pstatus wild">WILD</span> Catchable in the wild</div>
+          <div class="legend-item"><span class="pstatus gift">GIFT</span> Received as a gift/event</div>
+          <div class="legend-item"><span class="pstatus evolve">EVOLVE</span> Evolve from prior form</div>
+          <div class="legend-item"><span class="pstatus trevo">TR-EVO</span> Evolve by trading</div>
+          <div class="legend-item"><span class="pstatus trade">TRADE</span> Not in Yellow — trade from R/B</div>
+          <div class="legend-item"><span class="pstatus fossil">FOSSIL</span> Revive from fossil</div>
+          <div class="legend-item"><span class="pstatus corner">CORNER</span> Celadon Game Corner</div>
+          <div class="legend-item"><span class="pstatus igt">IGT</span> In-game trade</div>
+          <div class="legend-item"><span class="pstatus static">STATIC</span> Static / legendary encounter</div>
+        </div>
+
+        <div class="warn-box" style="margin-bottom:16px;">
+          <strong>Trade notes:</strong> <span class="trade-note">Red only</span> = only in Pokémon Red; <span class="trade-note">Blue only</span> = only in Pokémon Blue; R/B = available in both. Raichu can be obtained by trading your Pikachu to R/B, using a Thunder Stone, then trading Raichu back — but your starter Pikachu in Yellow cannot evolve directly.
+        </div>
+
+        <table class="dex-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Name</th>
+              <th>Status</th>
+              <th>How / Where</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="dex-num">#001</td><td class="dex-name">Bulbasaur</td><td><span class="pstatus gift">GIFT</span></td><td class="dex-note">Cerulean City (high Pikachu happiness required)</td></tr>
+            <tr><td class="dex-num">#002</td><td class="dex-name">Ivysaur</td><td><span class="pstatus evolve">EVOLVE</span></td><td class="dex-note">Bulbasaur Lv 16</td></tr>
+            <tr><td class="dex-num">#003</td><td class="dex-name">Venusaur</td><td><span class="pstatus evolve">EVOLVE</span></td><td class="dex-note">Ivysaur Lv 32</td></tr>
+            <tr><td class="dex-num">#004</td><td class="dex-name">Charmander</td><td><span class="pstatus gift">GIFT</span></td><td class="dex-note">Route 24 (plateau above Nugget Bridge — don't leave without taking it)</td></tr>
+            <tr><td class="dex-num">#005</td><td class="dex-name">Charmeleon</td><td><span class="pstatus evolve">EVOLVE</span></td><td class="dex-note">Charmander Lv 16</td></tr>
+            <tr><td class="dex-num">#006</td><td class="dex-name">Charizard</td><td><span class="pstatus evolve">EVOLVE</span></td><td class="dex-note">Charmeleon Lv 36 — can learn Fly in Yellow (unlike R/B)</td></tr>
+            <tr><td class="dex-num">#007</td><td class="dex-name">Squirtle</td><td><span class="pstatus gift">GIFT</span></td><td class="dex-note">Vermilion City — Officer Jenny gives after defeating Lt. Surge</td></tr>
+            <tr><td class="dex-num">#008</td><td class="dex-name">Wartortle</td><td><span class="pstatus evolve">EVOLVE</span></td><td class="dex-note">Squirtle Lv 16</td></tr>
+            <tr><td class="dex-num">#009</td><td class="dex-name">Blastoise</td><td><span class="pstatus evolve">EVOLVE</span></td><td class="dex-note">Wartortle Lv 36</td></tr>
+            <tr><td class="dex-num">#010</td><td class="dex-name">Caterpie</td><td><span class="pstatus wild">WILD</span></td><td class="dex-note">Viridian Forest, Route 2</td></tr>
+            <tr><td class="dex-num">#011</td><td class="dex-name">Metapod</td><td><span class="pstatus wild">WILD</span></td><td class="dex-note">Viridian Forest (or evolve Caterpie Lv 7)</td></tr>
+            <tr><td class="dex-num">#012</td><td class="dex-name">Butterfree</td><td><span class="pstatus evolve">EVOLVE</span></td><td class="dex-note">Metapod Lv 10</td></tr>
+            <tr><td class="dex-num">#013</td><td class="dex-name">Weedle</td><td><span class="pstatus trade">TRADE</span></td><td class="dex-note trade-note">Removed from Yellow; R/B only</td></tr>
+            <tr><td class="dex-num">#014</td><td class="dex-name">Kakuna</td><td><span class="pstatus trade">TRADE</span></td><td class="dex-note trade-note">Removed from Yellow; R/B only</td></tr>
+            <tr><td class="dex-num">#015</td><td class="dex-name">Beedrill</td><td><span class="pstatus trade">TRADE</span></td><td class="dex-note trade-note">Removed from Yellow; R/B only</td></tr>
+            <tr><td class="dex-num">#016</td><td class="dex-name">Pidgey</td><td><span class="pstatus wild">WILD</span></td><td class="dex-note">Routes 1, 2, 12–15; Viridian Forest (added in Yellow)</td></tr>
+            <tr><td class="dex-num">#017</td><td class="dex-name">Pidgeotto</td><td><span class="pstatus wild">WILD</span></td><td class="dex-note">Viridian Forest (added in Yellow), Routes 12–15</td></tr>
+            <tr><td class="dex-num">#018</td><td class="dex-name">Pidgeot</td><td><span class="pstatus evolve">EVOLVE</span></td><td class="dex-note">Pidgeotto Lv 36</td></tr>
+            <tr><td class="dex-num">#019</td><td class="dex-name">Rattata</td><td><span class="pstatus wild">WILD</span></td><td class="dex-note">Routes 1, 2, 22</td></tr>
+            <tr><td class="dex-num">#020</td><td class="dex-name">Raticate</td><td><span class="pstatus wild">WILD</span></td><td class="dex-note">Routes 16, 17, 18, 21, 22</td></tr>
+            <tr><td class="dex-num">#021</td><td class="dex-name">Spearow</td><td><span class="pstatus wild">WILD</span></td><td class="dex-note">Routes 3, 4, 9, 10, 11</td></tr>
+            <tr><td class="dex-num">#022</td><td class="dex-name">Fearow</td><td><span class="pstatus wild">WILD</span></td><td class="dex-note">Routes 16–23</td></tr>
+            <tr><td class="dex-num">#023</td><td class="dex-name">Ekans</td><td><span class="pstatus trade">TRADE</span></td><td class="dex-note trade-note">Removed (Jessie's Pokémon); Red only</td></tr>
+            <tr><td class="dex-num">#024</td><td class="dex-name">Arbok</td><td><span class="pstatus trade">TRADE</span></td><td class="dex-note trade-note">Removed; Red only</td></tr>
+            <tr><td class="dex-num">#025</td><td class="dex-name">Pikachu</td><td><span class="pstatus gift">GIFT</span></td><td class="dex-note">Your starter — cannot be evolved or released in Yellow</td></tr>
+            <tr><td class="dex-num">#026</td><td class="dex-name">Raichu</td><td><span class="pstatus trade">TRADE</span></td><td class="dex-note trade-note">Wild Pikachu/Raichu removed; trade to R/B, use Thunder Stone, trade back</td></tr>
+            <tr><td class="dex-num">#027</td><td class="dex-name">Sandshrew</td><td><span class="pstatus wild">WILD</span></td><td class="dex-note">Routes 3, 4 (Blue-exclusive in R/B; available in Yellow)</td></tr>
+            <tr><td class="dex-num">#028</td><td class="dex-name">Sandslash</td><td><span class="pstatus evolve">EVOLVE</span></td><td class="dex-note">Sandshrew Lv 22</td></tr>
+            <tr><td class="dex-num">#029</td><td class="dex-name">Nidoran♀</td><td><span class="pstatus wild">WILD</span></td><td class="dex-note">Route 22, Safari Zone</td></tr>
+            <tr><td class="dex-num">#030</td><td class="dex-name">Nidorina</td><td><span class="pstatus wild">WILD</span></td><td class="dex-note">Route 23, Safari Zone</td></tr>
+            <tr><td class="dex-num">#031</td><td class="dex-name">Nidoqueen</td><td><span class="pstatus evolve">EVOLVE</span></td><td class="dex-note">Nidorina + Moon Stone</td></tr>
+            <tr><td class="dex-num">#032</td><td class="dex-name">Nidoran♂</td><td><span class="pstatus wild">WILD</span></td><td class="dex-note">Route 22, Safari Zone</td></tr>
+            <tr><td class="dex-num">#033</td><td class="dex-name">Nidorino</td><td><span class="pstatus wild">WILD</span></td><td class="dex-note">Route 23, Safari Zone</td></tr>
+            <tr><td class="dex-num">#034</td><td class="dex-name">Nidoking</td><td><span class="pstatus evolve">EVOLVE</span></td><td class="dex-note">Nidorino + Moon Stone</td></tr>
+            <tr><td class="dex-num">#035</td><td class="dex-name">Clefairy</td><td><span class="pstatus wild">WILD</span></td><td class="dex-note">Mt. Moon (rare)</td></tr>
+            <tr><td class="dex-num">#036</td><td class="dex-name">Clefable</td><td><span class="pstatus evolve">EVOLVE</span></td><td class="dex-note">Clefairy + Moon Stone</td></tr>
+            <tr><td class="dex-num">#037</td><td class="dex-name">Vulpix</td><td><span class="pstatus wild">WILD</span></td><td class="dex-note">Routes 7, 8 (Blue-exclusive in R/B; available in Yellow)</td></tr>
+            <tr><td class="dex-num">#038</td><td class="dex-name">Ninetales</td><td><span class="pstatus evolve">EVOLVE</span></td><td class="dex-note">Vulpix + Fire Stone</td></tr>
+            <tr><td class="dex-num">#039</td><td class="dex-name">Jigglypuff</td><td><span class="pstatus wild">WILD</span></td><td class="dex-note">Routes 3, 5, 6, 7, 8</td></tr>
+            <tr><td class="dex-num">#040</td><td class="dex-name">Wigglytuff</td><td><span class="pstatus evolve">EVOLVE</span></td><td class="dex-note">Jigglypuff + Moon Stone</td></tr>
+            <tr><td class="dex-num">#041</td><td class="dex-name">Zubat</td><td><span class="pstatus wild">WILD</span></td><td class="dex-note">Mt. Moon, Rock Tunnel, Seafoam Islands, Victory Road, Cerulean Cave</td></tr>
+            <tr><td class="dex-num">#042</td><td class="dex-name">Golbat</td><td><span class="pstatus wild">WILD</span></td><td class="dex-note">Seafoam Islands, Victory Road, Cerulean Cave</td></tr>
+            <tr><td class="dex-num">#043</td><td class="dex-name">Oddish</td><td><span class="pstatus wild">WILD</span></td><td class="dex-note">Routes 5, 6, 7, 12–15 (Red-exclusive in R/B; available in Yellow)</td></tr>
+            <tr><td class="dex-num">#044</td><td class="dex-name">Gloom</td><td><span class="pstatus wild">WILD</span></td><td class="dex-note">Routes 12–14, Safari Zone</td></tr>
+            <tr><td class="dex-num">#045</td><td class="dex-name">Vileplume</td><td><span class="pstatus evolve">EVOLVE</span></td><td class="dex-note">Gloom + Leaf Stone</td></tr>
+            <tr><td class="dex-num">#046</td><td class="dex-name">Paras</td><td><span class="pstatus wild">WILD</span></td><td class="dex-note">Mt. Moon, Safari Zone</td></tr>
+            <tr><td class="dex-num">#047</td><td class="dex-name">Parasect</td><td><span class="pstatus wild">WILD</span></td><td class="dex-note">Safari Zone</td></tr>
+            <tr><td class="dex-num">#048</td><td class="dex-name">Venonat</td><td><span class="pstatus wild">WILD</span></td><td class="dex-note">Routes 12–15, 24, 25, Safari Zone</td></tr>
+            <tr><td class="dex-num">#049</td><td class="dex-name">Venomoth</td><td><span class="pstatus wild">WILD</span></td><td class="dex-note">Safari Zone, Victory Road</td></tr>
+            <tr><td class="dex-num">#050</td><td class="dex-name">Diglett</td><td><span class="pstatus wild">WILD</span></td><td class="dex-note">Diglett's Cave</td></tr>
+            <tr><td class="dex-num">#051</td><td class="dex-name">Dugtrio</td><td><span class="pstatus wild">WILD</span></td><td class="dex-note">Diglett's Cave</td></tr>
+            <tr><td class="dex-num">#052</td><td class="dex-name">Meowth</td><td><span class="pstatus trade">TRADE</span></td><td class="dex-note trade-note">Removed (Team Rocket's Pokémon); Blue only</td></tr>
+            <tr><td class="dex-num">#053</td><td class="dex-name">Persian</td><td><span class="pstatus trade">TRADE</span></td><td class="dex-note trade-note">Removed; Blue only</td></tr>
+            <tr><td class="dex-num">#054</td><td class="dex-name">Psyduck</td><td><span class="pstatus wild">WILD</span></td><td class="dex-note">Safari Zone (surf), Routes 6, 24, 25</td></tr>
+            <tr><td class="dex-num">#055</td><td class="dex-name">Golduck</td><td><span class="pstatus wild">WILD</span></td><td class="dex-note">Seafoam Islands (surf), Safari Zone (surf)</td></tr>
+            <tr><td class="dex-num">#056</td><td class="dex-name">Mankey</td><td><span class="pstatus wild">WILD</span></td><td class="dex-note">Routes 5, 6, 7, 8 (Red-exclusive in R/B; available in Yellow)</td></tr>
+            <tr><td class="dex-num">#057</td><td class="dex-name">Primeape</td><td><span class="pstatus wild">WILD</span></td><td class="dex-note">Route 23 (or evolve Mankey Lv 28)</td></tr>
+            <tr><td class="dex-num">#058</td><td class="dex-name">Growlithe</td><td><span class="pstatus wild">WILD</span></td><td class="dex-note">Routes 7, 8 (Red-exclusive in R/B; available in Yellow)</td></tr>
+            <tr><td class="dex-num">#059</td><td class="dex-name">Arcanine</td><td><span class="pstatus evolve">EVOLVE</span></td><td class="dex-note">Growlithe + Fire Stone</td></tr>
+            <tr><td class="dex-num">#060</td><td class="dex-name">Poliwag</td><td><span class="pstatus wild">WILD</span></td><td class="dex-note">Routes 22, 25, Safari Zone (surf), Cerulean Cave (surf)</td></tr>
+            <tr><td class="dex-num">#061</td><td class="dex-name">Poliwhirl</td><td><span class="pstatus wild">WILD</span></td><td class="dex-note">Routes 22, 25, Safari Zone (surf)</td></tr>
+            <tr><td class="dex-num">#062</td><td class="dex-name">Poliwrath</td><td><span class="pstatus evolve">EVOLVE</span></td><td class="dex-note">Poliwhirl + Water Stone</td></tr>
+            <tr><td class="dex-num">#063</td><td class="dex-name">Abra</td><td><span class="pstatus wild">WILD</span></td><td class="dex-note">Routes 5, 6, 7, 8 (relocated in Yellow; was north of Cerulean in R/B)</td></tr>
+            <tr><td class="dex-num">#064</td><td class="dex-name">Kadabra</td><td><span class="pstatus evolve">EVOLVE</span></td><td class="dex-note">Abra Lv 16 — must trade to evolve into Alakazam</td></tr>
+            <tr><td class="dex-num">#065</td><td class="dex-name">Alakazam</td><td><span class="pstatus trevo">TR-EVO</span></td><td class="dex-note">Trade Kadabra → evolves on trade</td></tr>
+            <tr><td class="dex-num">#066</td><td class="dex-name">Machop</td><td><span class="pstatus wild">WILD</span></td><td class="dex-note">Victory Road, Safari Zone</td></tr>
+            <tr><td class="dex-num">#067</td><td class="dex-name">Machoke</td><td><span class="pstatus wild">WILD</span></td><td class="dex-note">Victory Road — must trade to evolve into Machamp</td></tr>
+            <tr><td class="dex-num">#068</td><td class="dex-name">Machamp</td><td><span class="pstatus trevo">TR-EVO</span></td><td class="dex-note">Trade Machoke → evolves on trade</td></tr>
+            <tr><td class="dex-num">#069</td><td class="dex-name">Bellsprout</td><td><span class="pstatus wild">WILD</span></td><td class="dex-note">Routes 5, 6, 7, 12–15 (Blue-exclusive in R/B; available in Yellow)</td></tr>
+            <tr><td class="dex-num">#070</td><td class="dex-name">Weepinbell</td><td><span class="pstatus wild">WILD</span></td><td class="dex-note">Routes 12–15</td></tr>
+            <tr><td class="dex-num">#071</td><td class="dex-name">Victreebel</td><td><span class="pstatus evolve">EVOLVE</span></td><td class="dex-note">Weepinbell + Leaf Stone</td></tr>
+            <tr><td class="dex-num">#072</td><td class="dex-name">Tentacool</td><td><span class="pstatus wild">WILD</span></td><td class="dex-note">Surf / fishing (Routes 19, 20, 21, 22, 24, 25)</td></tr>
+            <tr><td class="dex-num">#073</td><td class="dex-name">Tentacruel</td><td><span class="pstatus wild">WILD</span></td><td class="dex-note">Surf (Routes 19, 20, 21)</td></tr>
+            <tr><td class="dex-num">#074</td><td class="dex-name">Geodude</td><td><span class="pstatus wild">WILD</span></td><td class="dex-note">Mt. Moon, Rock Tunnel, Victory Road, Cerulean Cave</td></tr>
+            <tr><td class="dex-num">#075</td><td class="dex-name">Graveler</td><td><span class="pstatus wild">WILD</span></td><td class="dex-note">Victory Road — must trade to evolve into Golem</td></tr>
+            <tr><td class="dex-num">#076</td><td class="dex-name">Golem</td><td><span class="pstatus trevo">TR-EVO</span></td><td class="dex-note">Trade Graveler → evolves on trade</td></tr>
+            <tr><td class="dex-num">#077</td><td class="dex-name">Ponyta</td><td><span class="pstatus wild">WILD</span></td><td class="dex-note">Pokémon Mansion, Route 17</td></tr>
+            <tr><td class="dex-num">#078</td><td class="dex-name">Rapidash</td><td><span class="pstatus evolve">EVOLVE</span></td><td class="dex-note">Ponyta Lv 40</td></tr>
+            <tr><td class="dex-num">#079</td><td class="dex-name">Slowpoke</td><td><span class="pstatus wild">WILD</span></td><td class="dex-note">Safari Zone, Routes 6, 18, 25 (fishing)</td></tr>
+            <tr><td class="dex-num">#080</td><td class="dex-name">Slowbro</td><td><span class="pstatus evolve">EVOLVE</span></td><td class="dex-note">Slowpoke Lv 37</td></tr>
+            <tr><td class="dex-num">#081</td><td class="dex-name">Magnemite</td><td><span class="pstatus wild">WILD</span></td><td class="dex-note">Power Plant</td></tr>
+            <tr><td class="dex-num">#082</td><td class="dex-name">Magneton</td><td><span class="pstatus wild">WILD</span></td><td class="dex-note">Power Plant</td></tr>
+            <tr><td class="dex-num">#083</td><td class="dex-name">Farfetch'd</td><td><span class="pstatus wild">WILD</span></td><td class="dex-note">Routes 12, 13 (now wild in Yellow; was IGT-only in R/B). Also IGT: trade Spearow in Vermilion City</td></tr>
+            <tr><td class="dex-num">#084</td><td class="dex-name">Doduo</td><td><span class="pstatus wild">WILD</span></td><td class="dex-note">Routes 16, 17, 18, Safari Zone</td></tr>
+            <tr><td class="dex-num">#085</td><td class="dex-name">Dodrio</td><td><span class="pstatus wild">WILD</span></td><td class="dex-note">Routes 17, 18</td></tr>
+            <tr><td class="dex-num">#086</td><td class="dex-name">Seel</td><td><span class="pstatus wild">WILD</span></td><td class="dex-note">Seafoam Islands</td></tr>
+            <tr><td class="dex-num">#087</td><td class="dex-name">Dewgong</td><td><span class="pstatus wild">WILD</span></td><td class="dex-note">Seafoam Islands (deeper floors)</td></tr>
+            <tr><td class="dex-num">#088</td><td class="dex-name">Grimer</td><td><span class="pstatus wild">WILD</span></td><td class="dex-note">Pokémon Mansion</td></tr>
+            <tr><td class="dex-num">#089</td><td class="dex-name">Muk</td><td><span class="pstatus wild">WILD</span></td><td class="dex-note">Pokémon Mansion</td></tr>
+            <tr><td class="dex-num">#090</td><td class="dex-name">Shellder</td><td><span class="pstatus wild">WILD</span></td><td class="dex-note">Fishing (Routes 6, 11, 17–20)</td></tr>
+            <tr><td class="dex-num">#091</td><td class="dex-name">Cloyster</td><td><span class="pstatus evolve">EVOLVE</span></td><td class="dex-note">Shellder + Water Stone</td></tr>
+            <tr><td class="dex-num">#092</td><td class="dex-name">Gastly</td><td><span class="pstatus wild">WILD</span></td><td class="dex-note">Pokémon Tower</td></tr>
+            <tr><td class="dex-num">#093</td><td class="dex-name">Haunter</td><td><span class="pstatus wild">WILD</span></td><td class="dex-note">Pokémon Tower (upper floors), Cerulean Cave — must trade to evolve into Gengar</td></tr>
+            <tr><td class="dex-num">#094</td><td class="dex-name">Gengar</td><td><span class="pstatus trevo">TR-EVO</span></td><td class="dex-note">Trade Haunter → evolves on trade</td></tr>
+            <tr><td class="dex-num">#095</td><td class="dex-name">Onix</td><td><span class="pstatus wild">WILD</span></td><td class="dex-note">Rock Tunnel, Victory Road</td></tr>
+            <tr><td class="dex-num">#096</td><td class="dex-name">Drowzee</td><td><span class="pstatus wild">WILD</span></td><td class="dex-note">Route 11</td></tr>
+            <tr><td class="dex-num">#097</td><td class="dex-name">Hypno</td><td><span class="pstatus evolve">EVOLVE</span></td><td class="dex-note">Drowzee Lv 26</td></tr>
+            <tr><td class="dex-num">#098</td><td class="dex-name">Krabby</td><td><span class="pstatus wild">WILD</span></td><td class="dex-note">Fishing (Routes 6, 11, 24, 25, Seafoam Islands)</td></tr>
+            <tr><td class="dex-num">#099</td><td class="dex-name">Kingler</td><td><span class="pstatus evolve">EVOLVE</span></td><td class="dex-note">Krabby Lv 28</td></tr>
+            <tr><td class="dex-num">#100</td><td class="dex-name">Voltorb</td><td><span class="pstatus wild">WILD</span></td><td class="dex-note">Power Plant</td></tr>
+            <tr><td class="dex-num">#101</td><td class="dex-name">Electrode</td><td><span class="pstatus wild">WILD</span></td><td class="dex-note">Power Plant</td></tr>
+            <tr><td class="dex-num">#102</td><td class="dex-name">Exeggcute</td><td><span class="pstatus wild">WILD</span></td><td class="dex-note">Safari Zone</td></tr>
+            <tr><td class="dex-num">#103</td><td class="dex-name">Exeggutor</td><td><span class="pstatus evolve">EVOLVE</span></td><td class="dex-note">Exeggcute + Leaf Stone</td></tr>
+            <tr><td class="dex-num">#104</td><td class="dex-name">Cubone</td><td><span class="pstatus wild">WILD</span></td><td class="dex-note">Pokémon Tower (upper floors), Rock Tunnel</td></tr>
+            <tr><td class="dex-num">#105</td><td class="dex-name">Marowak</td><td><span class="pstatus evolve">EVOLVE</span></td><td class="dex-note">Cubone Lv 28 (the ghost Marowak in Pokémon Tower cannot be caught)</td></tr>
+            <tr><td class="dex-num">#106</td><td class="dex-name">Hitmonlee</td><td><span class="pstatus gift">GIFT</span></td><td class="dex-note">Fighting Dojo, Saffron City — choose Hitmonlee or Hitmonchan after defeating the master</td></tr>
+            <tr><td class="dex-num">#107</td><td class="dex-name">Hitmonchan</td><td><span class="pstatus gift">GIFT</span></td><td class="dex-note">Fighting Dojo, Saffron City — the other choice (only one per game)</td></tr>
+            <tr><td class="dex-num">#108</td><td class="dex-name">Lickitung</td><td><span class="pstatus wild">WILD</span></td><td class="dex-note">Route 18 (now wild in Yellow; was IGT-only in R/B)</td></tr>
+            <tr><td class="dex-num">#109</td><td class="dex-name">Koffing</td><td><span class="pstatus trade">TRADE</span></td><td class="dex-note trade-note">Removed (James's Pokémon); R/B only</td></tr>
+            <tr><td class="dex-num">#110</td><td class="dex-name">Weezing</td><td><span class="pstatus trade">TRADE</span></td><td class="dex-note trade-note">Removed; R/B only</td></tr>
+            <tr><td class="dex-num">#111</td><td class="dex-name">Rhyhorn</td><td><span class="pstatus wild">WILD</span></td><td class="dex-note">Safari Zone, Victory Road</td></tr>
+            <tr><td class="dex-num">#112</td><td class="dex-name">Rhydon</td><td><span class="pstatus evolve">EVOLVE</span></td><td class="dex-note">Rhyhorn Lv 42</td></tr>
+            <tr><td class="dex-num">#113</td><td class="dex-name">Chansey</td><td><span class="pstatus wild">WILD</span></td><td class="dex-note">Pokémon Tower (upper floors), Safari Zone, Cerulean Cave (very rare ~1%)</td></tr>
+            <tr><td class="dex-num">#114</td><td class="dex-name">Tangela</td><td><span class="pstatus wild">WILD</span></td><td class="dex-note">Routes 15, 21</td></tr>
+            <tr><td class="dex-num">#115</td><td class="dex-name">Kangaskhan</td><td><span class="pstatus wild">WILD</span></td><td class="dex-note">Safari Zone</td></tr>
+            <tr><td class="dex-num">#116</td><td class="dex-name">Horsea</td><td><span class="pstatus wild">WILD</span></td><td class="dex-note">Fishing with Super Rod (Routes 19, 20, 21, Seafoam Islands)</td></tr>
+            <tr><td class="dex-num">#117</td><td class="dex-name">Seadra</td><td><span class="pstatus evolve">EVOLVE</span></td><td class="dex-note">Horsea Lv 32</td></tr>
+            <tr><td class="dex-num">#118</td><td class="dex-name">Goldeen</td><td><span class="pstatus wild">WILD</span></td><td class="dex-note">Fishing (Routes 22, 25, Safari Zone)</td></tr>
+            <tr><td class="dex-num">#119</td><td class="dex-name">Seaking</td><td><span class="pstatus evolve">EVOLVE</span></td><td class="dex-note">Goldeen Lv 33</td></tr>
+            <tr><td class="dex-num">#120</td><td class="dex-name">Staryu</td><td><span class="pstatus wild">WILD</span></td><td class="dex-note">Fishing with Super Rod (Routes 19–21, Seafoam Islands)</td></tr>
+            <tr><td class="dex-num">#121</td><td class="dex-name">Starmie</td><td><span class="pstatus evolve">EVOLVE</span></td><td class="dex-note">Staryu + Water Stone</td></tr>
+            <tr><td class="dex-num">#122</td><td class="dex-name">Mr. Mime</td><td><span class="pstatus igt">IGT</span></td><td class="dex-note">Route 2 (eastern path, south of Diglett's Cave exit) — trade a Clefairy</td></tr>
+            <tr><td class="dex-num">#123</td><td class="dex-name">Scyther</td><td><span class="pstatus wild">WILD</span></td><td class="dex-note">Safari Zone — both Scyther and Pinsir available in Yellow (were split R/B exclusives)</td></tr>
+            <tr><td class="dex-num">#124</td><td class="dex-name">Jynx</td><td><span class="pstatus trade">TRADE</span></td><td class="dex-note trade-note">R/B only (was an IGT in R/B; no such trade in Yellow)</td></tr>
+            <tr><td class="dex-num">#125</td><td class="dex-name">Electabuzz</td><td><span class="pstatus trade">TRADE</span></td><td class="dex-note trade-note">Red only</td></tr>
+            <tr><td class="dex-num">#126</td><td class="dex-name">Magmar</td><td><span class="pstatus trade">TRADE</span></td><td class="dex-note trade-note">Blue only</td></tr>
+            <tr><td class="dex-num">#127</td><td class="dex-name">Pinsir</td><td><span class="pstatus wild">WILD</span></td><td class="dex-note">Safari Zone — both Scyther and Pinsir available in Yellow</td></tr>
+            <tr><td class="dex-num">#128</td><td class="dex-name">Tauros</td><td><span class="pstatus wild">WILD</span></td><td class="dex-note">Safari Zone (rare; must be caught here — cannot be found elsewhere)</td></tr>
+            <tr><td class="dex-num">#129</td><td class="dex-name">Magikarp</td><td><span class="pstatus wild">WILD</span></td><td class="dex-note">Old Rod (any water), or buy for ₽500 from a man at the Pokémon Center on Route 4 (Mt. Moon area)</td></tr>
+            <tr><td class="dex-num">#130</td><td class="dex-name">Gyarados</td><td><span class="pstatus evolve">EVOLVE</span></td><td class="dex-note">Magikarp Lv 20 — one of the most dramatic evolutions in the game</td></tr>
+            <tr><td class="dex-num">#131</td><td class="dex-name">Lapras</td><td><span class="pstatus gift">GIFT</span></td><td class="dex-note">Silph Co. 7F — a young man gives you one (only one per game)</td></tr>
+            <tr><td class="dex-num">#132</td><td class="dex-name">Ditto</td><td><span class="pstatus wild">WILD</span></td><td class="dex-note">Pokémon Mansion, Cerulean Cave</td></tr>
+            <tr><td class="dex-num">#133</td><td class="dex-name">Eevee</td><td><span class="pstatus gift">GIFT</span></td><td class="dex-note">Celadon City Condo (Celadon Mansion, top floor) — man in a room gives one</td></tr>
+            <tr><td class="dex-num">#134</td><td class="dex-name">Vaporeon</td><td><span class="pstatus evolve">EVOLVE</span></td><td class="dex-note">Eevee + Water Stone</td></tr>
+            <tr><td class="dex-num">#135</td><td class="dex-name">Jolteon</td><td><span class="pstatus evolve">EVOLVE</span></td><td class="dex-note">Eevee + Thunder Stone</td></tr>
+            <tr><td class="dex-num">#136</td><td class="dex-name">Flareon</td><td><span class="pstatus evolve">EVOLVE</span></td><td class="dex-note">Eevee + Fire Stone</td></tr>
+            <tr><td class="dex-num">#137</td><td class="dex-name">Porygon</td><td><span class="pstatus corner">CORNER</span></td><td class="dex-note">Celadon Game Corner — 9,999 coins</td></tr>
+            <tr><td class="dex-num">#138</td><td class="dex-name">Omanyte</td><td><span class="pstatus fossil">FOSSIL</span></td><td class="dex-note">Helix Fossil (Mt. Moon) → Cinnabar Island Lab</td></tr>
+            <tr><td class="dex-num">#139</td><td class="dex-name">Omastar</td><td><span class="pstatus evolve">EVOLVE</span></td><td class="dex-note">Omanyte Lv 40</td></tr>
+            <tr><td class="dex-num">#140</td><td class="dex-name">Kabuto</td><td><span class="pstatus fossil">FOSSIL</span></td><td class="dex-note">Dome Fossil (Mt. Moon) → Cinnabar Island Lab (you only get one fossil — choose wisely)</td></tr>
+            <tr><td class="dex-num">#141</td><td class="dex-name">Kabutops</td><td><span class="pstatus evolve">EVOLVE</span></td><td class="dex-note">Kabuto Lv 40</td></tr>
+            <tr><td class="dex-num">#142</td><td class="dex-name">Aerodactyl</td><td><span class="pstatus fossil">FOSSIL</span></td><td class="dex-note">Old Amber (Pewter City Museum of Science, via Cut) → Cinnabar Island Lab</td></tr>
+            <tr><td class="dex-num">#143</td><td class="dex-name">Snorlax</td><td><span class="pstatus static">STATIC</span></td><td class="dex-note">Routes 12 &amp; 16 — wake with Poké Flute (only 2 in the game; both catchable)</td></tr>
+            <tr><td class="dex-num">#144</td><td class="dex-name">Articuno</td><td><span class="pstatus static">STATIC</span></td><td class="dex-note">Seafoam Islands B4F (push boulders into the pits to stop the current)</td></tr>
+            <tr><td class="dex-num">#145</td><td class="dex-name">Zapdos</td><td><span class="pstatus static">STATIC</span></td><td class="dex-note">Power Plant (end of facility, after Lv 50 battle)</td></tr>
+            <tr><td class="dex-num">#146</td><td class="dex-name">Moltres</td><td><span class="pstatus static">STATIC</span></td><td class="dex-note">Victory Road 2F (one-way — save before entering)</td></tr>
+            <tr><td class="dex-num">#147</td><td class="dex-name">Dratini</td><td><span class="pstatus wild">WILD</span></td><td class="dex-note">Safari Zone (fishing with Super Rod — rare)</td></tr>
+            <tr><td class="dex-num">#148</td><td class="dex-name">Dragonair</td><td><span class="pstatus wild">WILD</span></td><td class="dex-note">Safari Zone (Super Rod, very rare), Cerulean Cave</td></tr>
+            <tr><td class="dex-num">#149</td><td class="dex-name">Dragonite</td><td><span class="pstatus evolve">EVOLVE</span></td><td class="dex-note">Dragonair Lv 55</td></tr>
+            <tr><td class="dex-num">#150</td><td class="dex-name">Mewtwo</td><td><span class="pstatus static">STATIC</span></td><td class="dex-note">Cerulean Cave B1F — post-game only (need all 8 badges + defeat Elite Four)</td></tr>
+            <tr><td class="dex-num">#151</td><td class="dex-name">Mew</td><td><span class="pstatus trade">TRADE</span></td><td class="dex-note trade-note">NOT legitimately obtainable — glitch only (see Mew Guide section below)</td></tr>
+          </tbody>
+        </table>
+
+        <div class="info-box">
+          <strong>Completing the Pokédex:</strong> To legitimately complete the 150-entry Pokédex (Mew was never officially obtainable), you need a second copy of Yellow, Red, or Blue for the 13 missing Pokémon and all 4 trade-evolution Pokémon (Alakazam, Machamp, Golem, Gengar).
+        </div>
+      </section>
+
+      <!-- ─── HMs ─── -->
+      <section id="hms">
+        <h2 class="section-title">Hidden Machines (HMs)</h2>
+        <p>HMs can be used unlimited times. They cannot be discarded. HM moves cannot be deleted by a Pokémon (there is no Move Deleter in Gen I — be careful what you teach). A Gym Badge is required to use each HM outside of battle.</p>
+
+        <div class="hm-card">
+          <div class="hm-title">HM01 — Cut</div>
+          <div class="hm-detail">Captain's cabin on the S.S. Anne (Vermilion City harbor). Heal the captain's seasickness to receive it. Cuts small trees blocking paths.</div>
+          <div class="hm-badge">Requires: Cascade Badge (Misty, Cerulean Gym)</div>
+        </div>
+
+        <div class="hm-card">
+          <div class="hm-title">HM02 — Fly</div>
+          <div class="hm-detail">Route 16 — enter the small house north of the Cycling Road gate (requires Cut to reach). A girl inside gives you Fly. Allows instant travel to any previously visited city.</div>
+          <div class="hm-badge">Requires: Thunder Badge (Lt. Surge, Vermilion Gym)</div>
+        </div>
+
+        <div class="hm-card">
+          <div class="hm-title">HM03 — Surf</div>
+          <div class="hm-detail">Safari Zone — reach the secret house at the far end of Area 3. The man inside gives you Surf as a reward for being the first to find it. Required to progress to Cinnabar Island and the Seafoam Islands.</div>
+          <div class="hm-badge">Requires: Soul Badge (Koga, Fuchsia Gym)</div>
+        </div>
+
+        <div class="hm-card">
+          <div class="hm-title">HM04 — Strength</div>
+          <div class="hm-detail">Fuchsia City — return the Safari Zone Warden's Gold Teeth (found in the Safari Zone, Area 3). He rewards you with Strength. Allows pushing heavy boulders, including the ones needed to access Articuno in Seafoam Islands.</div>
+          <div class="hm-badge">Requires: Rainbow Badge (Erika, Celadon Gym)</div>
+        </div>
+
+        <div class="hm-card">
+          <div class="hm-title">HM05 — Flash</div>
+          <div class="hm-detail">Route 2 eastern path — the building south of Diglett's Cave exit contains one of Professor Oak's aides. He gives you Flash if you have caught enough Pokémon. Flash lowers the opponent's Accuracy by 1 stage and is useful (but not required) for navigating the dark Rock Tunnel.</div>
+          <div class="hm-badge">Requires: 10 Pokémon caught · No Badge required to use in battle</div>
+        </div>
+      </section>
+
+      <!-- ─── TMs ─── -->
+      <section id="tms">
+        <h2 class="section-title">Technical Machines (TMs)</h2>
+        <p>In Generation I, TMs are <strong>one-time use only</strong> and cannot be reused. Plan carefully before teaching one. TMs marked <span class="multi-tag">★ SHOP</span> are purchasable at the Celadon Dept. Store (unlimited copies can be bought). TMs from the Game Corner cost coins but can technically be re-purchased by farming slots.</p>
+
+        <table class="tm-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Move</th>
+              <th>Location(s)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="tm-num">TM01</td><td class="tm-move">Mega Punch</td><td class="tm-loc">Mt. Moon (found item) · Celadon Dept. Store <span class="multi-tag">★ SHOP</span></td></tr>
+            <tr><td class="tm-num">TM02</td><td class="tm-move">Razor Wind</td><td class="tm-loc">Celadon Dept. Store <span class="multi-tag">★ SHOP</span> · Game Corner</td></tr>
+            <tr><td class="tm-num">TM03</td><td class="tm-move">Swords Dance</td><td class="tm-loc">Silph Co. (item on floor)</td></tr>
+            <tr><td class="tm-num">TM04</td><td class="tm-move">Whirlwind</td><td class="tm-loc">Route 4 (item)</td></tr>
+            <tr><td class="tm-num">TM05</td><td class="tm-move">Mega Kick</td><td class="tm-loc">Victory Road (found item) · Celadon Dept. Store <span class="multi-tag">★ SHOP</span></td></tr>
+            <tr><td class="tm-num">TM06</td><td class="tm-move">Toxic</td><td class="tm-loc">Fuchsia City Gym (Koga's Gym)</td></tr>
+            <tr><td class="tm-num">TM07</td><td class="tm-move">Horn Drill</td><td class="tm-loc">Celadon Dept. Store <span class="multi-tag">★ SHOP</span> · Game Corner</td></tr>
+            <tr><td class="tm-num">TM08</td><td class="tm-move">Body Slam</td><td class="tm-loc">S.S. Anne (item)</td></tr>
+            <tr><td class="tm-num">TM09</td><td class="tm-move">Take Down</td><td class="tm-loc">Saffron City (item) · Celadon Dept. Store <span class="multi-tag">★ SHOP</span></td></tr>
+            <tr><td class="tm-num">TM10</td><td class="tm-move">Double-Edge</td><td class="tm-loc">Game Corner (cost: coins)</td></tr>
+            <tr><td class="tm-num">TM11</td><td class="tm-move">BubbleBeam</td><td class="tm-loc">Cerulean City Gym (Misty rewards after defeat)</td></tr>
+            <tr><td class="tm-num">TM12</td><td class="tm-move">Water Gun</td><td class="tm-loc">Mt. Moon (item)</td></tr>
+            <tr><td class="tm-num">TM13</td><td class="tm-move">Ice Beam</td><td class="tm-loc">Celadon Dept. Store Roof (vending machine trade) <span class="multi-tag">★ SHOP</span></td></tr>
+            <tr><td class="tm-num">TM14</td><td class="tm-move">Blizzard</td><td class="tm-loc">Pokémon Mansion (Cinnabar Island, item)</td></tr>
+            <tr><td class="tm-num">TM15</td><td class="tm-move">Hyper Beam</td><td class="tm-loc">Celadon City Game Corner (cost: coins) · Celadon Dept. Store <span class="multi-tag">★ SHOP</span></td></tr>
+            <tr><td class="tm-num">TM16</td><td class="tm-move">Pay Day</td><td class="tm-loc">Route 12 (item)</td></tr>
+            <tr><td class="tm-num">TM17</td><td class="tm-move">Submission</td><td class="tm-loc">Victory Road (item) · Celadon Dept. Store <span class="multi-tag">★ SHOP</span></td></tr>
+            <tr><td class="tm-num">TM18</td><td class="tm-move">Counter</td><td class="tm-loc">Celadon Dept. Store <span class="multi-tag">★ SHOP</span></td></tr>
+            <tr><td class="tm-num">TM19</td><td class="tm-move">Seismic Toss</td><td class="tm-loc">Route 25 (item)</td></tr>
+            <tr><td class="tm-num">TM20</td><td class="tm-move">Rage</td><td class="tm-loc">Route 15 (item)</td></tr>
+            <tr><td class="tm-num">TM21</td><td class="tm-move">Mega Drain</td><td class="tm-loc">Celadon City Gym (Erika rewards after defeat)</td></tr>
+            <tr><td class="tm-num">TM22</td><td class="tm-move">SolarBeam</td><td class="tm-loc">Pokémon Mansion (item)</td></tr>
+            <tr><td class="tm-num">TM23</td><td class="tm-move">Dragon Rage</td><td class="tm-loc">Celadon City Game Corner (cost: coins)</td></tr>
+            <tr><td class="tm-num">TM24</td><td class="tm-move">Thunderbolt</td><td class="tm-loc">Vermilion City Gym (Lt. Surge rewards after defeat) — also available at Game Corner</td></tr>
+            <tr><td class="tm-num">TM25</td><td class="tm-move">Thunder</td><td class="tm-loc">Power Plant (item)</td></tr>
+            <tr><td class="tm-num">TM26</td><td class="tm-move">Earthquake</td><td class="tm-loc">Silph Co. (item on floor)</td></tr>
+            <tr><td class="tm-num">TM27</td><td class="tm-move">Fissure</td><td class="tm-loc">Viridian City Gym (Giovanni rewards after defeat)</td></tr>
+            <tr><td class="tm-num">TM28</td><td class="tm-move">Dig</td><td class="tm-loc">Cerulean City (item from a man who was robbed)</td></tr>
+            <tr><td class="tm-num">TM29</td><td class="tm-move">Psychic</td><td class="tm-loc">Saffron City (item from a man in a building)</td></tr>
+            <tr><td class="tm-num">TM30</td><td class="tm-move">Teleport</td><td class="tm-loc">Route 9 (item)</td></tr>
+            <tr><td class="tm-num">TM31</td><td class="tm-move">Mimic</td><td class="tm-loc">Saffron City (from a man in Copycat's house area)</td></tr>
+            <tr><td class="tm-num">TM32</td><td class="tm-move">Double Team</td><td class="tm-loc">Fuchsia City (item) · Celadon Dept. Store <span class="multi-tag">★ SHOP</span></td></tr>
+            <tr><td class="tm-num">TM33</td><td class="tm-move">Reflect</td><td class="tm-loc">Power Plant (item) · Celadon Dept. Store <span class="multi-tag">★ SHOP</span></td></tr>
+            <tr><td class="tm-num">TM34</td><td class="tm-move">Bide</td><td class="tm-loc">Pewter City Gym (Brock rewards after defeat)</td></tr>
+            <tr><td class="tm-num">TM35</td><td class="tm-move">Metronome</td><td class="tm-loc">Cinnabar Island (item in a building)</td></tr>
+            <tr><td class="tm-num">TM36</td><td class="tm-move">Self-Destruct</td><td class="tm-loc">Silph Co. (item)</td></tr>
+            <tr><td class="tm-num">TM37</td><td class="tm-move">Egg Bomb</td><td class="tm-loc">Fuchsia City (item) · Celadon Dept. Store <span class="multi-tag">★ SHOP</span></td></tr>
+            <tr><td class="tm-num">TM38</td><td class="tm-move">Fire Blast</td><td class="tm-loc">Cinnabar Island Gym (Blaine rewards after defeat)</td></tr>
+            <tr><td class="tm-num">TM39</td><td class="tm-move">Swift</td><td class="tm-loc">Route 12 (item)</td></tr>
+            <tr><td class="tm-num">TM40</td><td class="tm-move">Skull Bash</td><td class="tm-loc">Safari Zone (item)</td></tr>
+            <tr><td class="tm-num">TM41</td><td class="tm-move">Softboiled</td><td class="tm-loc">Celadon City (from a woman in a house — teaches Chansey a very useful recovery move)</td></tr>
+            <tr><td class="tm-num">TM42</td><td class="tm-move">Dream Eater</td><td class="tm-loc">Viridian City (item, building in the north-east area)</td></tr>
+            <tr><td class="tm-num">TM43</td><td class="tm-move">Sky Attack</td><td class="tm-loc">Victory Road (item)</td></tr>
+            <tr><td class="tm-num">TM44</td><td class="tm-move">Rest</td><td class="tm-loc">S.S. Anne (item)</td></tr>
+            <tr><td class="tm-num">TM45</td><td class="tm-move">Thunder Wave</td><td class="tm-loc">Route 24 (item)</td></tr>
+            <tr><td class="tm-num">TM46</td><td class="tm-move">Psywave</td><td class="tm-loc">Saffron City Gym (Sabrina rewards after defeat)</td></tr>
+            <tr><td class="tm-num">TM47</td><td class="tm-move">Explosion</td><td class="tm-loc">Victory Road (item)</td></tr>
+            <tr><td class="tm-num">TM48</td><td class="tm-move">Rock Slide</td><td class="tm-loc">Celadon Dept. Store <span class="multi-tag">★ SHOP</span></td></tr>
+            <tr><td class="tm-num">TM49</td><td class="tm-move">Tri Attack</td><td class="tm-loc">Celadon Dept. Store <span class="multi-tag">★ SHOP</span></td></tr>
+            <tr><td class="tm-num">TM50</td><td class="tm-move">Substitute</td><td class="tm-loc">Celadon City Game Corner (cost: coins)</td></tr>
+          </tbody>
+        </table>
+
+        <div class="callout-yellow">
+          <strong>Best TMs to prioritize:</strong> TM24 Thunderbolt and TM29 Psychic are high-accuracy, high-power moves — use them on your best Special attackers. TM26 Earthquake is the strongest Ground move with no drawbacks. TM15 Hyper Beam (160 power) is the most powerful normal move but requires a recharge turn. TM06 Toxic is essential for stalling and catching legendaries. TM41 Softboiled on Chansey makes her incredibly hard to KO.
+        </div>
+      </section>
+
+      <!-- ─── OAK'S AIDES ─── -->
+      <section id="oaks-aides">
+        <h2 class="section-title">Professor Oak's Aides</h2>
+        <p>Several of Professor Oak's assistants are stationed throughout Kanto and will give you special items once you've caught (owned, not just seen) enough unique Pokémon species.</p>
+
+        <table class="tm-table">
+          <thead>
+            <tr>
+              <th>Location</th>
+              <th>Required (Owned)</th>
+              <th>Item</th>
+              <th>Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="color:var(--text);">Route 2<br><span style="font-size:10px;color:var(--text-dim);">Eastern path building, south of Diglett's Cave exit</span></td>
+              <td style="color:var(--accent2);font-family:'Share Tech Mono',monospace;">10 Pokémon</td>
+              <td style="color:var(--text);font-weight:bold;">HM05 Flash</td>
+              <td class="tm-loc">Reach via Diglett's Cave from Vermilion City. Flash lowers opponent's Accuracy — helpful but optional for Rock Tunnel.</td>
+            </tr>
+            <tr>
+              <td style="color:var(--text);">Route 11<br><span style="font-size:10px;color:var(--text-dim);">East gate building (east of Vermilion City)</span></td>
+              <td style="color:var(--accent2);font-family:'Share Tech Mono',monospace;">20 Pokémon</td>
+              <td style="color:var(--text);font-weight:bold;">Itemfinder</td>
+              <td class="tm-loc">Use the Itemfinder to detect hidden items on the ground — many valuable items are hidden and won't appear without it.</td>
+            </tr>
+            <tr>
+              <td style="color:var(--text);">Route 15<br><span style="font-size:10px;color:var(--text-dim);">Gate building (west side)</span></td>
+              <td style="color:var(--accent2);font-family:'Share Tech Mono',monospace;">30 Pokémon</td>
+              <td style="color:var(--text);font-weight:bold;">Exp. All</td>
+              <td class="tm-loc">Splits experience among all party Pokémon after each battle (each gets reduced XP). Useful for grinding a full party but slows individual training. Less effective than Exp. Share in later generations.</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="info-box">
+          <strong>How Exp. All works in Gen I:</strong> Unlike later games, the Exp. All divides experience. The battling Pokémon gets half the normal experience, and the other half is split among all remaining party members. This means every Pokémon gets some XP but less than normal solo training. It is useful for bulk-leveling a low-level Pokémon without putting it in danger.
+        </div>
+      </section>
+
+      <!-- ─── STATS SYSTEM ─── -->
+      <section id="stats">
+        <h2 class="section-title">Stats System (Gen I)</h2>
+
+        <p>Generation I uses a stat system significantly different from Generation III onwards. Understanding it lets you maximize your Pokémon's potential.</p>
+
+        <h3 class="subsection-title">The Five Stats</h3>
+        <p>In Gen I, there are only <strong>5 stats</strong>: HP, Attack, Defense, Speed, and <strong>Special</strong>. There is no split between Special Attack and Special Defense — a single "Special" stat governs both how hard special moves hit AND how well you resist them. This makes Pokémon with high Special exceptionally powerful defensively and offensively.</p>
+
+        <h3 class="subsection-title">Determinant Values (DVs)</h3>
+        <p>What later games call IVs are called <strong>DVs (Determinant Values)</strong> in Gen I. Each Pokémon has a DV from 0 to 15 for Attack, Defense, Speed, and Special. The HP DV is <em>derived</em> from the other four:</p>
+        <div class="formula-box">
+          <span class="fvar">HP_DV</span> = (<span class="fvar">atk_DV</span> &amp; 1) &lt;&lt; 3 | (<span class="fvar">def_DV</span> &amp; 1) &lt;&lt; 2 | (<span class="fvar">spd_DV</span> &amp; 1) &lt;&lt; 1 | (<span class="fvar">spc_DV</span> &amp; 1)<br>
+          <span class="fcomment">// Take the lowest bit of each DV in order: Atk, Def, Spd, Spc → form HP DV (0–15)</span>
+        </div>
+        <p>To get maximum HP DV (15), all four other DVs must be odd. DVs are fixed when a Pokémon is generated (caught, received as gift, etc.) and cannot be changed.</p>
+        <p><strong>Wild Pokémon restriction:</strong> Pokémon encountered in tall grass, caves, or via Surf have limited DV pools due to the game's pseudorandom number generator — they are unlikely to have perfect DVs. Fishing encounters, gift Pokémon (Bulbasaur, Charmander, Squirtle, Lapras, Hitmonlee/Hitmonchan, Eevee), and static encounters (Snorlax, Mewtwo) can have any DV combination.</p>
+
+        <h3 class="subsection-title">Stat Experience (Stat Exp)</h3>
+        <p>This is the Gen I equivalent of EVs. Each stat has a Stat Exp value from 0 to 65,535. When you defeat a Pokémon, you gain Stat Exp equal to that species' base stat for each of the 5 stats.</p>
+
+        <div class="formula-box">
+          <span class="fcomment">// Stat calculation at level 100:</span><br>
+          <span class="fvar">stat_bonus</span> = floor( sqrt(<span class="fvar">StatExp</span>) ) / 4   <span class="fcomment">// rounded down (max bonus: 63)</span><br><br>
+          <span class="fvar">HP</span> = floor(( (<span class="fvar">Base</span> + <span class="fvar">DV</span>) × 2 + <span class="fvar">stat_bonus</span> ) × <span class="fvar">Level</span> / 100) + <span class="fvar">Level</span> + 10<br>
+          <span class="fvar">Other</span> = floor(( (<span class="fvar">Base</span> + <span class="fvar">DV</span>) × 2 + <span class="fvar">stat_bonus</span> ) × <span class="fvar">Level</span> / 100) + 5
+        </div>
+
+        <h3 class="subsection-title">Key Differences from Modern EVs</h3>
+        <ul class="bullet-list">
+          <li>No cap per stat and no total cap (unlike 510 EV cap in Gen III+). Stat Exp can reach 65,535 per stat</li>
+          <li>Every battle awards Stat Exp for all 5 stats simultaneously, based on the defeated Pokémon's full stat line</li>
+          <li>To fully max all stats, you would need to defeat ~656 Mew (each grants 100 Stat Exp to all stats) — practically impossible without grinding intentionally</li>
+          <li>Stats are <strong>not recalculated every level-up</strong>; they recalculate only on level-up OR when the Pokémon is stored in Bill's PC ("Box Trick")</li>
+        </ul>
+
+        <h3 class="subsection-title">The Box Trick</h3>
+        <div class="callout-yellow">
+          <strong>Box Trick:</strong> Storing a Pokémon in Bill's PC immediately recalculates its stats with all current Stat Exp factored in. This is useful if you've been gaining Stat Exp at Lv 100 (since level-up won't trigger recalculation at max level). Deposit into any Box, then withdraw — stats update instantly.
+        </div>
+
+        <h3 class="subsection-title">Vitamins</h3>
+        <p>Vitamins add 2,560 to a single stat's Stat Exp, but <strong>cannot raise any stat's Stat Exp above 25,600</strong>. Use them early for a guaranteed boost, but battle-gained Stat Exp will exceed the vitamin cap naturally over time. Available at the Celadon Dept. Store (₽9,800 each):</p>
+        <ul class="bullet-list">
+          <li><strong>HP Up</strong> — HP stat</li>
+          <li><strong>Protein</strong> — Attack stat</li>
+          <li><strong>Iron</strong> — Defense stat</li>
+          <li><strong>Carbos</strong> — Speed stat</li>
+          <li><strong>Calcium</strong> — Special stat</li>
+        </ul>
+
+        <h3 class="subsection-title">Optimizing Stats</h3>
+        <ul class="bullet-list">
+          <li>Fight Pokémon that yield high base stats in your desired area (e.g., Chansey yields 250 base Special for Stat Exp)</li>
+          <li>Use the Box Trick at Lv 100 if you continue farming Stat Exp after hitting max level</li>
+          <li>DVs cannot be changed — to get a Pokémon with good DVs, you may need to soft-reset for gift Pokémon or trade-in Pokémon (which can have any DV set)</li>
+          <li>Wild Pokémon have restricted DVs due to the RNG — fishing and gift Pokémon are better candidates for high DVs</li>
+          <li>Rare Candy raises level without gaining Stat Exp — using too many leads to permanently weaker stats than battle-trained equivalents</li>
+        </ul>
+      </section>
+
+      <!-- ─── MECHANICS ─── -->
+      <section id="mechanics">
+        <h2 class="section-title">Key Gen I Mechanics</h2>
+
+        <h3 class="subsection-title">The Special Stat (No Split)</h3>
+        <p>In Gen I, there is no Special Attack / Special Defense split. The single <strong>Special</strong> stat serves both purposes. Pokémon like Chansey (base Special 105) are simultaneously great special attackers AND special walls. This was split into Sp. Atk and Sp. Def starting in Gen II.</p>
+
+        <h3 class="subsection-title">Type Chart Quirks</h3>
+        <p>The Gen I type chart has several bugs and differences from later games:</p>
+        <table class="type-table">
+          <thead><tr><th>Interaction</th><th>Expected</th><th>Actual in Gen I</th></tr></thead>
+          <tbody>
+            <tr><td class="glitch">Ghost → Psychic</td><td>2× super-effective</td><td>0× — no effect (bug: Ghost-type moves do 0 damage to Psychic types)</td></tr>
+            <tr><td class="bug">Poison → Bug</td><td>2× super-effective</td><td>1× — normal damage (type chart bug; displays "super effective" in some cases)</td></tr>
+            <tr><td>Ice → Fire</td><td>1× in modern games</td><td>2× super-effective in Gen I (changed in Gen II)</td></tr>
+            <tr><td>Bug → Psychic</td><td>2× in Gen I chart</td><td>2× — works correctly in Gen I (unlike later games where it changed)</td></tr>
+          </tbody>
+        </table>
+        <p>The Ghost/Psychic immunity is famously exploitable: <strong>Psychic-type Pokémon (Alakazam, Starmie, Jynx) are effectively immune to Ghost-type attacks</strong>, making them dominant in competitive play.</p>
+
+        <h3 class="subsection-title">Critical Hit Rate</h3>
+        <p>In Gen I, critical hit rate is based on the <strong>user's base Speed stat divided by 512</strong> (≈ Speed/512). Fast Pokémon have higher natural critical hit rates. Moves with high crit ratios (Slash, Razor Leaf, Crabhammer, Karate Chop) use <strong>Speed/64</strong> instead — giving fast Pokémon like Persian and Electrode a ~23% crit rate with Slash.</p>
+        <div class="warn-box">
+          <strong>Focus Energy bug:</strong> The move Focus Energy claims to double your critical hit rate, but due to a Gen I bug, it actually <em>divides</em> your critical hit rate by 4. Do not use Focus Energy — it makes things worse.
+        </div>
+
+        <h3 class="subsection-title">Badge Boosts</h3>
+        <p>Earning Gym Badges permanently boosts certain stats for <strong>all of your Pokémon</strong> in battle. These multipliers stack and apply to the final computed stat value:</p>
+        <ul class="bullet-list">
+          <li><strong>Boulder Badge</strong> (Brock) — Attack ×1.125</li>
+          <li><strong>Cascade Badge</strong> (Misty) — Speed ×1.125</li>
+          <li><strong>Thunder Badge</strong> (Lt. Surge) — Special ×1.125</li>
+          <li><strong>Soul Badge</strong> (Koga) — Defense ×1.125</li>
+          <li><strong>Earth Badge</strong> (Giovanni) — All stats ×1.125</li>
+        </ul>
+        <p>By the time you reach the Elite Four, you have multiple badge boosts applied. The Earth Badge's all-stat boost makes the final stretch much more powerful.</p>
+
+        <h3 class="subsection-title">Wrap / Bind / Fire Spin</h3>
+        <p>In Gen I, multi-turn trapping moves (Wrap, Bind, Clamp, Fire Spin) completely <strong>prevent the trapped Pokémon from attacking</strong> for 2–5 turns while dealing chip damage. This was much stronger than in later games where the opponent can still attack. Wrapping strategies were extremely common in Gen I, especially with Dragonite.</p>
+
+        <h3 class="subsection-title">Sleep</h3>
+        <p>In Gen I, Sleep prevents action for <strong>1–7 turns</strong>. Critically, the counter only decreases on the turn the Pokémon tries to wake (it must "fail" to act before waking). This makes sleep among the strongest status effects. Spore (Paras/Parasect) and Lovely Kiss (Jynx) are the highest-accuracy sleep moves.</p>
+
+        <h3 class="subsection-title">One-Hit KO Moves</h3>
+        <p>Horn Drill, Fissure, and Guillotine have a special accuracy mechanic in Gen I: if the user's Speed is higher than the target's Speed, the base accuracy is (user Speed - target Speed + 1). Against slower targets, OHKO moves can be nearly guaranteed. Against faster targets, they always miss. Fissure (TM27, from Giovanni) is particularly powerful in this regard.</p>
+
+        <h3 class="subsection-title">Pikachu Happiness</h3>
+        <p>Your starter Pikachu has a basic happiness/friendship system — the first such system in the series. Its mood affects the expressions it shows when you check its status. High happiness is required to receive Bulbasaur from the Cerulean City woman. To raise happiness: keep Pikachu in your party, avoid letting it faint, and use items on it. It will be unhappy if it faints frequently or if you rarely interact with it.</p>
+
+        <h3 class="subsection-title">Safari Zone</h3>
+        <p>The Safari Zone uses special rules: you cannot use your own Pokémon to battle. You have 30 Safari Balls and 500 steps. Options each turn: throw a Ball, throw Bait (makes Pokémon less likely to flee but harder to catch), throw a Rock (easier to catch but more likely to flee), or Run. Rare Pokémon like Tauros, Scyther, Pinsir, and Chansey are found here but can flee quickly — use Bait sparingly on rare ones.</p>
+      </section>
+
+      <!-- ─── NOTABLE ITEMS ─── -->
+      <section id="items">
+        <h2 class="section-title">Notable Items</h2>
+
+        <div class="info-box" style="margin-bottom:12px;">
+          <strong>Master Ball</strong> — Catches any Pokémon with 100% success. You get exactly one per game, from the Silph Co. president after rescuing him from Giovanni. Save it for Mewtwo (post-game) or use it on a legendary bird if you're having trouble catching it.
+        </div>
+
+        <div class="info-box" style="margin-bottom:12px;">
+          <strong>Rare Candy</strong> — Instantly raises a Pokémon's level by 1. Multiple are hidden throughout the game. Important caveat: <strong>Rare Candy does not grant Stat Exp</strong>. A Pokémon leveled via Rare Candy has lower stats than one leveled through battle. Use them sparingly or only at Lv 99→100 to avoid wasting Stat Exp gains.
+        </div>
+
+        <div class="info-box" style="margin-bottom:12px;">
+          <strong>Poké Flute</strong> — Given by Mr. Fuji in Lavender Town (rescue him from Team Rocket at the top of Pokémon Tower). Wakes sleeping Pokémon. Required to move the two Snorlax blocking Routes 12 and 16. Can also be used in battle to wake sleeping opponents — be careful.
+        </div>
+
+        <div class="info-box" style="margin-bottom:12px;">
+          <strong>Eevee</strong> — Free from the Celadon Mansion. You only get one, so choose your Eeveelution wisely: Jolteon (Electric, high Speed + Special), Vaporeon (Water, high HP + Special), Flareon (Fire, high Attack + Special). To get all three in one run, you need to trade additional Eevee from R/B.
+        </div>
+
+        <div class="info-box" style="margin-bottom:12px;">
+          <strong>Evolution Stones</strong> — Sold at the Celadon Dept. Store: Fire Stone (₽2,100), Water Stone (₽2,100), Thunder Stone (₽2,100), Leaf Stone (₽2,100). Moon Stones are found as hidden items (Mt. Moon, Route 2, Game Corner, Pokémon Mansion). You can buy unlimited stones at the store.
+        </div>
+
+        <div class="info-box" style="margin-bottom:12px;">
+          <strong>Silph Scope</strong> — Required to see and interact with the ghost Pokémon in Pokémon Tower. Obtained from Giovanni after defeating him in the Rocket Hideout beneath the Celadon Game Corner.
+        </div>
+
+        <div class="info-box" style="margin-bottom:12px;">
+          <strong>Bicycle</strong> — Obtained via a Bike Voucher from the Pokémon Fan Club in Vermilion City (talk to the chairman, listen to his story about his Pokémon, and he'll give it). Take the voucher to the Cerulean Bike Shop. Doubles your movement speed.
+        </div>
+
+        <div class="info-box" style="margin-bottom:12px;">
+          <strong>Fossils</strong> — You can only choose <strong>one fossil</strong> in Mt. Moon: Dome Fossil (Kabuto) or Helix Fossil (Omanyte). The Old Amber (Aerodactyl) is found separately in the Pewter Museum of Science back entrance (requires Cut). Take fossils to the Cinnabar Island Research Laboratory to resurrect them.
+        </div>
+
+        <div class="info-box" style="margin-bottom:12px;">
+          <strong>Surfing Pikachu (Pikachu's Beach):</strong> Route 19 has a Summer Beach House where you can play the Pikachu's Beach surfing mini-game — but only if your Pikachu knows Surf. In Yellow, the only way to teach Pikachu Surf is by connecting to Pokémon Stadium (the Japanese release) or by certain event distributions. This is essentially inaccessible in normal play.
+        </div>
+      </section>
+
+      <!-- ─── MEW GUIDE ─── -->
+      <section id="mew">
+        <h2 class="section-title">Mew Guide</h2>
+
+        <div class="warn-box">
+          <strong>Mew (#151) is NOT legitimately obtainable in Pokémon Yellow.</strong> It was never distributed through normal gameplay and cannot be caught, found, or traded for through intended means. The only way to obtain a Mew in Yellow is through the "Mew Glitch" — an unintended exploit that works due to a programming error in all Generation I games.
+        </div>
+
+        <p>The <strong>Mew Glitch</strong> (also called the Trainer-Fly glitch) works by exploiting the game's encounter-generation system. When you escape from a "long-range trainer" using Fly before they can initiate a battle, the game gets stuck in a state that generates a wild Pokémon encounter when you return — with the species determined by the Special stat of the last Pokémon you battled.</p>
+
+        <p>Mew's index number is 21, which matches the Special stat of a level-17 Slowpoke — conveniently found on a Youngster on Route 25.</p>
+
+        <h3 class="subsection-title">Method #1 (Classic Route)</h3>
+        <p style="margin-bottom:8px;color:var(--text-dim);font-size:11px;">Prerequisites: Must have Fly (HM02) and a Pokémon that knows it. Neither the Gambler on Route 8 nor the Youngster on Route 25 should have been defeated yet.</p>
+
+        <ul class="mew-steps">
+          <li>Travel to <strong>Route 8</strong>. Stand directly beneath the Underground Path entrance (the door going south into the tunnel). Save your game here.</li>
+          <li>Take one step <strong>south</strong>. As you step, immediately hold or press <strong>Start</strong> to open the menu. The Gambler NPC (facing north toward the path) will scroll onto screen — his line of sight will register you for one frame before you open the menu.</li>
+          <li>From the Start menu, use <strong>Fly</strong> and fly to <strong>Cerulean City</strong>. The Gambler's exclamation mark will appear but the Fly animation takes over. The game now believes you're in a mid-battle state.</li>
+          <li>In Cerulean City, your Start/A/B buttons behave strangely. Walk north to <strong>Route 25</strong> and find the <strong>Youngster</strong> facing north with a level-17 Slowpoke. Let him walk up and initiate battle normally. Defeat his Slowpoke (Special stat = 21).</li>
+          <li>After the battle, <strong>Fly or walk back to Route 8</strong>. When you enter the area where the Gambler was, the Start menu will pop up on its own. Close it.</li>
+          <li>A wild Pokémon encounter starts immediately. <strong>It is Mew at level 7.</strong> Use your best catch strategy (put it to sleep, whittle HP) and throw Poké Balls.</li>
+        </ul>
+
+        <div class="callout-yellow" style="margin-top:14px;">
+          <strong>Important:</strong> Mew obtained via glitch has OT data that does not match the official Nintendo distribution (OT: "GF", Trainer ID: 22796). As a result, if using the Virtual Console version of Yellow, <strong>Glitch Mew cannot be transferred via Poké Transporter</strong> to Pokémon Bank or modern games — it will be flagged as invalid. Only the officially distributed Mew (or a Mew obtained via arbitrary code execution to match the exact OT/ID) can be transferred.
+        </div>
+
+        <div class="info-box" style="margin-top:12px;">
+          <strong>Alternative Method:</strong> The Swimmer on Route 24 (facing east, with a level-16 Shellder — Special stat 21) can replace the Route 25 Youngster. The process is identical but uses a different trainer and location for the "reset" battle. The same Mew (Lv 7) appears.
+        </div>
+      </section>
+
+    </div><!-- /main content -->
+  </div><!-- /grid-x -->
+</div><!-- /grid-container -->
+
+<footer>
+  <div class="grid-container">
+    <p style="font-size:10px;color:var(--text-dim);">
+      Pokémon Yellow: Special Pikachu Edition &copy; 1998–1999 Nintendo / Game Freak.<br>
+      Information sourced from Bulbapedia and Serebii (Gen I). Fan-made reference only.
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>

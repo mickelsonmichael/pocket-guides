@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 280" width="200" height="280">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f9c800"/>
+      <stop offset="100%" stop-color="#e69500"/>
+    </linearGradient>
+  </defs>
+  <rect width="200" height="280" fill="url(#bg)"/>
+  <rect x="4" y="4" width="192" height="272" fill="none" stroke="#fff" stroke-width="2" opacity="0.5"/>
+
+  <!-- Pikachu silhouette (simple) -->
+  <!-- Body -->
+  <ellipse cx="100" cy="175" rx="42" ry="38" fill="#cc9900"/>
+  <!-- Head -->
+  <ellipse cx="100" cy="118" rx="36" ry="30" fill="#cc9900"/>
+  <!-- Left ear -->
+  <polygon points="72,98 60,55 85,82" fill="#cc9900"/>
+  <polygon points="74,97 63,62 83,84" fill="#1a1a1a" opacity="0.6"/>
+  <!-- Right ear -->
+  <polygon points="128,98 140,55 115,82" fill="#cc9900"/>
+  <polygon points="126,97 137,62 117,84" fill="#1a1a1a" opacity="0.6"/>
+  <!-- Eyes -->
+  <circle cx="88" cy="112" r="5" fill="#1a1a1a"/>
+  <circle cx="112" cy="112" r="5" fill="#1a1a1a"/>
+  <circle cx="90" cy="110" r="2" fill="#fff"/>
+  <circle cx="114" cy="110" r="2" fill="#fff"/>
+  <!-- Cheeks -->
+  <circle cx="76" cy="124" r="8" fill="#e05c5c" opacity="0.7"/>
+  <circle cx="124" cy="124" r="8" fill="#e05c5c" opacity="0.7"/>
+  <!-- Mouth -->
+  <path d="M92 126 Q100 134 108 126" stroke="#1a1a1a" stroke-width="2" fill="none"/>
+  <!-- Tail -->
+  <polyline points="142,185 162,160 155,140 175,125 168,108" stroke="#cc9900" stroke-width="10" fill="none" stroke-linecap="round"/>
+  <!-- Tail tip (yellow lightning) -->
+  <polygon points="175,125 168,108 185,118 173,108 190,112" fill="#ffdd00"/>
+
+  <!-- Game Boy Color badge -->
+  <rect x="12" y="240" width="176" height="26" rx="3" fill="#1a1a1a" opacity="0.6"/>
+  <text x="100" y="253" font-family="monospace" font-size="7" fill="#ffdd00" text-anchor="middle" font-weight="bold">GAME BOY COLOR</text>
+  <text x="100" y="262" font-family="monospace" font-size="6" fill="#ffffff" text-anchor="middle">ENHANCED</text>
+
+  <!-- Title -->
+  <rect x="0" y="12" width="200" height="42" fill="#1a1a1a" opacity="0.55"/>
+  <text x="100" y="28" font-family="monospace" font-size="8" fill="#ffdd00" text-anchor="middle" font-weight="bold">POKÉMON</text>
+  <text x="100" y="40" font-family="monospace" font-size="10" fill="#ffffff" text-anchor="middle" font-weight="bold">YELLOW</text>
+  <text x="100" y="50" font-family="monospace" font-size="5" fill="#ffcc33" text-anchor="middle">SPECIAL PIKACHU EDITION</text>
+</svg>
