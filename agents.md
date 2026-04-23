@@ -13,7 +13,7 @@ pocket-guides/
 ├── assets/
 │   ├── site.css                   # Shared stylesheet (all guides link to this)
 │   └── img/
-│       └── <game>-boxart.{jpg,svg}  # Box-art images (jpg preferred, svg for placeholder)
+│       └── <game>-boxart.jpg        # Box-art images (always JPG from RetroAchievements)
 └── games/
     └── <game-slug>.html           # One HTML file per game guide
 ```
@@ -25,7 +25,7 @@ pocket-guides/
 ### 1. File Naming
 
 - Guide files live in `games/` and are named with a kebab-case slug: `pokemon-yellow.html`, `donkey-kong-gb.html`.
-- Box art images go in `assets/img/` as `<slug>-boxart.jpg` (or `.svg` for a generated placeholder).
+- Box art images go in `assets/img/` as `<slug>-boxart.jpg`.
 
 ### 2. HTML Skeleton
 
@@ -153,33 +153,45 @@ Consistent colour patterns for status indicators (define custom `.pstatus`-style
 
 ## Box Art
 
-### Preferred: Real Box Art (JPG)
+Always download box art from **RetroAchievements** as the primary source. Do **not** create SVG placeholders.
 
-Always try to obtain real box art before falling back to an SVG placeholder. Try these sources in order:
+### How to Get Box Art from RetroAchievements
 
-1. **Bulbapedia** — find the File page (e.g. `https://bulbapedia.bulbagarden.net/wiki/File:Yellow_EN_boxart.png`). The HTML will contain the direct image URL from `archives.bulbagarden.net`. Download and resize to ≤300px wide at 85% JPEG quality.
-2. **Internet Archive** — scan collections often contain high-res front-of-box JPEGs (search `https://archive.org/` for the game title + "hiresscans" or "box art").
-3. **Serebii** — check `https://www.serebii.net/<game>/` for a box cover image.
-4. **Wikimedia Commons** — search `https://commons.wikimedia.org/wiki/Category:<GameName>`.
+1. Find the game's page on RetroAchievements (e.g. `https://retroachievements.org/game/{id}`).
+2. The box art image is displayed on the game page. Inspect the page source (or a cached copy via the Wayback Machine if the domain is blocked) to find the direct image URL — it will look like `https://media.retroachievements.org/Images/XXXXXX.png`.
+3. Download the image and convert to JPG at ≤300px wide, 85% JPEG quality.
+4. Save as `assets/img/<slug>-boxart.jpg`.
 
-Save the final image as `assets/img/<slug>-boxart.jpg`.
+### If the RetroAchievements Domain Is Blocked
 
-### Fallback: SVG Placeholder
+Use the Wayback Machine to retrieve the cached game page and image:
 
-Only create an SVG placeholder if all download attempts fail (domain blocked, image not found). A good placeholder includes:
+```
+https://web.archive.org/web/2025/https://retroachievements.org/game/{id}
+```
 
-- Game colour scheme as a gradient background
-- A simple silhouette or symbolic shape representing the game
-- Game title text in a monospace font
-- Platform badge (e.g., "GAME BOY COLOR")
-- Keep it simple — 200×280px viewBox
+Find the `Images/XXXXXX.png` URL in the cached HTML, then fetch that image via Wayback Machine:
+
+```
+https://web.archive.org/web/20251123213126im_/https://media.retroachievements.org/Images/XXXXXX.png
+```
+
+Convert the downloaded PNG to JPG and save as `assets/img/<slug>-boxart.jpg`.
+
+### Linking to RetroAchievements
+
+Every guide must include a link to the game's RetroAchievements page:
+- In the Overview section inside an `.info-box` callout.
+- In the `<footer>` of the guide.
+
+RA URL pattern: `https://retroachievements.org/game/{id}`
 
 ---
 
 ## Checklist for a New Guide
 
 - [ ] `games/<slug>.html` created with correct header, nav, and all required sections
-- [ ] `assets/img/<slug>-boxart.{jpg,svg}` added
+- [ ] `assets/img/<slug>-boxart.jpg` downloaded from RetroAchievements and added
 - [ ] Card added to `index.html` `#game-grid` with accurate `data-name`
 - [ ] Accent colour variables overridden in `<style>` to match the game's palette
 - [ ] All tables use the shared column-header style
