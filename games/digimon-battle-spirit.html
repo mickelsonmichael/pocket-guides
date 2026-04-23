@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Digimon Battle Spirit (GBA) — Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.8.1/dist/css/foundation.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+  :root {
+    --accent:  #4fc3f7;
+    --accent2: #f57c00;
+    --accent3: #81d4fa;
+    --glow:    0 0 12px rgba(79,195,247,0.35);
+  }
+
+  /* Character roster cards */
+  .roster { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
+
+  .digi-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    padding: 12px 16px;
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 14px;
+    align-items: start;
+  }
+
+  .digi-name {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 8px;
+    color: var(--accent);
+    line-height: 1.9;
+  }
+
+  .digi-evo {
+    font-size: 7px;
+    color: var(--text-dim);
+  }
+
+  .digi-desc { font-size: 13px; color: var(--text); }
+
+  /* Status tags */
+  .status {
+    display: inline-block;
+    padding: 2px 7px;
+    border: 1px solid;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 6px;
+    margin-top: 4px;
+  }
+
+  .status-default  { color: #66bb6a; border-color: #66bb6a; }
+  .status-unlock   { color: #f4d03f; border-color: #f4d03f; }
+  .status-vsonly   { color: #ce93d8; border-color: #ce93d8; }
+  .status-boss     { color: #ef9a9a; border-color: #ef9a9a; }
+
+  /* Bullet list */
+  ul.bullet-list { list-style: none; margin-bottom: 12px; }
+  ul.bullet-list li::before { content: '▸ '; color: var(--accent); }
+  ul.bullet-list li { margin-bottom: 4px; }
+
+  @media (max-width: 560px) {
+    h1 { font-size: 11px; }
+    .digi-card { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="shell">
+
+  <a href="../index.html" style="display:inline-block;font-family:'Press Start 2P',monospace;font-size:8px;color:var(--text-dim);text-decoration:none;padding:10px 0 0;letter-spacing:1px;">&#8592; Pocket Guides</a>
+
+  <header>
+    <div class="game-label">Game Boy Advance · Fighting</div>
+    <h1>Digimon Battle Spirit</h1>
+    <p class="subtitle">Dimps · Bandai · Game Boy Advance · 2002</p>
+  </header>
+
+  <nav>
+    <a href="#overview">Overview</a>
+    <a href="#controls">Controls</a>
+    <a href="#mechanics">Mechanics</a>
+    <a href="#roster">Roster</a>
+    <a href="#modes">Modes</a>
+    <a href="#tips">Tips</a>
+  </nav>
+
+  <!-- OVERVIEW -->
+  <section id="overview">
+    <h2>Overview</h2>
+    <p>Digimon Battle Spirit is a one-on-one fighting game for the Game Boy Advance developed by Dimps and published by Bandai in 2002. Rather than draining a health bar, victory is decided by <strong>D-Spirit collection</strong> — whoever holds the most D-Spirit orbs when the timer runs out wins the round.</p>
+    <p>The game features seven default playable Digimon drawn from Digimon Adventure, Digimon 02, and Digimon Tamers. Each Digimon can temporarily <strong>Digivolve</strong> into a more powerful Champion or Ultimate form by touching Calumon, who drifts across the stage at random intervals.</p>
+    <div class="info-box">
+      <p><strong>Retro Achievements:</strong> A fan-made achievement set is available for this game at <a href="https://retroachievements.org/game/5030" target="_blank" rel="noopener noreferrer">retroachievements.org/game/5030</a> (34 achievements, 420 points).</p>
+    </div>
+  </section>
+
+  <!-- CONTROLS -->
+  <section id="controls">
+    <h2>Controls</h2>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Button</th><th>Action</th></tr></thead>
+        <tbody>
+          <tr><td>D-Pad Left / Right</td><td>Move your Digimon.</td></tr>
+          <tr><td>D-Pad Up</td><td>Jump.</td></tr>
+          <tr><td>D-Pad Down</td><td>Crouch / duck.</td></tr>
+          <tr><td>D-Pad Left/Right ×2</td><td>Dash in that direction.</td></tr>
+          <tr><td>A</td><td>Jump.</td></tr>
+          <tr><td>B</td><td>Attack. Tap repeatedly for combos.</td></tr>
+          <tr><td>Down + B</td><td>Crouch attack.</td></tr>
+          <tr><td>R</td><td>Special attack (signature move, costs no meter).</td></tr>
+          <tr><td>L</td><td>Taunt.</td></tr>
+          <tr><td>Start</td><td>Pause.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="info-box">
+      <p><strong>Digivolved controls:</strong> While in Digivolved form, R triggers a powerful area-clearing super move. The moveset otherwise remains the same, but attacks deal significantly more damage and launch more orbs.</p>
+    </div>
+  </section>
+
+  <!-- MECHANICS -->
+  <section id="mechanics">
+    <h2>Mechanics</h2>
+
+    <h3>D-Spirit Orbs</h3>
+    <p>Hitting your opponent causes <strong>D-Spirit orbs</strong> (blue) to fly out. Walk into orbs to collect them. The player with more orbs when the round timer expires wins. KO'ing your opponent does not end the round — it just launches a burst of orbs for both players to scramble for.</p>
+    <ul class="bullet-list">
+      <li>Orbs come in different sizes; larger orbs are worth more points.</li>
+      <li>Orbs that hit walls or the floor bounce and can be collected by either player.</li>
+      <li>Staying on the offensive and then immediately chasing orbs is the core skill loop.</li>
+    </ul>
+
+    <h3>Calumon &amp; Digivolution</h3>
+    <p><strong>Calumon</strong> — a small white creature — periodically drifts across the stage. Touch Calumon before your opponent does to trigger a temporary Digivolution. While Digivolved your attacks are stronger, you launch more orbs per hit, and pressing R unleashes a powerful super move that covers a wide area.</p>
+    <div class="warn-box">
+      <p><strong>Calumon timing:</strong> Once one player touches Calumon, the other cannot trigger Digivolution until the current evolution expires and Calumon reappears. Racing to Calumon is often the deciding moment of a match.</p>
+    </div>
+
+    <h3>Items &amp; Stage Hazards</h3>
+    <p>Stages contain interactive platforms and occasional item spawns. Digi-Eggs may appear and, when touched, trigger a random environmental effect or spawn a guest Digimon such as Diaboromon that briefly attacks both fighters.</p>
+  </section>
+
+  <!-- ROSTER -->
+  <section id="roster">
+    <h2>Roster</h2>
+    <p>Seven Digimon are available by default. One is unlocked by clearing Story Mode with all default characters. A secret character is accessible only in VS and Custom modes.</p>
+
+    <div class="roster">
+
+      <div class="digi-card">
+        <div class="digi-name">Agumon<br><span class="digi-evo">→ Greymon</span><br><span class="status status-default">DEFAULT</span></div>
+        <div class="digi-desc">
+          The iconic orange dinosaur from Digimon Adventure. Basic attacks are close-range punches and tail whips. Special (R): <strong>Pepper Breath</strong> — a fireball projectile. Digivolved super (R): <strong>Mega Flame</strong>, a wide breath attack that covers much of the stage floor.
+        </div>
+      </div>
+
+      <div class="digi-card">
+        <div class="digi-name">Guilmon<br><span class="digi-evo">→ Growlmon</span><br><span class="status status-default">DEFAULT</span></div>
+        <div class="digi-desc">
+          Tamers' rookie with aggressive melee claw swipes. Special (R): <strong>Pyro Sphere</strong> — a charged fireball. Digivolved super (R): <strong>Plasma Blade / Dragon Slash</strong>, a lunging slash that travels horizontally across the stage.
+        </div>
+      </div>
+
+      <div class="digi-card">
+        <div class="digi-name">Terriermon<br><span class="digi-evo">→ Gargomon</span><br><span class="status status-default">DEFAULT</span></div>
+        <div class="digi-desc">
+          Fast and light, good for hit-and-run orb collection. Special (R): <strong>Bunny Blast</strong> — a quick energy shot. Digivolved super (R): <strong>Gargo Laser</strong>, a rapid multi-hit beam sweep.
+        </div>
+      </div>
+
+      <div class="digi-card">
+        <div class="digi-name">Renamon<br><span class="digi-evo">→ Kyubimon</span><br><span class="status status-default">DEFAULT</span></div>
+        <div class="digi-desc">
+          Quick, agile fighter with good air mobility. Special (R): <strong>Fox Leaf Arrowheads</strong> — three energy blades fired in a spread. Digivolved super (R): <strong>Dragon Wheel</strong>, a spinning flame wheel that homes across the stage.
+        </div>
+      </div>
+
+      <div class="digi-card">
+        <div class="digi-name">Veemon<br><span class="digi-evo">→ Flamedramon</span><br><span class="status status-default">DEFAULT</span></div>
+        <div class="digi-desc">
+          Balanced fighter from Digimon 02. Special (R): <strong>Vee Headbutt</strong> — a fast forward charge. Digivolved super (R): <strong>Fire Rocket</strong>, a full-screen diagonal dive attack.
+        </div>
+      </div>
+
+      <div class="digi-card">
+        <div class="digi-name">Patamon<br><span class="digi-evo">→ Angemon</span><br><span class="status status-default">DEFAULT</span></div>
+        <div class="digi-desc">
+          Small and floaty — excels at aerial approaches. Special (R): <strong>Air Shot</strong> — a forward energy ball. Digivolved super (R): <strong>Hand of Fate</strong>, a large forward energy beam.
+        </div>
+      </div>
+
+      <div class="digi-card">
+        <div class="digi-name">Wormmon<br><span class="digi-evo">→ Stingmon</span><br><span class="status status-default">DEFAULT</span></div>
+        <div class="digi-desc">
+          Unassuming but capable of multi-hit strings. Special (R): <strong>Silk Thread</strong> — a sticky projectile. Digivolved super (R): <strong>Spiking Strike</strong>, a rapid flurry of stabs.
+        </div>
+      </div>
+
+      <div class="digi-card">
+        <div class="digi-name">Impmon<br><span class="digi-evo">→ Beelzemon</span><br><span class="status status-unlock">UNLOCK: beat Story with all 7 defaults</span></div>
+        <div class="digi-desc">
+          Trickster fighter with flame-based attacks. Special (R): <strong>Bada Boom</strong> — a wave of small fireballs. Digivolved super (R): <strong>Corona Blaster</strong>, a powerful beam shot. Impmon is the penultimate boss in Story Mode before Millenniummon.
+        </div>
+      </div>
+
+      <div class="digi-card">
+        <div class="digi-name">Devimon<br><span class="digi-evo">N/A</span><br><span class="status status-vsonly">VS &amp; CUSTOM MODE ONLY</span></div>
+        <div class="digi-desc">
+          <strong>Access:</strong> On the character select screen, highlight Impmon and press <strong>SELECT</strong>. Not available in Story Mode. Devimon does not Digivolve.
+        </div>
+      </div>
+
+      <div class="digi-card">
+        <div class="digi-name">Millenniummon<br><span class="digi-evo">N/A</span><br><span class="status status-boss">BOSS ONLY</span></div>
+        <div class="digi-desc">
+          The secret final boss encountered at the end of Story Mode. Not playable. Millenniummon attacks with high-damage energy orbs and fills the stage with projectiles, making orb collection extremely difficult.
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- MODES -->
+  <section id="modes">
+    <h2>Game Modes</h2>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Mode</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Story Mode</strong></td>
+            <td>Single-player campaign. Choose a Digimon and fight through a series of CPU opponents. Defeat Impmon and then face the secret final boss, Millenniummon. Clearing Story Mode with all 7 default characters unlocks Impmon.</td>
+          </tr>
+          <tr>
+            <td><strong>Single Battle</strong></td>
+            <td>A standalone one-off match against a CPU-controlled opponent. No progression or unlocks.</td>
+          </tr>
+          <tr>
+            <td><strong>VS Mode</strong></td>
+            <td>Two-player battle via Game Boy Advance link cable. Supports the full roster including Devimon.</td>
+          </tr>
+          <tr>
+            <td><strong>Custom Mode</strong></td>
+            <td>Configure match rules (time limit, orb multipliers, stage) before a VS battle. Devimon is available here as well.</td>
+          </tr>
+          <tr>
+            <td><strong>Training</strong></td>
+            <td>Practice mode with no timer or opponent AI. Use this to learn each Digimon's moves and practice Digivolution timing.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- TIPS -->
+  <section id="tips">
+    <h2>Tips &amp; Strategy</h2>
+
+    <h3>Orb Priority</h3>
+    <ul class="bullet-list">
+      <li>Deal damage to launch orbs, then immediately move toward them before your opponent can scoop them up.</li>
+      <li>Larger orbs are worth more — prioritize those over smaller ones if you must choose.</li>
+      <li>Knocking an opponent into a corner concentrates the orbs that drop, making them easier to collect in one sweep.</li>
+    </ul>
+
+    <h3>Calumon Racing</h3>
+    <ul class="bullet-list">
+      <li>Watch the stage as soon as Calumon appears — getting there first is often more valuable than a current exchange.</li>
+      <li>Even a brief Digivolution is enough for one super-move sweep that can net a huge orb lead.</li>
+      <li>If your opponent is about to touch Calumon, knock them away with an attack or dash into them first.</li>
+    </ul>
+
+    <h3>Unlocking Impmon</h3>
+    <ul class="bullet-list">
+      <li>Complete Story Mode once with each of the seven default Digimon (Agumon, Guilmon, Terriermon, Renamon, Veemon, Patamon, Wormmon).</li>
+      <li>After all seven clears, Impmon becomes selectable on the character select screen.</li>
+    </ul>
+
+    <h3>Surviving Millenniummon</h3>
+    <ul class="bullet-list">
+      <li>Focus on collecting any orbs that drop rather than dealing damage — this is still a D-Spirit collection fight.</li>
+      <li>Stay mobile to avoid Millenniummon's barrage of projectiles; stopping to fight head-on is risky.</li>
+      <li>Secure Calumon immediately when it appears — your Digivolved super move can net several orbs at once against the boss.</li>
+    </ul>
+
+    <h3>General</h3>
+    <ul class="bullet-list">
+      <li>The game has no battery save — progress resets when the power is off. Complete Story Mode in one session.</li>
+      <li>Training mode is the best place to learn a new Digimon's range and hitboxes without time pressure.</li>
+      <li>The dash (double-tap direction) is crucial for closing distance and chasing orbs — practice using it reactively.</li>
+    </ul>
+  </section>
+
+  <footer>
+    <p>Digimon Battle Spirit © 2002 Dimps / Bandai. Fan-made reference guide.</p>
+    <p>Achievement data: <a href="https://retroachievements.org/game/5030" target="_blank" rel="noopener noreferrer">RetroAchievements — Digimon Battle Spirit (GBA)</a></p>
+  </footer>
+
+</div>
+</body>
+</html>
