@@ -65,20 +65,41 @@
   ul.bullet-list li { margin-bottom: 4px; }
 
   @media (max-width: 560px) {
-    h1 { font-size: 11px; }
     .digi-card { grid-template-columns: 1fr; }
   }
 </style>
 </head>
 <body>
-<div class="shell">
+<div class="grid-container">
 
 <guide-header
   title="Digimon Battle Spirit"
   platform="Game Boy Advance · Fighting · Dimps / Bandai · 2002"
   ra-id="5030"
-  nav='[{"label":"Overview","href":"#overview"},{"label":"Controls","href":"#controls"},{"label":"Mechanics","href":"#mechanics"},{"label":"Roster","href":"#roster"},{"label":"Modes","href":"#modes"},{"label":"Tips","href":"#tips"}]'
 ></guide-header>
+
+</div><!-- /guide-header container -->
+
+<div class="grid-container">
+  <div class="grid-x grid-margin-x">
+
+    <!-- SIDEBAR NAV -->
+    <div class="cell large-3 show-for-large">
+      <nav class="side-nav">
+        <p class="nav-heading">// CONTENTS</p>
+        <ul>
+          <li><a href="#overview">Overview</a></li>
+          <li><a href="#controls">Controls</a></li>
+          <li><a href="#mechanics">Mechanics</a></li>
+          <li><a href="#roster">Roster</a></li>
+          <li><a href="#modes">Modes</a></li>
+          <li><a href="#tips">Tips</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="cell large-9">
 
   <!-- OVERVIEW -->
   <section id="overview">
@@ -289,6 +310,9 @@
     <p>Digimon Battle Spirit © 2002 Dimps / Bandai. Fan-made reference guide.</p>
   </footer>
 
-</div>
+    </div><!-- /main content -->
+  </div><!-- /grid-x -->
+</div><!-- /grid-container -->
+
 </body>
 </html>

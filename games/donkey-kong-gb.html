@@ -62,31 +62,44 @@
 
   .move-desc { font-size: 13px; color: var(--text); }
 
-  /* Bullet list */
   ul.bullet-list { list-style: none; margin-bottom: 12px; }
   ul.bullet-list li::before { content: '▸ '; color: var(--accent); }
   ul.bullet-list li { margin-bottom: 4px; }
 
   .tag-cyan { border-color: var(--accent3); color: var(--accent3); }
-
-  @media (max-width: 560px) {
-    h1 { font-size: 11px; }
-    .move-card { grid-template-columns: 1fr; }
-    .world-card { flex-direction: column; gap: 4px; }
-  }
 </style>
 </head>
 <body>
-<div class="shell">
+<div class="grid-container">
 
 <guide-header
   title="Donkey Kong"
   platform="Game Boy · Platformer · Nintendo · 1994"
   ra-id="692"
-  nav='[{"label":"Overview","href":"#overview"},{"label":"Controls","href":"#controls"},{"label":"Moves","href":"#moves"},{"label":"Worlds","href":"#worlds"},{"label":"Tips","href":"#tips"},{"label":"Secrets","href":"#secrets"}]'
 ></guide-header>
 
-  <!-- OVERVIEW -->
+</div><!-- /guide-header container -->
+
+<div class="grid-container">
+  <div class="grid-x grid-margin-x">
+
+    <!-- SIDEBAR NAV -->
+    <div class="cell large-3 show-for-large">
+      <nav class="side-nav">
+        <p class="nav-heading">// CONTENTS</p>
+        <ul>
+          <li><a href="#overview">Overview</a></li>
+          <li><a href="#controls">Controls</a></li>
+          <li><a href="#moves">Moves</a></li>
+          <li><a href="#worlds">Worlds</a></li>
+          <li><a href="#tips">Tips &amp; Strategy</a></li>
+          <li><a href="#secrets">Secrets &amp; Cheats</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="cell large-9">
   <section id="overview">
     <h2>Overview</h2>
     <p>This 1994 Game Boy title begins as a faithful recreation of the original arcade game — 25th Floor, 50th Floor, 75th Floor, and 100th Floor — but once Donkey Kong escapes after the opening, the game expands into a full platformer spanning nine additional worlds.</p>
@@ -306,10 +319,15 @@
     </div>
   </section>
 
-  <footer>
-    <p>Donkey Kong (Game Boy) © 1994 Nintendo. Fan-made reference guide.</p>
-  </footer>
+    </div><!-- /main content -->
+  </div><!-- /grid-x -->
+</div><!-- /grid-container -->
 
-</div>
+<footer>
+  <div class="grid-container">
+    <p>Donkey Kong (Game Boy) © 1994 Nintendo. Fan-made reference guide.</p>
+  </div>
+</footer>
+
 </body>
 </html>

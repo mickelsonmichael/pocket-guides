@@ -195,21 +195,46 @@
     padding: 20px 0;
   }
 
+  /* Bullet list */
+  .boss-tip ul { list-style: none; }
+
   @media (max-width: 560px) {
     .two-col { grid-template-columns: 1fr; }
-    h1 { font-size: 11px; }
   }
 </style>
 </head>
 <body>
-<div class="shell">
+<div class="grid-container">
 
 <guide-header
   title="Dragon Ball Z: Legendary Super Warriors"
   platform="Game Boy Color · RPG · Infogrames · 2002"
   ra-id="5594"
-  nav='[{"label":"Basics","href":"#basics"},{"label":"Controls","href":"#controls"},{"label":"Battle System","href":"#battle"},{"label":"Walkthrough","href":"#walkthrough"},{"label":"Characters","href":"#characters"},{"label":"Cards","href":"#cards"},{"label":"Secrets","href":"#secrets"}]'
 ></guide-header>
+
+</div><!-- /guide-header container -->
+
+<div class="grid-container">
+  <div class="grid-x grid-margin-x">
+
+    <!-- SIDEBAR NAV -->
+    <div class="cell large-3 show-for-large">
+      <nav class="side-nav">
+        <p class="nav-heading">// CONTENTS</p>
+        <ul>
+          <li><a href="#basics">Basics</a></li>
+          <li><a href="#controls">Controls</a></li>
+          <li><a href="#battle">Battle System</a></li>
+          <li><a href="#walkthrough">Walkthrough</a></li>
+          <li><a href="#characters">Characters</a></li>
+          <li><a href="#cards">Cards</a></li>
+          <li><a href="#secrets">Secrets</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="cell large-9">
 
   <!-- BASICS -->
   <section id="basics">
@@ -791,11 +816,15 @@
     </div>
   </section>
 
-  <footer>
-    <p>Original content by Crotanks — <a href="https://shrines.rpgclassics.com/gb/dbzlsw/index.shtml" style="color:var(--accent3);">RPGClassics Shrine</a> · Reorganized for clarity. All game content © 2002 Infogrames.</p>
-  </footer>
+    </div><!-- /main content -->
+  </div><!-- /grid-x -->
+</div><!-- /grid-container -->
 
-</div>
+<footer>
+  <div class="grid-container">
+    <p>Original content by Crotanks — <a href="https://shrines.rpgclassics.com/gb/dbzlsw/index.shtml" style="color:var(--accent3);">RPGClassics Shrine</a> · Reorganized for clarity. All game content © 2002 Infogrames.</p>
+  </div>
+</footer>
 
 <script>
   const cs = document.getElementById('card-search');

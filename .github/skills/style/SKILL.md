@@ -178,7 +178,7 @@ Used in guides with a sidebar instead of a sticky top-nav. Provide no `nav` attr
 
 ```html
 <div class="cell large-3 show-for-large">
-  <nav class="side-nav" style="position:sticky;top:20px;">
+  <nav class="side-nav">
     <p class="nav-heading">// CONTENTS</p>
     <ul>
       <li><a href="#overview">Overview</a></li>
@@ -186,6 +186,31 @@ Used in guides with a sidebar instead of a sticky top-nav. Provide no `nav` attr
   </nav>
 </div>
 ```
+
+### Icons — FontAwesome Free
+
+Always use **FontAwesome Free** icons instead of emoji. The `<guide-header>` component auto-injects the FontAwesome CDN, so all guide pages have it available automatically.
+
+**Why no emoji?** Emoji rendering varies across OS and browser, looks unprofessional in pixel-art UI contexts, and carries no semantic meaning for assistive technology.
+
+**Common icon references:**
+| Context | FontAwesome class |
+|---------|------------------|
+| Trophy / achievement | `fa-solid fa-trophy` |
+| Warning / caution | `fa-solid fa-triangle-exclamation` |
+| Information | `fa-solid fa-circle-info` |
+| External link | `fa-solid fa-arrow-up-right-from-square` |
+| Star / favorite | `fa-solid fa-star` |
+| Lock / missable | `fa-solid fa-lock` |
+
+**Usage:**
+```html
+<i class="fa-solid fa-trophy" aria-hidden="true"></i> Label text
+```
+
+Use `aria-hidden="true"` on decorative icons. Provide an `aria-label` or visible text label alongside the icon for accessibility.
+
+**When reviewing or writing guides:** If you encounter an emoji in guide content or component code, replace it with the appropriate FontAwesome icon class.
 
 ---
 
@@ -196,3 +221,5 @@ Used in guides with a sidebar instead of a sticky top-nav. Provide no `nav` attr
 - ❌ Do not write a raw `<header>` element — always use `<guide-header>`
 - ❌ Do not add a RetroAchievements link in the Overview `.info-box` or `<footer>` — the `<guide-header ra-id="...">` attribute renders it automatically
 - ❌ Do not mix warm and cool accent colours (e.g. orange `--accent` with blue `--accent3`)
+- ❌ Do not use emoji in guide content or component code — use FontAwesome Free icons instead (see Icons section above)
+- ❌ Do not add `style="position:sticky;top:20px;"` to `.side-nav` — this is now handled by `site.css`

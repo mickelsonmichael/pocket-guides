@@ -17,64 +17,6 @@
       --glow:      0 0 10px #f9c80055, 0 0 20px #f9c80022;
     }
 
-    .section-title {
-      font-family: 'Press Start 2P', monospace;
-      font-size: 12px;
-      color: var(--accent);
-      text-shadow: var(--glow);
-      padding-bottom: 8px;
-      border-bottom: 1px solid var(--border);
-      margin-bottom: 20px;
-      letter-spacing: 1px;
-    }
-    .subsection-title {
-      font-family: 'Press Start 2P', monospace;
-      font-size: 9px;
-      color: var(--accent3);
-      margin: 20px 0 10px;
-      letter-spacing: 1px;
-    }
-
-    .side-nav {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      padding: 14px;
-      display: block;
-      position: relative;
-      flex-wrap: unset;
-      gap: unset;
-      margin-bottom: 0;
-    }
-    .nav-heading {
-      font-family: 'Press Start 2P', monospace;
-      font-size: 8px;
-      color: var(--accent3);
-      letter-spacing: 2px;
-      margin-bottom: 12px;
-      padding-bottom: 8px;
-      border-bottom: 1px solid var(--border);
-    }
-    .side-nav ul { list-style: none; margin: 0; padding: 0; }
-    .side-nav ul li { margin-bottom: 4px; }
-    .side-nav ul li a {
-      font-size: 11px;
-      color: var(--text-dim);
-      text-decoration: none;
-      display: block;
-      padding: 3px 0;
-      border-left: 2px solid transparent;
-      padding-left: 8px;
-      transition: all 0.15s;
-    }
-    .side-nav ul li a:hover {
-      color: var(--accent);
-      border-left-color: var(--accent);
-    }
-
-    ul.bullet-list { list-style: none; margin-bottom: 12px; padding: 0; }
-    ul.bullet-list li::before { content: '▸ '; color: var(--accent); }
-    ul.bullet-list li { margin-bottom: 4px; }
-
     /* ─── Status tags for Pokédex ─── */
     .pstatus {
       display: inline-block;
@@ -330,7 +272,7 @@
          SIDEBAR NAV
     ═══════════════════════════════════════════════ -->
     <div class="cell large-3 show-for-large">
-      <nav class="side-nav" style="position:sticky;top:20px;">
+      <nav class="side-nav">
         <p class="nav-heading">// CONTENTS</p>
         <ul>
           <li><a href="#overview">Overview</a></li>

@@ -12,9 +12,21 @@
  *     title="Donkey Kong"
  *     platform="Game Boy · Platformer · Nintendo · 1994"
  *     ra-id="692"
- *     nav='[{"label":"Overview","href":"#overview"},{"label":"Controls","href":"#controls"}]'
  *   ></guide-header>
+ *
+ * FontAwesome Free is auto-injected when this script loads (used for the RA trophy icon).
  */
+
+/* Auto-inject FontAwesome Free CDN if not already present */
+(function () {
+  if (!document.querySelector('link[href*="font-awesome"]') &&
+      !document.querySelector('link[href*="fontawesome"]')) {
+    const fa = document.createElement('link');
+    fa.rel = 'stylesheet';
+    fa.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css';
+    document.head.appendChild(fa);
+  }
+}());
 class GuideHeader extends HTMLElement {
   connectedCallback() {
     const title    = this.getAttribute('title')    || '';
@@ -52,7 +64,7 @@ class GuideHeader extends HTMLElement {
       raBtn.target = '_blank';
       raBtn.rel = 'noopener noreferrer';
       raBtn.className = 'gh-btn-ra';
-      raBtn.textContent = '🏆 RetroAchievements';
+      raBtn.innerHTML = '<i class="fa-solid fa-trophy" aria-hidden="true"></i> RetroAchievements';
       actions.appendChild(raBtn);
     }
 
