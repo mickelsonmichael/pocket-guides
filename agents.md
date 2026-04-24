@@ -260,13 +260,13 @@ RA URL pattern: `https://retroachievements.org/game/{id}`
 
 ## Style Skill
 
-When making any style decisions — choosing accent colours, using tables, info/warn boxes, or status tags — invoke the **style** skill (`.github/agents/style-skill.md`). It defines:
+When making any style decisions — choosing accent colours, using tables, info/warn boxes, or status tags — consult the **style** skill (`.github/agents/style-skill.md`). It defines:
 
 - Which CSS variables may be overridden per guide (accent only) and which must stay constant
 - Recommended accent palettes keyed to game theme
 - The correct usage pattern for every shared CSS component
 
-**To invoke:** Pass the style question or the guide's `<style>` block to the style skill agent and incorporate its prescriptions.
+**To use:** Read the style skill document and apply its guidelines to your current decisions. Unlike an agent, a skill is not launched as a subprocess — it is a reference you read and follow in-context.
 
 ---
 
