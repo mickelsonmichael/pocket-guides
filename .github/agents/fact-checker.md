@@ -14,7 +14,7 @@ Call this agent **after** a guide has been drafted (created or significantly upd
 
 1. **Parse the guide** — extract every verifiable claim: platform, year, publisher, developer, game mechanics, item locations, level/world names and descriptions, control mappings, character names, unlock conditions, collectible counts, and any other factual statement.
 
-2. **Identify the specific game being covered** — confirm the exact title and platform variant so you never cross-contaminate facts from different versions or platforms (e.g., the Game Boy *Donkey Kong* (1994) is not the arcade original; Pokémon *Yellow* is not Red/Blue).
+2. **Identify the specific game being covered** — confirm the exact title and platform variant so you never cross-contaminate facts from different versions or platforms (e.g., the Game Boy _Donkey Kong_ (1994) is not the arcade original; Pokémon _Yellow_ is not Red/Blue).
 
 3. **Fact-check every claim using live web sources** — you MUST use `web_fetch` and/or `web_search` tools to retrieve current information. Do NOT rely solely on training-data knowledge; always verify against a primary source.
 
@@ -27,7 +27,7 @@ Call this agent **after** a guide has been drafted (created or significantly upd
    - **Strategywiki** (`strategywiki.org`)
    - General web search for platform/publisher/release year confirmation
 
-4. **Check for platform conflation** — verify that every mechanic, character, level, and item described is present in the *exact* version of the game the guide is about. Flag anything sourced from a different platform version, regional variant, or sequel/prequel.
+4. **Check for platform conflation** — verify that every mechanic, character, level, and item described is present in the _exact_ version of the game the guide is about. Flag anything sourced from a different platform version, regional variant, or sequel/prequel.
 
 5. **Return a findings report** in the format below.
 
@@ -48,17 +48,17 @@ Return a markdown report with the following structure:
 
 ## ❌ Incorrect Facts
 
-| # | Claim in Guide | Correct Information | Source |
-|---|---------------|---------------------|--------|
-| 1 | … | … | URL |
+| #   | Claim in Guide | Correct Information | Source |
+| --- | -------------- | ------------------- | ------ |
+| 1   | …              | …                   | URL    |
 
 ---
 
 ## ⚠️ Unverifiable Claims
 
-| # | Claim | Reason unverifiable |
-|---|-------|---------------------|
-| 1 | … | … |
+| #   | Claim | Reason unverifiable |
+| --- | ----- | ------------------- |
+| 1   | …     | …                   |
 
 ---
 
