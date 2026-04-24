@@ -34,7 +34,7 @@ Every guide must:
 1. Link `https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Share+Tech+Mono&display=swap`
 2. Link `https://cdn.jsdelivr.net/npm/foundation-sites@6.8.1/dist/css/foundation.min.css`
 3. Link `../assets/site.css`
-4. Load `../assets/guide-header.js` (the shared `<guide-header>` web component)
+4. Load `../assets/guide-header.js` (the shared `<guide-header>` web component — also auto-injects FontAwesome Free)
 5. Use `<guide-header>` for the page header — **do not** write a raw `<header>` element or separate back-link/nav in guides
 6. Use a Foundation `.grid-container` > `.grid-x` layout with a sticky sidebar (`.side-nav`) on large screens and the main content in the remaining columns
 
@@ -45,18 +45,42 @@ Every guide must:
   <script src="../assets/guide-header.js" defer></script>
 </head>
 <body>
-<div class="shell">
+<div class="grid-container">
 
   <guide-header
     title="Game Name"
     platform="Platform · Genre · Publisher · Year"
     ra-id="12345"
-    nav='[{"label":"Overview","href":"#overview"},{"label":"Controls","href":"#controls"}]'
   ></guide-header>
 
-  ...content...
+</div><!-- /guide-header container -->
 
-</div>
+<div class="grid-container">
+  <div class="grid-x grid-margin-x">
+
+    <!-- SIDEBAR NAV -->
+    <div class="cell large-3 show-for-large">
+      <nav class="side-nav">
+        <p class="nav-heading">// CONTENTS</p>
+        <ul>
+          <li><a href="#overview">Overview</a></li>
+          <li><a href="#controls">Controls</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="cell large-9">
+      ...sections...
+    </div><!-- /main content -->
+  </div><!-- /grid-x -->
+</div><!-- /grid-container -->
+
+<footer>
+  <div class="grid-container">
+    <p>...</p>
+  </div>
+</footer>
 </body>
 ```
 
@@ -67,13 +91,13 @@ Every guide must:
 | `title`    | Yes      | Game title (plain text) |
 | `platform` | No       | Single metadata line shown below the title, e.g. `"Game Boy · Platformer · Nintendo · 1994"` |
 | `ra-id`    | Yes      | RetroAchievements game ID — renders a header button linking to `https://retroachievements.org/game/{id}` |
-| `nav`      | No       | JSON array of `{label, href}` objects for the sticky top-nav bar. Omit for sidebar-nav layouts. |
+| `nav`      | No       | JSON array of `{label, href}` objects for a sticky top-nav bar. Prefer the sidebar layout — only use `nav` for simple short guides without a sidebar. |
 
 The component renders:
 - A **back link** (`← Pocket Guides`) to `../index.html` — larger than the old inline link
 - The game **title** (`<h1>`)
 - A single **metadata line** below the title (replaces the old duplicate `.game-label` + `.subtitle` pattern)
-- A **RetroAchievements button** in the top-right corner (when `ra-id` is supplied)
+- A **RetroAchievements button** in the top-right corner (when `ra-id` is supplied), using a FontAwesome trophy icon
 - An optional **sticky nav bar** (when `nav` JSON is supplied)
 
 > **Note:** Because the `<guide-header>` component provides the RetroAchievements link, do **not** add a separate RA link in the Overview `.info-box` or the `<footer>`. The button in the header is the canonical location.
@@ -245,12 +269,14 @@ RA URL pattern: `https://retroachievements.org/game/{id}`
 
 ## Checklist for a New Guide
 
-- [ ] `games/<slug>.html` created with `<guide-header>` component (title, platform, ra-id, nav attributes set)
-- [ ] `<script src="../assets/guide-header.js" defer>` included in `<head>` after `site.css`
+- [ ] `games/<slug>.html` created with `<guide-header>` component (title, platform, ra-id attributes set — **no `nav` attribute** for sidebar-layout guides)
+- [ ] `<script src="../assets/guide-header.js" defer>` included in `<head>` after `site.css` (also auto-injects FontAwesome Free)
+- [ ] Guide uses sidebar layout: `grid-container` → `grid-x grid-margin-x` → `cell large-3 show-for-large` (`.side-nav`) + `cell large-9` (content)
 - [ ] `assets/img/<slug>-boxart.jpg` downloaded from RetroAchievements and added
 - [ ] Card added to `index.html` `#game-grid` with accurate `data-name`
 - [ ] **Style skill consulted** (`.github/skills/style/SKILL.md`) — accent colour variables (`--accent`, `--accent2`, `--accent3`, `--glow`) overridden to match the game's palette; no background/surface/border/text variables overridden
 - [ ] All tables use `.tbl-wrap` wrapper with plain `<table>` (no inline styles on `table`/`th`/`td`)
+- [ ] No emoji used anywhere — replaced with FontAwesome Free icons (see Style Skill)
 - [ ] Missable/trade-required items clearly marked with `.warn-box` or status tags
 - [ ] Glitches and exploits labelled as such
 - [ ] Sources cited in the footer (`<footer>`)
