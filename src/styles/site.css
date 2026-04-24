@@ -88,6 +88,9 @@ header {
 }
 
 .gh-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   font-family: 'Press Start 2P', monospace;
   font-size: 11px;
   color: var(--text-dim);
