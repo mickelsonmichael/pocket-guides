@@ -45,7 +45,7 @@ Typical sections (adapt as needed):
 
 1. **Guide file**: `games/<slug>.html`
    - Use the HTML template below as the starting skeleton
-   - Consult the **style** skill (`.github/agents/style-skill.md`) to choose the correct accent palette for the game and confirm what may/may not be overridden
+   - Consult the **style** skill (`.github/skills/style/SKILL.md`) to choose the correct accent palette for the game and confirm what may/may not be overridden
    - Add all sections from your plan with proper `id` attributes for the sidebar nav
 2. **Box art**: `assets/img/<slug>-boxart.jpg`
    - **Primary source: RetroAchievements** — find the game page at `https://retroachievements.org/game/{id}`, locate the `Images/XXXXXX.png` URL in the page source, download and convert to JPG at ≤300px wide, 85% quality
@@ -66,7 +66,7 @@ Typical sections (adapt as needed):
 
 ## HTML Template
 
-> **Before customising:** consult the style skill (`.github/agents/style-skill.md`) to pick the correct accent palette for the game.
+> **Before customising:** consult the style skill (`.github/skills/style/SKILL.md`) to pick the correct accent palette for the game.
 
 ```html
 <!DOCTYPE html>
@@ -202,7 +202,7 @@ Use `.tbl-wrap` and a plain `<table>` — all styling is provided by `site.css`.
 </div>
 ```
 
-Only add custom CSS classes for guide-specific column styling (e.g. `.dex-num`, `.tm-move`). See `.github/agents/style-skill.md` for the full table reference.
+Only add custom CSS classes for guide-specific column styling (e.g. `.dex-num`, `.tm-move`). See `.github/skills/style/SKILL.md` for the full table reference.
 
 ---
 

@@ -1,3 +1,8 @@
+---
+name: style
+description: Guides style decisions for Pocket Guides — accent colour selection, CSS variable overrides, and shared component usage. Use this skill whenever choosing accent colours, using tables, info/warn boxes, or status tags in a guide.
+---
+
 # Style Skill — Pocket Guides
 
 Use this skill whenever you are making style decisions, choosing accent colours, or using shared CSS components in a guide.

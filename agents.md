@@ -82,7 +82,7 @@ The component renders:
 
 `site.css` exposes these custom properties. **Only the accent variables may be overridden per guide.** Background, surface, border, and text variables must remain constant across all guides to maintain visual consistency.
 
-> **See also:** The style skill (`.github/agents/style-skill.md`) has prescriptive guidance on accent palettes, what to override, and how to use shared components.
+> **See also:** The style skill (`.github/skills/style/SKILL.md`) has prescriptive guidance on accent palettes, what to override, and how to use shared components.
 
 **✅ Override these per guide (accent colours only):**
 
@@ -181,7 +181,7 @@ Always wrap tables in `.tbl-wrap` and use a plain `<table>` without inline style
 - Row hover highlight is applied automatically
 - Only add custom CSS classes for guide-specific column content (e.g. `.dex-num`, `.tm-move`) — do not re-declare `background`, `color`, `font-family`, or `border-collapse` on base `table`/`th`/`td` elements
 
-> See `.github/agents/style-skill.md` for the full table pattern and other shared component usage.
+> See `.github/skills/style/SKILL.md` for the full table pattern and other shared component usage.
 
 ### Status / Tag Colours
 
@@ -249,7 +249,7 @@ RA URL pattern: `https://retroachievements.org/game/{id}`
 - [ ] `<script src="../assets/guide-header.js" defer>` included in `<head>` after `site.css`
 - [ ] `assets/img/<slug>-boxart.jpg` downloaded from RetroAchievements and added
 - [ ] Card added to `index.html` `#game-grid` with accurate `data-name`
-- [ ] **Style skill run** (`.github/agents/style-skill.md`) — accent colour variables (`--accent`, `--accent2`, `--accent3`, `--glow`) overridden to match the game's palette; no background/surface/border/text variables overridden
+- [ ] **Style skill consulted** (`.github/skills/style/SKILL.md`) — accent colour variables (`--accent`, `--accent2`, `--accent3`, `--glow`) overridden to match the game's palette; no background/surface/border/text variables overridden
 - [ ] All tables use `.tbl-wrap` wrapper with plain `<table>` (no inline styles on `table`/`th`/`td`)
 - [ ] Missable/trade-required items clearly marked with `.warn-box` or status tags
 - [ ] Glitches and exploits labelled as such
@@ -260,7 +260,7 @@ RA URL pattern: `https://retroachievements.org/game/{id}`
 
 ## Style Skill
 
-When making any style decisions — choosing accent colours, using tables, info/warn boxes, or status tags — consult the **style** skill (`.github/agents/style-skill.md`). It defines:
+When making any style decisions — choosing accent colours, using tables, info/warn boxes, or status tags — consult the **style** skill (`.github/skills/style/SKILL.md`). It defines:
 
 - Which CSS variables may be overridden per guide (accent only) and which must stay constant
 - Recommended accent palettes keyed to game theme
