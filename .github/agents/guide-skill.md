@@ -44,25 +44,20 @@ Typical sections (adapt as needed):
 ### Step 3 — Create the Files
 
 1. **Guide file**: `games/<slug>.html`
-   - Copy the skeleton from an existing guide
-   - Override `--accent`, `--accent2`, `--accent3`, `--glow` in `<style>` to match the game's palette
+   - Use the HTML template below as the starting skeleton
+   - Run the **style** skill (`.github/agents/style-skill.md`) to choose the correct accent palette for the game and confirm what may/may not be overridden
    - Add all sections from your plan with proper `id` attributes for the sidebar nav
-2. **Box art**: `assets/img/<slug>-boxart.jpg` (preferred) or `<slug>-boxart.svg` (fallback)
-   - **First, attempt to retrieve real box art** from these sources in order:
-     1. Bulbapedia archives — file pages at `https://bulbapedia.bulbagarden.net/wiki/File:<name>.png` expose the direct image URL (e.g. `https://archives.bulbagarden.net/media/upload/…`)
-     2. Serebii — check `https://www.serebii.net/<game>/` for a cover image
-     3. Internet Archive — scan collections (e.g. `https://archive.org/details/<scan-set>`) often contain high-res front-of-box JPEGs
-     4. Wikimedia Commons — search `https://commons.wikimedia.org/wiki/Category:<GameName>`
-   - Resize the image to ≤300px wide at 85% JPEG quality before committing
-   - **Only create an SVG placeholder if all download attempts fail** (DNS blocked, image not found, etc.)
-   - SVG placeholder: 200×280px viewBox, game colour gradient, title text, platform badge
+2. **Box art**: `assets/img/<slug>-boxart.jpg`
+   - **Primary source: RetroAchievements** — find the game page at `https://retroachievements.org/game/{id}`, locate the `Images/XXXXXX.png` URL in the page source, download and convert to JPG at ≤300px wide, 85% quality
+   - If RetroAchievements is blocked, use the Wayback Machine: `https://web.archive.org/web/2025/https://retroachievements.org/game/{id}`
+   - **Do not create SVG placeholders** — always use a real box art image from RetroAchievements
 3. **Index card**: Add the `.game-card` div to `index.html` `#game-grid`
    - Include thorough `data-name` keywords for search
 
 ### Step 4 — Validate
 
 - Check all nav anchors in `.side-nav` match `id` attributes in the content
-- Ensure tables have consistent header styles (Press Start 2P, 7–9px, accent3 colour)
+- Confirm tables use `.tbl-wrap` with a plain `<table>` (no inline styles on `table`/`th`/`td`)
 - Confirm `.warn-box` is used for missable content and irreversible choices
 - Confirm glitches are described as glitches, not intended mechanics
 - Check the index card renders correctly (1:1 square aspect ratio image)
@@ -70,6 +65,8 @@ Typical sections (adapt as needed):
 ---
 
 ## HTML Template
+
+> **Before customising:** run the style skill (`.github/agents/style-skill.md`) to pick the correct accent palette for the game.
 
 ```html
 <!DOCTYPE html>
@@ -81,31 +78,55 @@ Typical sections (adapt as needed):
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Share+Tech+Mono&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.8.1/dist/css/foundation.min.css">
   <link rel="stylesheet" href="../assets/site.css">
+  <script src="../assets/guide-header.js" defer></script>
   <style>
+    /* Accent palette — only these four variables may be overridden */
     :root {
       --accent:  #REPLACE_ME;   /* primary highlight: e.g. #f9c800 for yellow */
-      --accent2: #REPLACE_ME;   /* lighter variant */
+      --accent2: #REPLACE_ME;   /* secondary accent  */
       --accent3: #REPLACE_ME;   /* dim/muted accent for headings */
       --glow:    0 0 10px #COLOR55, 0 0 20px #COLOR22;
     }
-    /* Add guide-specific styles here */
+    /* Add guide-specific component styles here */
   </style>
 </head>
 <body>
+<div class="shell">
 
-<header>
-  <div class="grid-container">
-    <a href="../index.html" class="back-link">← All Guides</a>
-    <p class="game-platform">Platform · Genre · Year</p>
-    <h1 class="game-title">Game Name</h1>
-    <p class="game-subtitle">Tagline or subtitle</p>
-  </div>
-</header>
+  <guide-header
+    title="GAME NAME"
+    platform="Platform · Genre · Publisher · Year"
+    ra-id="RETROACHIEVEMENTS_ID"
+    nav='[{"label":"Overview","href":"#overview"},{"label":"Section","href":"#section"}]'
+  ></guide-header>
+
+  <section id="overview">
+    <h2>Overview</h2>
+    <p>...</p>
+  </section>
+
+  <!-- Add more sections -->
+
+  <footer>
+    <p>GAME NAME &copy; YEAR Developer / Publisher. Fan-made reference only. Information sourced from SOURCE.</p>
+  </footer>
+
+</div>
+</body>
+</html>
+```
+
+**For sidebar-nav layouts** (large guides), replace the `nav` attribute with a Foundation grid and `.side-nav`:
+
+```html
+<guide-header
+  title="GAME NAME"
+  platform="Platform · Genre · Publisher · Year"
+  ra-id="RETROACHIEVEMENTS_ID"
+></guide-header>
 
 <div class="grid-container">
   <div class="grid-x grid-margin-x">
-
-    <!-- Sidebar -->
     <div class="cell large-3 show-for-large">
       <nav class="side-nav" style="position:sticky;top:20px;">
         <p class="nav-heading">// CONTENTS</p>
@@ -115,32 +136,14 @@ Typical sections (adapt as needed):
         </ul>
       </nav>
     </div>
-
-    <!-- Main content -->
     <div class="cell large-9">
-
       <section id="overview">
-        <h2 class="section-title">Overview</h2>
+        <h2>Overview</h2>
         <p>...</p>
       </section>
-
-      <!-- Add more sections -->
-
     </div>
   </div>
 </div>
-
-<footer>
-  <div class="grid-container">
-    <p style="font-size:10px;color:var(--text-dim);">
-      GAME NAME &copy; YEAR Developer / Publisher.<br>
-      Fan-made reference only. Information sourced from SOURCE.
-    </p>
-  </div>
-</footer>
-
-</body>
-</html>
 ```
 
 ---
@@ -178,20 +181,28 @@ Define `.pstatus` and variants in the guide's `<style>` block:
 
 ### Standard Data Table
 
+Use `.tbl-wrap` and a plain `<table>` — all styling is provided by `site.css`. Never add inline styles on `table`, `th`, or `td`.
+
 ```html
-<table style="width:100%;border-collapse:collapse;font-size:11px;">
-  <thead>
-    <tr>
-      <th style="background:var(--surface2);color:var(--accent3);font-family:'Press Start 2P',monospace;font-size:7px;padding:8px;text-align:left;border-bottom:2px solid var(--accent3);">Column</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr style="border-bottom:1px solid var(--border);">
-      <td style="padding:5px 10px;color:var(--text);">Cell content</td>
-    </tr>
-  </tbody>
-</table>
+<div class="tbl-wrap">
+  <table>
+    <thead>
+      <tr>
+        <th>Column A</th>
+        <th>Column B</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Cell content</td>
+        <td>Cell content</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 ```
+
+Only add custom CSS classes for guide-specific column styling (e.g. `.dex-num`, `.tm-move`). See `.github/agents/style-skill.md` for the full table reference.
 
 ---
 
