@@ -80,19 +80,29 @@ The component renders:
 
 ### 3. CSS Variables (theme)
 
-`site.css` exposes these custom properties — override in `<style>` to change the accent colour for a guide:
+`site.css` exposes these custom properties. **Only the accent variables may be overridden per guide.** Background, surface, border, and text variables must remain constant across all guides to maintain visual consistency.
 
-| Variable       | Purpose                            |
-|----------------|------------------------------------|
-| `--accent`     | Primary highlight colour           |
-| `--accent2`    | Lighter variant of accent          |
-| `--accent3`    | Muted/dim accent (headings, etc.)  |
-| `--glow`       | `box-shadow` value for glow effect |
-| `--surface`    | Card/panel background              |
-| `--surface2`   | Slightly lighter surface           |
-| `--border`     | Border colour                      |
-| `--text`       | Primary text                       |
-| `--text-dim`   | Secondary/muted text               |
+> **See also:** The style skill (`.github/agents/style-skill.md`) has prescriptive guidance on accent palettes, what to override, and how to use shared components.
+
+**✅ Override these per guide (accent colours only):**
+
+| Variable  | Purpose                                        |
+|-----------|------------------------------------------------|
+| `--accent`  | Primary highlight colour                     |
+| `--accent2` | Secondary accent (warnings, tags)            |
+| `--accent3` | Muted/dim accent (h3 headings, RA button)    |
+| `--glow`    | `box-shadow` / `text-shadow` glow effect     |
+
+**❌ Never override these — shared dark-theme foundation:**
+
+| Variable     | Purpose                      |
+|--------------|------------------------------|
+| `--bg`       | Page background              |
+| `--surface`  | Card / panel background      |
+| `--surface2` | Lighter surface / table rows |
+| `--border`   | Borders and dividers         |
+| `--text`     | Primary text colour          |
+| `--text-dim` | Muted / secondary text       |
 
 ### 4. Shared CSS Classes (from `site.css`)
 
@@ -151,10 +161,27 @@ A complete guide should cover:
 
 ### Tables
 
-- Use `border-collapse: collapse` with alternating row hover states
-- Column headers: `font-family: 'Press Start 2P'`, `font-size: 7–9px`, `color: var(--accent3)`
-- Cell text: `font-size: 11–12px`, `color: var(--text)`
-- Muted secondary info: `font-size: 10px`, `color: var(--text-dim)`
+Always wrap tables in `.tbl-wrap` and use a plain `<table>` without inline styles. `site.css` handles all base table styling automatically:
+
+```html
+<div class="tbl-wrap">
+  <table>
+    <thead>
+      <tr><th>Column A</th><th>Column B</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Cell</td><td>Cell</td></tr>
+    </tbody>
+  </table>
+</div>
+```
+
+- Header cells use `var(--accent)` text, `var(--surface2)` background, `font-family: 'Press Start 2P'`
+- Even rows get a subtle `var(--surface2)` stripe automatically
+- Row hover highlight is applied automatically
+- Only add custom CSS classes for guide-specific column content (e.g. `.dex-num`, `.tm-move`) — do not re-declare `background`, `color`, `font-family`, or `border-collapse` on base `table`/`th`/`td` elements
+
+> See `.github/agents/style-skill.md` for the full table pattern and other shared component usage.
 
 ### Status / Tag Colours
 
@@ -222,12 +249,24 @@ RA URL pattern: `https://retroachievements.org/game/{id}`
 - [ ] `<script src="../assets/guide-header.js" defer>` included in `<head>` after `site.css`
 - [ ] `assets/img/<slug>-boxart.jpg` downloaded from RetroAchievements and added
 - [ ] Card added to `index.html` `#game-grid` with accurate `data-name`
-- [ ] Accent colour variables overridden in `<style>` to match the game's palette
-- [ ] All tables use the shared column-header style
+- [ ] **Style skill run** (`.github/agents/style-skill.md`) — accent colour variables (`--accent`, `--accent2`, `--accent3`, `--glow`) overridden to match the game's palette; no background/surface/border/text variables overridden
+- [ ] All tables use `.tbl-wrap` wrapper with plain `<table>` (no inline styles on `table`/`th`/`td`)
 - [ ] Missable/trade-required items clearly marked with `.warn-box` or status tags
 - [ ] Glitches and exploits labelled as such
 - [ ] Sources cited in the footer (`<footer>`)
 - [ ] **Fact-checker agent run** and all reported errors resolved (see `.github/agents/fact-checker.md`)
+
+---
+
+## Style Skill
+
+When making any style decisions — choosing accent colours, using tables, info/warn boxes, or status tags — invoke the **style** skill (`.github/agents/style-skill.md`). It defines:
+
+- Which CSS variables may be overridden per guide (accent only) and which must stay constant
+- Recommended accent palettes keyed to game theme
+- The correct usage pattern for every shared CSS component
+
+**To invoke:** Pass the style question or the guide's `<style>` block to the style skill agent and incorporate its prescriptions.
 
 ---
 

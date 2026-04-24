@@ -218,6 +218,8 @@ table {
 }
 
 thead, tbody, tfoot, tr { background: transparent; }
+/* Override Foundation's even-row light background — needs higher specificity than tbody tr:nth-child(even) */
+table tbody tr:nth-child(even) { background: transparent; }
 
 th {
   background: var(--surface2);
