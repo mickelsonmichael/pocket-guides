@@ -33,8 +33,22 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      # Configure GitHub Pages and obtain the correct base path.
+      # enablement: true ensures the Pages source is set to "GitHub Actions"
+      # (not "Deploy from branch"), which prevents the raw source index.html
+      # from being served. The base_path output is used as the Vite base so
+      # asset URLs are correct for both the default github.io URL and any
+      # custom domain (which serves from the root, not /pocket-guides/).
+      - name: Configure GitHub Pages
+        id: pages
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+
       - name: Build
         run: npm run build
+        env:
+          GITHUB_PAGES_BASE: ${{ steps.pages.outputs.base_path }}
 
       - name: Prepare SPA fallback
         run: cp dist/index.html dist/404.html
