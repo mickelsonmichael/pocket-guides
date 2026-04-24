@@ -24,7 +24,9 @@ class GuideHeader extends HTMLElement {
 
     let navLinks = [];
     if (navJson) {
-      try { navLinks = JSON.parse(navJson); } catch (_) { /* malformed nav JSON — render no nav */ }
+      try { navLinks = JSON.parse(navJson); } catch (err) {
+        console.warn('<guide-header>: Invalid nav JSON — nav bar will not be rendered.', err.message, navJson);
+      }
     }
 
     /* ── Header ─────────────────────────────────────────────── */
