@@ -34,19 +34,49 @@ Every guide must:
 1. Link `https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Share+Tech+Mono&display=swap`
 2. Link `https://cdn.jsdelivr.net/npm/foundation-sites@6.8.1/dist/css/foundation.min.css`
 3. Link `../assets/site.css`
-4. Include a `<header>` with `.back-link`, `.game-platform`, `.game-title`, and `.game-subtitle`
-5. Use a Foundation `.grid-container` > `.grid-x` layout with a sticky sidebar (`.side-nav`) on large screens and the main content in the remaining columns
+4. Load `../assets/guide-header.js` (the shared `<guide-header>` web component)
+5. Use `<guide-header>` for the page header — **do not** write a raw `<header>` element or separate back-link/nav in guides
+6. Use a Foundation `.grid-container` > `.grid-x` layout with a sticky sidebar (`.side-nav`) on large screens and the main content in the remaining columns
 
 ```html
-<header>
-  <div class="grid-container">
-    <a href="../index.html" class="back-link">← All Guides</a>
-    <p class="game-platform">Platform · Genre · Year</p>
-    <h1 class="game-title">Game Name</h1>
-    <p class="game-subtitle">Short tagline</p>
-  </div>
-</header>
+<head>
+  ...
+  <link rel="stylesheet" href="../assets/site.css">
+  <script src="../assets/guide-header.js" defer></script>
+</head>
+<body>
+<div class="shell">
+
+  <guide-header
+    title="Game Name"
+    platform="Platform · Genre · Publisher · Year"
+    ra-id="12345"
+    nav='[{"label":"Overview","href":"#overview"},{"label":"Controls","href":"#controls"}]'
+  ></guide-header>
+
+  ...content...
+
+</div>
+</body>
 ```
+
+#### `<guide-header>` attributes
+
+| Attribute  | Required | Description |
+|------------|----------|-------------|
+| `title`    | Yes      | Game title (plain text) |
+| `platform` | No       | Single metadata line shown below the title, e.g. `"Game Boy · Platformer · Nintendo · 1994"` |
+| `ra-id`    | Yes      | RetroAchievements game ID — renders a header button linking to `https://retroachievements.org/game/{id}` |
+| `nav`      | No       | JSON array of `{label, href}` objects for the sticky top-nav bar. Omit for sidebar-nav layouts. |
+
+The component renders:
+- A **back link** (`← Pocket Guides`) to `../index.html` — larger than the old inline link
+- The game **title** (`<h1>`)
+- A single **metadata line** below the title (replaces the old duplicate `.game-label` + `.subtitle` pattern)
+- A **RetroAchievements button** in the top-right corner (when `ra-id` is supplied)
+- An optional **sticky nav bar** (when `nav` JSON is supplied)
+
+> **Note:** Because the `<guide-header>` component provides the RetroAchievements link, do **not** add a separate RA link in the Overview `.info-box` or the `<footer>`. The button in the header is the canonical location.
 
 ### 3. CSS Variables (theme)
 
@@ -180,9 +210,7 @@ Convert the downloaded PNG to JPG and save as `assets/img/<slug>-boxart.jpg`.
 
 ### Linking to RetroAchievements
 
-Every guide must include a link to the game's RetroAchievements page:
-- In the Overview section inside an `.info-box` callout.
-- In the `<footer>` of the guide.
+Every guide must supply a RetroAchievements game ID via the `<guide-header ra-id="...">` attribute. The component renders a **RetroAchievements** button in the page header automatically — do **not** add a separate RA link in the Overview `.info-box` or `<footer>`.
 
 RA URL pattern: `https://retroachievements.org/game/{id}`
 
@@ -190,7 +218,8 @@ RA URL pattern: `https://retroachievements.org/game/{id}`
 
 ## Checklist for a New Guide
 
-- [ ] `games/<slug>.html` created with correct header, nav, and all required sections
+- [ ] `games/<slug>.html` created with `<guide-header>` component (title, platform, ra-id, nav attributes set)
+- [ ] `<script src="../assets/guide-header.js" defer>` included in `<head>` after `site.css`
 - [ ] `assets/img/<slug>-boxart.jpg` downloaded from RetroAchievements and added
 - [ ] Card added to `index.html` `#game-grid` with accurate `data-name`
 - [ ] Accent colour variables overridden in `<style>` to match the game's palette
