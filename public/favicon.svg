@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" shape-rendering="crispEdges" role="img" aria-label="Pocket Guides — book in a shirt pocket">
+  <!-- Shirt body -->
+  <rect x="0" y="8" width="16" height="8" fill="#1e3a5f"/>
+  <!-- Pocket outer (gold border) -->
+  <rect x="2" y="9" width="12" height="5" fill="#f4a800"/>
+  <!-- Pocket interior (dark) -->
+  <rect x="3" y="10" width="10" height="3" fill="#0d1e34"/>
+  <!-- Book cover (gold) -->
+  <rect x="5" y="2" width="6" height="10" fill="#f4a800"/>
+  <!-- Book spine (dark, left 1 px) -->
+  <rect x="5" y="2" width="1" height="10" fill="#7a4f00"/>
+  <!-- Book pages (cream, right 1 px) -->
+  <rect x="10" y="3" width="1" height="9" fill="#e0d8b0"/>
+  <!-- Decorative text lines on cover -->
+  <rect x="6" y="4" width="3" height="1" fill="#c07800"/>
+  <rect x="6" y="6" width="4" height="1" fill="#c07800"/>
+  <rect x="6" y="8" width="3" height="1" fill="#c07800"/>
+</svg>

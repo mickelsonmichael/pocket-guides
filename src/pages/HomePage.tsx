@@ -39,7 +39,16 @@ export default function HomePage() {
       <header className="home-header">
         <div className="grid-container">
           <p className="site-label">Retro Game Guides</p>
-          <h1 className="site-title">Pocket Guides</h1>
+          <div className="site-title-wrap">
+            <img
+              src={`${import.meta.env.BASE_URL}favicon.svg`}
+              alt=""
+              className="site-logo"
+              width="40"
+              height="40"
+            />
+            <h1 className="site-title">Pocket Guides</h1>
+          </div>
           <p className="site-subtitle">Cleaned-up, searchable guides for handheld classics.</p>
         </div>
       </header>
