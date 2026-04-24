@@ -6,6 +6,12 @@ on:
   push:
     branches: [main]
 
+permissions:
+  contents: read
+  # Needed by actions/upload-pages-artifact on main.
+  pages: write
+  id-token: write
+
 jobs:
   check:
     name: Format / Lint / Typecheck / Build
