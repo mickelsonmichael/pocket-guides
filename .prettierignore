@@ -1,0 +1,9 @@
+dist
+node_modules
+coverage
+.vite
+.cache
+games/*.html
+index.html
+assets/img/**
+!assets/img/.gitkeep

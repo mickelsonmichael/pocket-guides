@@ -23,14 +23,15 @@ Use this skill whenever you are making style decisions, choosing accent colours,
 
 These variables define the game's colour identity. Override all four together in the guide's `<style>` block inside `:root {}`.
 
-| Variable  | Purpose                                         | Default      |
-|-----------|-------------------------------------------------|--------------|
-| `--accent`  | Primary highlight — headings, borders, bullets | `#f4a800`    |
-| `--accent2` | Secondary accent — used for warnings/tags      | `#ff4444`    |
-| `--accent3` | Muted accent — h3 headings, RA button, code    | `#4fc3f7`    |
-| `--glow`    | `box-shadow` / `text-shadow` glow effect        | amber glow   |
+| Variable    | Purpose                                        | Default    |
+| ----------- | ---------------------------------------------- | ---------- |
+| `--accent`  | Primary highlight — headings, borders, bullets | `#f4a800`  |
+| `--accent2` | Secondary accent — used for warnings/tags      | `#ff4444`  |
+| `--accent3` | Muted accent — h3 headings, RA button, code    | `#4fc3f7`  |
+| `--glow`    | `box-shadow` / `text-shadow` glow effect       | amber glow |
 
 **Template:**
+
 ```css
 <style>
   :root {
@@ -47,8 +48,8 @@ These variables define the game's colour identity. Override all four together in
 
 These form the shared dark-theme foundation. Changing them would break visual consistency across guides.
 
-| Variable     | Value     | Purpose                     |
-|--------------|-----------|-----------------------------|
+| Variable     | Value     | Purpose                      |
+| ------------ | --------- | ---------------------------- |
 | `--bg`       | `#0a0c10` | Page background              |
 | `--surface`  | `#111318` | Card / panel background      |
 | `--surface2` | `#181c24` | Lighter surface / table rows |
@@ -62,15 +63,15 @@ These form the shared dark-theme foundation. Changing them would break visual co
 
 Choose an accent palette that fits the game's visual identity. Keep the palette warm or cool — do not mix warm and cool hues across the three variables.
 
-| Game theme          | `--accent`  | `--accent2` | `--accent3` |
-|---------------------|-------------|-------------|-------------|
-| Yellow / Pikachu    | `#f9c800`   | `#ffdd55`   | `#e69500`   |
-| Orange / Fire       | `#ff7c00`   | `#ffaa44`   | `#cc5500`   |
-| Cyan / Blue sci-fi  | `#4fc3f7`   | `#81d4fa`   | `#0288d1`   |
-| Red / Action        | `#ff5555`   | `#ff8888`   | `#cc2222`   |
-| Green / Nature      | `#66bb6a`   | `#a5d6a7`   | `#388e3c`   |
-| Purple / Fantasy    | `#ce93d8`   | `#f48fb1`   | `#9c27b0`   |
-| Default (no change) | `#f4a800`   | `#ff4444`   | `#4fc3f7`   |
+| Game theme          | `--accent` | `--accent2` | `--accent3` |
+| ------------------- | ---------- | ----------- | ----------- |
+| Yellow / Pikachu    | `#f9c800`  | `#ffdd55`   | `#e69500`   |
+| Orange / Fire       | `#ff7c00`  | `#ffaa44`   | `#cc5500`   |
+| Cyan / Blue sci-fi  | `#4fc3f7`  | `#81d4fa`   | `#0288d1`   |
+| Red / Action        | `#ff5555`  | `#ff8888`   | `#cc2222`   |
+| Green / Nature      | `#66bb6a`  | `#a5d6a7`   | `#388e3c`   |
+| Purple / Fantasy    | `#ce93d8`  | `#f48fb1`   | `#9c27b0`   |
+| Default (no change) | `#f4a800`  | `#ff4444`   | `#4fc3f7`   |
 
 > Keep `--accent2` notably lighter/brighter than `--accent`, and `--accent3` notably darker/dimmer than `--accent`. `--accent3` is used for subheadings and muted decorative elements.
 
@@ -102,6 +103,7 @@ Always wrap tables in `.tbl-wrap`. Never add inline styles — `site.css` handle
 ```
 
 **Provided by `site.css` automatically:**
+
 - Dark background (`var(--surface)`) on the table
 - `var(--surface2)` on `<th>` cells and alternating even rows
 - `var(--accent)` colour on header text
@@ -153,24 +155,36 @@ For guide-specific status tags (e.g. Pokédex availability), define a `.pstatus`
   vertical-align: middle;
   white-space: nowrap;
 }
-.pstatus.wild   { background: #1a3d1a; color: #5dde5d; border: 1px solid #2e6e2e; }
-.pstatus.gift   { background: #3d3000; color: #f9c800; border: 1px solid #7a6000; }
-.pstatus.trade  { background: #3d0a0a; color: #ff6666; border: 1px solid #7a1a1a; }
+.pstatus.wild {
+  background: #1a3d1a;
+  color: #5dde5d;
+  border: 1px solid #2e6e2e;
+}
+.pstatus.gift {
+  background: #3d3000;
+  color: #f9c800;
+  border: 1px solid #7a6000;
+}
+.pstatus.trade {
+  background: #3d0a0a;
+  color: #ff6666;
+  border: 1px solid #7a1a1a;
+}
 /* Add more variants as needed */
 ```
 
 **Consistent status colour conventions:**
 
-| Meaning                  | Background  | Foreground      |
-|--------------------------|-------------|-----------------|
-| In wild / available      | dark green  | bright green    |
-| Gift / event             | dark amber  | yellow          |
-| Evolve only              | dark blue   | bright blue     |
-| Trade required           | dark red    | red             |
-| Fossil / special method  | dark purple | lavender        |
-| Game Corner              | dark cyan   | cyan            |
-| In-game trade            | dark orange | orange          |
-| Legendary / static       | dark gold   | yellow          |
+| Meaning                 | Background  | Foreground   |
+| ----------------------- | ----------- | ------------ |
+| In wild / available     | dark green  | bright green |
+| Gift / event            | dark amber  | yellow       |
+| Evolve only             | dark blue   | bright blue  |
+| Trade required          | dark red    | red          |
+| Fossil / special method | dark purple | lavender     |
+| Game Corner             | dark cyan   | cyan         |
+| In-game trade           | dark orange | orange       |
+| Legendary / static      | dark gold   | yellow       |
 
 ### Side Navigation (sidebar layout)
 
@@ -204,6 +218,7 @@ Always use **FontAwesome Free** icons instead of emoji. The `<guide-header>` com
 | Lock / missable | `fa-solid fa-lock` |
 
 **Usage:**
+
 ```html
 <i class="fa-solid fa-trophy" aria-hidden="true"></i> Label text
 ```
