@@ -40,7 +40,7 @@ jobs:
       - name: Build
         run: npm run build
 
-      # The built output is needed by the deploy workflow on main.
+      # The built output is needed by the deploy job on main.
       # Copy index.html to 404.html so GitHub Pages serves the SPA for
       # any route (react-router handles the rest client-side).
       - name: Prepare SPA fallback
@@ -52,3 +52,16 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: dist
+
+  deploy:
+    name: Deploy to GitHub Pages
+    needs: check
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
