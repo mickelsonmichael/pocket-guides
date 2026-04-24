@@ -213,7 +213,8 @@ report for all three checks.
 ## Deployment
 
 - `.github/workflows/ci.yml` runs on every pull request and on pushes
-  to `main`. It runs format, lint, typecheck, and build, and uploads
-  the `dist/` folder as a Pages artifact on `main`.
-- `.github/workflows/deploy.yml` deploys that artifact to GitHub Pages
-  after the CI workflow succeeds on `main`.
+  to `main`. It runs format, lint, typecheck, and build. On `main` it
+  also uploads the `dist/` folder as a Pages artifact and deploys it to
+  GitHub Pages via a dependent `deploy` job.
+- `.github/workflows/deploy.yml` is a manual `workflow_dispatch`
+  workflow that builds and deploys to GitHub Pages on demand.
