@@ -7,6 +7,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Share+Tech+Mono&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.8.1/dist/css/foundation.min.css">
   <link rel="stylesheet" href="../assets/site.css">
+  <script src="../assets/guide-header.js" defer></script>
   <style>
     /* ─── Pokémon Yellow-specific palette overrides ─── */
     :root {
@@ -15,37 +16,6 @@
       --accent3:   #e69500;
       --glow:      0 0 10px #f9c80055, 0 0 20px #f9c80022;
     }
-
-    /* ─── Layout classes (not in site.css) ─── */
-    .back-link {
-      display: inline-block;
-      font-family: 'Press Start 2P', monospace;
-      font-size: 8px;
-      color: var(--text-dim);
-      text-decoration: none;
-      padding: 10px 0;
-      letter-spacing: 1px;
-    }
-    .back-link:hover { color: var(--accent); }
-
-    .game-platform {
-      font-family: 'Press Start 2P', monospace;
-      font-size: 8px;
-      color: var(--accent3);
-      letter-spacing: 2px;
-      margin-bottom: 10px;
-      opacity: 0.8;
-    }
-    .game-title {
-      font-family: 'Press Start 2P', monospace;
-      font-size: clamp(12px, 3vw, 20px);
-      color: var(--accent);
-      text-shadow: var(--glow);
-      line-height: 1.5;
-      letter-spacing: 1px;
-      margin-bottom: 6px;
-    }
-    .game-subtitle { color: var(--text-dim); font-size: 12px; }
 
     .section-title {
       font-family: 'Press Start 2P', monospace;
@@ -345,14 +315,13 @@
 </head>
 <body>
 
-<header>
-  <div class="grid-container">
-    <a href="../index.html" class="back-link">← All Guides</a>
-    <p class="game-platform">Game Boy Color · RPG · 1998 (JP) / 1999 (NA)</p>
-    <h1 class="game-title">Pokémon Yellow</h1>
-    <p class="game-subtitle">Special Pikachu Edition — Gen I Reference</p>
-  </div>
-</header>
+<div class="grid-container">
+  <guide-header
+    title="Pokémon Yellow"
+    platform="Game Boy Color · RPG · Game Freak / Nintendo · 1998 (JP) / 1999 (NA)"
+    ra-id="723"
+  ></guide-header>
+</div>
 
 <div class="grid-container">
   <div class="grid-x grid-margin-x">

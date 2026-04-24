@@ -7,6 +7,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.8.1/dist/css/foundation.min.css">
 <link rel="stylesheet" href="../assets/site.css">
+<script src="../assets/guide-header.js" defer></script>
 <style>
   /* Character cards */
   .char-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
@@ -64,22 +65,12 @@
 <body>
 <div class="shell">
 
-  <a href="../index.html" style="display:inline-block;font-family:'Press Start 2P',monospace;font-size:8px;color:var(--text-dim);text-decoration:none;padding:10px 0 0;letter-spacing:1px;">&#8592; Pocket Guides</a>
-
-  <header>
-    <div class="game-label">Game Boy Color · Platformer</div>
-    <h1>M&amp;M's Minis Madness</h1>
-    <p class="subtitle">Majesco Entertainment · Game Boy Color · 2000</p>
-  </header>
-
-  <nav>
-    <a href="#overview">Overview</a>
-    <a href="#controls">Controls</a>
-    <a href="#characters">Characters</a>
-    <a href="#collectibles">Collectibles</a>
-    <a href="#passwords">Passwords</a>
-    <a href="#tips">Tips</a>
-  </nav>
+<guide-header
+  title="M&M's Minis Madness"
+  platform="Game Boy Color · Platformer · Majesco Entertainment · 2000"
+  ra-id="3625"
+  nav='[{"label":"Overview","href":"#overview"},{"label":"Controls","href":"#controls"},{"label":"Characters","href":"#characters"},{"label":"Collectibles","href":"#collectibles"},{"label":"Passwords","href":"#passwords"},{"label":"Tips","href":"#tips"}]'
+></guide-header>
 
   <!-- OVERVIEW -->
   <section id="overview">
