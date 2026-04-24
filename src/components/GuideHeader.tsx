@@ -21,23 +21,23 @@ export default function GuideHeader({ title, platform, raId, nav }: GuideHeaderP
       <header className="gh-header">
         <div className="gh-topbar">
           <Link to="/" className="gh-back">
-            ← Pocket Guides
+            <i className="fa-solid fa-arrow-left" aria-hidden="true" /> Pocket Guides
           </Link>
-          <div className="gh-actions">
-            {raId && (
-              <a
-                href={`https://retroachievements.org/game/${raId}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="gh-btn-ra"
-              >
-                <i className="fa-solid fa-trophy" aria-hidden="true" /> RetroAchievements
-              </a>
-            )}
-          </div>
         </div>
         <h1>{title}</h1>
-        {platform && <p className="gh-meta">{platform}</p>}
+        <div className="gh-header-footer">
+          {platform && <p className="gh-meta">{platform}</p>}
+          {raId && (
+            <a
+              href={`https://retroachievements.org/game/${raId}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="gh-btn-ra"
+            >
+              <i className="fa-solid fa-trophy" aria-hidden="true" /> RetroAchievements
+            </a>
+          )}
+        </div>
       </header>
       {nav && nav.length > 0 && (
         <nav className="gh-nav">
